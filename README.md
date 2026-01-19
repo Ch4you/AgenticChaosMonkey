@@ -29,11 +29,21 @@ While traditional chaos engineering tools (like Chaos Monkey) focus on **infrast
 
 ---
 
-## 🧭 What Is This Project?
+## 👤 User View: What Do I Get?
 
-**Agent Chaos Platform** is a chaos engineering toolkit for AI Agents. It sits in front of your agent’s outbound HTTP/HTTPS traffic (as a proxy or sidecar) and injects failures, records/replays interactions, and provides observability so you can measure and improve agent resilience.
+If you build or operate AI agents, this product lets you **prove your agent is reliable under real failures**, not just happy-path demos.
 
-**In one line:** it helps you prove your agent keeps working when real-world failures happen.
+**What you do**
+- Point your agent at the Chaos Proxy (or run the sidecar).
+- Pick a chaos plan (validation or production).
+- Run your agent and watch results live in the dashboard.
+
+**What you get**
+- **Real failures on demand**: latency, 429s, 5xx, corrupted JSON, RAG poisoning, swarm disruption.
+- **Clear evidence**: success rate, error breakdown, chaos hit rate, scorecard, reports.
+- **Reproducibility**: record + replay flaky incidents exactly.
+
+**In one line:** it helps you validate that your agent still works when the world doesn’t.
 
 ---
 
