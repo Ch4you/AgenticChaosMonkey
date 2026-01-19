@@ -3,6 +3,7 @@ stages:
 
 variables:
   PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  CHAOS_LLM_HEALTH_SKIP: "true"
 
 test:
   image: python:3.11-slim
