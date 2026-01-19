@@ -49,6 +49,8 @@ logs/
 reports/
 tapes/
 *.tape
+runs/
+config/chaos_config.yaml
 proxy_script*.py
 # But keep README.md
 !README.md

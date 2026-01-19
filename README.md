@@ -7,7 +7,6 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Tests](https://img.shields.io/badge/tests-127%20passing-brightgreen)](https://github.com/AgenticChaosMonkey/AgenticChaosMonkey)
 
 *Test agent robustness against network failures, data corruption, protocol fuzzing, and cognitive attacks.*
 
@@ -204,6 +203,7 @@ agent-chaos run examples/plans/travel_agent_chaos_validate.yaml --mock-server --
 2) View results:
 - Dashboard: `http://127.0.0.1:8081`
 - Run summary: select the latest run in Dashboard
+ - Demo agent is auto-run when using `--mock-server`
 
 **B. Production Plan (low-probability)**
 
@@ -234,8 +234,18 @@ kubectl apply -f k8s/
 Record & replay for deterministic debugging:
 
 ```bash
-agent-chaos record examples/plans/travel_agent_chaos.yaml --tape session.tape
-agent-chaos replay session.tape --plan examples/plans/travel_agent_chaos.yaml
+# Generate a tape encryption key
+export CHAOS_TAPE_KEY="$(python - <<'PY'
+from cryptography.fernet import Fernet
+print(Fernet.generate_key().decode())
+PY
+)"
+
+# Record
+agent-chaos record examples/plans/travel_agent_chaos_validate.yaml --tape session.tape
+
+# Replay
+agent-chaos replay session.tape --plan examples/plans/travel_agent_chaos_validate.yaml
 ```
 
 ---
@@ -404,8 +414,8 @@ AgenticChaosMonkey/
 Let's test a travel booking agent's resilience:
 
 ```bash
-# 1. Start the chaos platform
-agent-chaos run examples/plans/travel_agent_chaos.yaml --mock-server
+# 1. Start the chaos platform (validation profile)
+agent-chaos run examples/plans/travel_agent_chaos_validate.yaml --mock-server --repeat 10
 
 # 2. In another terminal, run your agent
 export HTTP_PROXY=http://localhost:8080
@@ -414,8 +424,7 @@ python examples/production_simulation/travel_agent.py \
 
 # 3. Watch the chaos unfold:
 # - Dashboard: http://127.0.0.1:8081 (see live topology)
-# - Logs: logs/proxy.log (structured JSON)
-# - Report: reports/resilience_report.md (A-F grade)
+# - Logs: runs/<latest-run>/logs/proxy.log (structured JSON)
 ```
 
 **What happens:**
@@ -537,7 +546,7 @@ pytest --cov=agent_chaos_sdk --cov-report=html
 pytest tests/unit/test_rag_strategy.py -v
 ```
 
-**Test Coverage**: 127 tests, >80% coverage
+**Test Coverage**: see CI results for current status
 
 See [docs/markdown/COMPREHENSIVE_TESTING_GUIDE.md](docs/markdown/COMPREHENSIVE_TESTING_GUIDE.md) for complete testing guide.
 
