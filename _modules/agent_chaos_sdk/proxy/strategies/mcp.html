@@ -1,0 +1,1177 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>agent_chaos_sdk.proxy.strategies.mcp &mdash; Agent Chaos Platform 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Agent Chaos Platform
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../quickstart.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart.html#using-the-cli">Using the CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart.html#strict-modes-recommended-for-production">Strict Modes (Recommended for Production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart.html#python-api">Python API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/index.html#core-modules">Core Modules</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/index.html#module-agent_chaos_sdk.decorators">Decorators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.decorators.simulate_chaos"><code class="docutils literal notranslate"><span class="pre">simulate_chaos()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/index.html#module-agent_chaos_sdk.config_loader">Configuration Loader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan"><code class="docutils literal notranslate"><span class="pre">ChaosPlan</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.version"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.version</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.revision"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.revision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.replay_config"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.replay_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.metadata"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.targets"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.targets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.scenarios"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.scenarios</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.classifier_rule_packs"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.classifier_rule_packs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.classifier_rules"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.classifier_rules</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.get_scenarios_for_target"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.get_scenarios_for_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.get_target"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.get_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.hydrate_classifier_rules"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.hydrate_classifier_rules()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id0"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.model_config"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id1"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.replay_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id2"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.revision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id3"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.scenarios</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id4"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.targets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.to_legacy_config"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.to_legacy_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.validate_classifier_rule_packs"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.validate_classifier_rule_packs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ChaosPlan.validate_target_references"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.validate_target_references()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id5"><code class="docutils literal notranslate"><span class="pre">ChaosPlan.version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRulePack"><code class="docutils literal notranslate"><span class="pre">ClassifierRulePack</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRulePack.model_config"><code class="docutils literal notranslate"><span class="pre">ClassifierRulePack.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRulePack.name"><code class="docutils literal notranslate"><span class="pre">ClassifierRulePack.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRulePack.rules"><code class="docutils literal notranslate"><span class="pre">ClassifierRulePack.rules</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRules"><code class="docutils literal notranslate"><span class="pre">ClassifierRules</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRules.agent_patterns"><code class="docutils literal notranslate"><span class="pre">ClassifierRules.agent_patterns</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRules.llm_patterns"><code class="docutils literal notranslate"><span class="pre">ClassifierRules.llm_patterns</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRules.model_config"><code class="docutils literal notranslate"><span class="pre">ClassifierRules.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ClassifierRules.tool_patterns"><code class="docutils literal notranslate"><span class="pre">ClassifierRules.tool_patterns</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ReplayConfig"><code class="docutils literal notranslate"><span class="pre">ReplayConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ReplayConfig.ignore_params"><code class="docutils literal notranslate"><span class="pre">ReplayConfig.ignore_params</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ReplayConfig.ignore_paths"><code class="docutils literal notranslate"><span class="pre">ReplayConfig.ignore_paths</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.ReplayConfig.model_config"><code class="docutils literal notranslate"><span class="pre">ReplayConfig.model_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig"><code class="docutils literal notranslate"><span class="pre">StrategyConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig.name"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig.type"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig.target_ref"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.target_ref</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig.enabled"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.enabled</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig.probability"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.probability</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig.params"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.params</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id6"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.enabled</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig.model_config"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id7"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id8"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.params</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id9"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.probability</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id10"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.target_ref</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id11"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.StrategyConfig.validate_probability"><code class="docutils literal notranslate"><span class="pre">StrategyConfig.validate_probability()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.TargetConfig"><code class="docutils literal notranslate"><span class="pre">TargetConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.TargetConfig.name"><code class="docutils literal notranslate"><span class="pre">TargetConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.TargetConfig.type"><code class="docutils literal notranslate"><span class="pre">TargetConfig.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.TargetConfig.pattern"><code class="docutils literal notranslate"><span class="pre">TargetConfig.pattern</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.TargetConfig.description"><code class="docutils literal notranslate"><span class="pre">TargetConfig.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id12"><code class="docutils literal notranslate"><span class="pre">TargetConfig.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.TargetConfig.model_config"><code class="docutils literal notranslate"><span class="pre">TargetConfig.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id13"><code class="docutils literal notranslate"><span class="pre">TargetConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id14"><code class="docutils literal notranslate"><span class="pre">TargetConfig.pattern</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#id15"><code class="docutils literal notranslate"><span class="pre">TargetConfig.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.TargetConfig.validate_pattern"><code class="docutils literal notranslate"><span class="pre">TargetConfig.validate_pattern()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.get_global_plan"><code class="docutils literal notranslate"><span class="pre">get_global_plan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.load_and_set_global_plan"><code class="docutils literal notranslate"><span class="pre">load_and_set_global_plan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.load_chaos_plan"><code class="docutils literal notranslate"><span class="pre">load_chaos_plan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.config_loader.set_global_plan"><code class="docutils literal notranslate"><span class="pre">set_global_plan()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/index.html#module-agent_chaos_sdk.proxy.addon">Proxy Addon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.strategies"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.strategies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.config_path"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.config_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.config"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.last_config_mtime"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.last_config_mtime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.__init__"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.done"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.done()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.request"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.response"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.responseheaders"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.responseheaders()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.set_dashboard_server"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.set_dashboard_server()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/index.html#module-agent_chaos_sdk.proxy.strategies.base">Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy"><code class="docutils literal notranslate"><span class="pre">BaseStrategy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy.__init__"><code class="docutils literal notranslate"><span class="pre">BaseStrategy.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy.__repr__"><code class="docutils literal notranslate"><span class="pre">BaseStrategy.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy.intercept"><code class="docutils literal notranslate"><span class="pre">BaseStrategy.intercept()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy.should_trigger"><code class="docutils literal notranslate"><span class="pre">BaseStrategy.should_trigger()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.network.ErrorStrategy"><code class="docutils literal notranslate"><span class="pre">ErrorStrategy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.network.ErrorStrategy.__init__"><code class="docutils literal notranslate"><span class="pre">ErrorStrategy.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.network.LatencyStrategy"><code class="docutils literal notranslate"><span class="pre">LatencyStrategy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.network.LatencyStrategy.__init__"><code class="docutils literal notranslate"><span class="pre">LatencyStrategy.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.MCPProtocolFuzzingStrategy"><code class="docutils literal notranslate"><span class="pre">MCPProtocolFuzzingStrategy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.MCPProtocolFuzzingStrategy.__init__"><code class="docutils literal notranslate"><span class="pre">MCPProtocolFuzzingStrategy.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.BUFFER_OVERFLOW_PAYLOADS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.BUFFER_OVERFLOW_PAYLOADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.DATE_FIELDS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.DATE_FIELDS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.INVALID_DATE_FORMATS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.INVALID_DATE_FORMATS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.NUMERIC_FIELDS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.NUMERIC_FIELDS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.SQL_INJECTION_PAYLOADS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.SQL_INJECTION_PAYLOADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.STRING_FIELDS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.STRING_FIELDS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.detect_field_type"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.detect_field_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_date_field"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.fuzz_date_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_field"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.fuzz_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_numeric_field"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.fuzz_numeric_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_string_field"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.fuzz_string_field()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/index.html#module-agent_chaos_sdk.swarm_runner">Swarm Runner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.Agent"><code class="docutils literal notranslate"><span class="pre">Agent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.Agent.__init__"><code class="docutils literal notranslate"><span class="pre">Agent.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.Agent.process"><code class="docutils literal notranslate"><span class="pre">Agent.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig"><code class="docutils literal notranslate"><span class="pre">AgentConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.__init__"><code class="docutils literal notranslate"><span class="pre">AgentConfig.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.base_url"><code class="docutils literal notranslate"><span class="pre">AgentConfig.base_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.metadata"><code class="docutils literal notranslate"><span class="pre">AgentConfig.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.model"><code class="docutils literal notranslate"><span class="pre">AgentConfig.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.name"><code class="docutils literal notranslate"><span class="pre">AgentConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.role"><code class="docutils literal notranslate"><span class="pre">AgentConfig.role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.system_prompt"><code class="docutils literal notranslate"><span class="pre">AgentConfig.system_prompt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.temperature"><code class="docutils literal notranslate"><span class="pre">AgentConfig.temperature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.tools"><code class="docutils literal notranslate"><span class="pre">AgentConfig.tools</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.FlowType"><code class="docutils literal notranslate"><span class="pre">FlowType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.FlowType.HIERARCHICAL"><code class="docutils literal notranslate"><span class="pre">FlowType.HIERARCHICAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.FlowType.PARALLEL"><code class="docutils literal notranslate"><span class="pre">FlowType.PARALLEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.FlowType.PIPELINE"><code class="docutils literal notranslate"><span class="pre">FlowType.PIPELINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.FlowType.SEQUENTIAL"><code class="docutils literal notranslate"><span class="pre">FlowType.SEQUENTIAL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.StateGraph"><code class="docutils literal notranslate"><span class="pre">StateGraph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig"><code class="docutils literal notranslate"><span class="pre">SwarmConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.__init__"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.agents"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.agents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.chaos_config"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.chaos_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.description"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.flow"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.flow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.name"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.reviewer"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.reviewer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.supervisor"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.supervisor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.workflow"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.workflow</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory"><code class="docutils literal notranslate"><span class="pre">SwarmFactory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.__init__"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.agents"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.agents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.config"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.execute"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.load_from_yaml"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.load_from_yaml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.reviewer"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.reviewer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.supervisor"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.supervisor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.workers"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.workers</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState"><code class="docutils literal notranslate"><span class="pre">SwarmState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.completed_agents"><code class="docutils literal notranslate"><span class="pre">SwarmState.completed_agents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.current_agent"><code class="docutils literal notranslate"><span class="pre">SwarmState.current_agent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.messages"><code class="docutils literal notranslate"><span class="pre">SwarmState.messages</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.next_agent"><code class="docutils literal notranslate"><span class="pre">SwarmState.next_agent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.results"><code class="docutils literal notranslate"><span class="pre">SwarmState.results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.task"><code class="docutils literal notranslate"><span class="pre">SwarmState.task</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.add_messages"><code class="docutils literal notranslate"><span class="pre">add_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.swarm_runner.build_swarm_from_yaml"><code class="docutils literal notranslate"><span class="pre">build_swarm_from_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/index.html#module-agent_chaos_sdk.storage.tape">Storage (Tape Replay)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext"><code class="docutils literal notranslate"><span class="pre">ChaosContext</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.agent_role"><code class="docutils literal notranslate"><span class="pre">ChaosContext.agent_role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.applied_strategies"><code class="docutils literal notranslate"><span class="pre">ChaosContext.applied_strategies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.chaos_applied"><code class="docutils literal notranslate"><span class="pre">ChaosContext.chaos_applied</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.model_config"><code class="docutils literal notranslate"><span class="pre">ChaosContext.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.to_dict"><code class="docutils literal notranslate"><span class="pre">ChaosContext.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.traffic_subtype"><code class="docutils literal notranslate"><span class="pre">ChaosContext.traffic_subtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.traffic_type"><code class="docutils literal notranslate"><span class="pre">ChaosContext.traffic_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.__eq__"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.__hash__"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.__hash__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.body_hash"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.body_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.headers_hash"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.headers_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.method"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.model_config"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.to_dict"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.url"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.url</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.content"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.content_encoding"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.content_encoding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.from_dict"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.headers"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.headers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.model_config"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.reason"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.reason</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.status_code"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.status_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.to_dict"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape"><code class="docutils literal notranslate"><span class="pre">Tape</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape.entries"><code class="docutils literal notranslate"><span class="pre">Tape.entries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape.from_dict"><code class="docutils literal notranslate"><span class="pre">Tape.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape.load"><code class="docutils literal notranslate"><span class="pre">Tape.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape.metadata"><code class="docutils literal notranslate"><span class="pre">Tape.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape.model_config"><code class="docutils literal notranslate"><span class="pre">Tape.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape.save"><code class="docutils literal notranslate"><span class="pre">Tape.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape.to_dict"><code class="docutils literal notranslate"><span class="pre">Tape.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.Tape.version"><code class="docutils literal notranslate"><span class="pre">Tape.version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry"><code class="docutils literal notranslate"><span class="pre">TapeEntry</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.chaos_context"><code class="docutils literal notranslate"><span class="pre">TapeEntry.chaos_context</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.fingerprint"><code class="docutils literal notranslate"><span class="pre">TapeEntry.fingerprint</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.from_dict"><code class="docutils literal notranslate"><span class="pre">TapeEntry.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.model_config"><code class="docutils literal notranslate"><span class="pre">TapeEntry.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.redacted"><code class="docutils literal notranslate"><span class="pre">TapeEntry.redacted</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.request_body_redacted"><code class="docutils literal notranslate"><span class="pre">TapeEntry.request_body_redacted</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.response"><code class="docutils literal notranslate"><span class="pre">TapeEntry.response</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.sequence"><code class="docutils literal notranslate"><span class="pre">TapeEntry.sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.timestamp"><code class="docutils literal notranslate"><span class="pre">TapeEntry.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.to_dict"><code class="docutils literal notranslate"><span class="pre">TapeEntry.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapePlayer"><code class="docutils literal notranslate"><span class="pre">TapePlayer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapePlayer.__init__"><code class="docutils literal notranslate"><span class="pre">TapePlayer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapePlayer.find_match"><code class="docutils literal notranslate"><span class="pre">TapePlayer.find_match()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapePlayer.get_chaos_context"><code class="docutils literal notranslate"><span class="pre">TapePlayer.get_chaos_context()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeRecorder"><code class="docutils literal notranslate"><span class="pre">TapeRecorder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeRecorder.__init__"><code class="docutils literal notranslate"><span class="pre">TapeRecorder.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeRecorder.record"><code class="docutils literal notranslate"><span class="pre">TapeRecorder.record()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.TapeRecorder.save"><code class="docutils literal notranslate"><span class="pre">TapeRecorder.save()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/index.html#agent_chaos_sdk.storage.tape.normalize_request"><code class="docutils literal notranslate"><span class="pre">normalize_request()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/index.html#basic-examples">Basic Examples</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/index.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/index.html#chaos-strategies">Chaos Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/index.html#swarm-testing">Swarm Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing.html#quick-summary">Quick Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CONFIGURATION_REFERENCE.html">Configuration Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../CONFIGURATION_REFERENCE.html#chaosplan-yaml">ChaosPlan (YAML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../CONFIGURATION_REFERENCE.html#targetconfig">TargetConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../CONFIGURATION_REFERENCE.html#strategyconfig">StrategyConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../CONFIGURATION_REFERENCE.html#replayconfig">ReplayConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../CONFIGURATION_REFERENCE.html#production-env-vars">Production Env Vars</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../OBSERVABILITY.html">Observability Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../OBSERVABILITY.html#metrics-prometheus-otel">Metrics (Prometheus / OTEL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../OBSERVABILITY.html#tracing">Tracing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../KUBERNETES.html">Kubernetes Deployment Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../KUBERNETES.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../KUBERNETES.html#how-it-works">How It Works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../KUBERNETES.html#customize-the-chaos-plan">Customize the Chaos Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../KUBERNETES.html#image-references">Image References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../KUBERNETES.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Agent Chaos Platform</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">agent_chaos_sdk.proxy.strategies.mcp</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for agent_chaos_sdk.proxy.strategies.mcp</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">MCP Protocol Fuzzing Strategy - Schema-Aware Fuzzing</span>
+
+<span class="sd">This module provides advanced fuzzing capabilities for MCP (Model Context Protocol)</span>
+<span class="sd">tool calls, with schema-aware introspection to inject intelligent faults.</span>
+
+<span class="sd">Key Features:</span>
+<span class="sd">- Schema-aware field detection (date, numeric, string)</span>
+<span class="sd">- Intelligent fuzzing based on field types</span>
+<span class="sd">- Configurable attack modes</span>
+<span class="sd">- Logic error injection (not just network errors)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mitmproxy</span><span class="w"> </span><span class="kn">import</span> <span class="n">http</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">agent_chaos_sdk.proxy.strategies.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseStrategy</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SchemaAwareFuzzer">
+<a class="viewcode-back" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SchemaAwareFuzzer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Schema-aware fuzzer that intelligently injects faults based on field types.</span>
+<span class="sd">    </span>
+<span class="sd">    This fuzzer analyzes JSON request bodies and injects faults that target</span>
+<span class="sd">    specific field types, causing logic errors rather than just network errors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># Date-related field patterns</span>
+    <span class="n">DATE_FIELDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;departure&quot;</span><span class="p">,</span> <span class="s2">&quot;arrival&quot;</span><span class="p">,</span> <span class="s2">&quot;checkin&quot;</span><span class="p">,</span> <span class="s2">&quot;checkout&quot;</span><span class="p">]</span>
+    
+    <span class="c1"># Numeric field patterns</span>
+    <span class="n">NUMERIC_FIELDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">,</span> <span class="s2">&quot;quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;seats&quot;</span><span class="p">]</span>
+    
+    <span class="c1"># String field patterns</span>
+    <span class="n">STRING_FIELDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;origin&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">]</span>
+    
+    <span class="c1"># SQL injection payloads</span>
+    <span class="n">SQL_INJECTION_PAYLOADS</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;&#39; OR &#39;1&#39;=&#39;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&#39;; DROP TABLE users; --&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&#39; UNION SELECT * FROM users --&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1&#39; OR &#39;1&#39;=&#39;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;admin&#39;--&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&#39; OR 1=1--&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1&#39; UNION SELECT NULL--&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    
+    <span class="c1"># Buffer overflow payloads (various sizes)</span>
+    <span class="n">BUFFER_OVERFLOW_PAYLOADS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;small&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>  <span class="c1"># 1KB</span>
+        <span class="s2">&quot;medium&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="mi">10000</span><span class="p">,</span>  <span class="c1"># 10KB</span>
+        <span class="s2">&quot;large&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="mi">100000</span><span class="p">,</span>  <span class="c1"># 100KB</span>
+        <span class="s2">&quot;huge&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="mi">1000000</span><span class="p">,</span>  <span class="c1"># 1MB</span>
+        <span class="s2">&quot;massive&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span> <span class="o">*</span> <span class="mi">10000000</span><span class="p">,</span>  <span class="c1"># 10MB</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># Invalid date formats</span>
+    <span class="n">INVALID_DATE_FORMATS</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;2025/13/40&quot;</span><span class="p">,</span>  <span class="c1"># Invalid month/day</span>
+        <span class="s2">&quot;yesterday&quot;</span><span class="p">,</span>  <span class="c1"># Relative date</span>
+        <span class="s2">&quot;tomorrow&quot;</span><span class="p">,</span>  <span class="c1"># Relative date</span>
+        <span class="s2">&quot;2025-13-01&quot;</span><span class="p">,</span>  <span class="c1"># Invalid month</span>
+        <span class="s2">&quot;2025-02-30&quot;</span><span class="p">,</span>  <span class="c1"># Invalid day</span>
+        <span class="s2">&quot;2025-00-01&quot;</span><span class="p">,</span>  <span class="c1"># Zero month</span>
+        <span class="s2">&quot;2025-01-00&quot;</span><span class="p">,</span>  <span class="c1"># Zero day</span>
+        <span class="s2">&quot;13/40/2025&quot;</span><span class="p">,</span>  <span class="c1"># Wrong format</span>
+        <span class="s2">&quot;2025-1-1&quot;</span><span class="p">,</span>  <span class="c1"># Missing leading zeros</span>
+        <span class="s2">&quot;25-12-2025&quot;</span><span class="p">,</span>  <span class="c1"># Wrong order</span>
+    <span class="p">]</span>
+    
+<div class="viewcode-block" id="SchemaAwareFuzzer.detect_field_type">
+<a class="viewcode-back" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.detect_field_type">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detect_field_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Detect the type of a field based on its name and value.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            field_name: Name of the field</span>
+<span class="sd">            field_value: Value of the field</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Field type: &quot;date&quot;, &quot;numeric&quot;, &quot;string&quot;, or &quot;unknown&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">field_lower</span> <span class="o">=</span> <span class="n">field_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        
+        <span class="c1"># Check date fields</span>
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DATE_FIELDS</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">field_lower</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;date&quot;</span>
+        
+        <span class="c1"># Check numeric fields</span>
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">NUMERIC_FIELDS</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">field_lower</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;numeric&quot;</span>
+        
+        <span class="c1"># Check string fields</span>
+        <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">STRING_FIELDS</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">field_lower</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;string&quot;</span>
+        
+        <span class="c1"># Infer from value type</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="s2">&quot;numeric&quot;</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="c1"># Try to detect date format</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^\d</span><span class="si">{4}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">field_value</span><span class="p">):</span>
+                <span class="k">return</span> <span class="s2">&quot;date&quot;</span>
+            <span class="k">return</span> <span class="s2">&quot;string&quot;</span>
+        
+        <span class="k">return</span> <span class="s2">&quot;unknown&quot;</span></div>
+
+    
+<div class="viewcode-block" id="SchemaAwareFuzzer.fuzz_date_field">
+<a class="viewcode-back" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_date_field">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fuzz_date_field</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">original_value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;invalid_format&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fuzz a date field with various attack vectors.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            field_name: Name of the field</span>
+<span class="sd">            original_value: Original field value</span>
+<span class="sd">            mode: Fuzzing mode (&quot;invalid_format&quot;, &quot;sql_injection&quot;, &quot;random&quot;)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Fuzzed value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;invalid_format&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">INVALID_DATE_FORMATS</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;sql_injection&quot;</span><span class="p">:</span>
+            <span class="c1"># Inject SQL injection payload into date field</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SQL_INJECTION_PAYLOADS</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;relative_date&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;yesterday&quot;</span><span class="p">,</span> <span class="s2">&quot;tomorrow&quot;</span><span class="p">,</span> <span class="s2">&quot;today&quot;</span><span class="p">,</span> <span class="s2">&quot;next week&quot;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># random</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span>
+                <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">INVALID_DATE_FORMATS</span><span class="p">),</span>
+                <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SQL_INJECTION_PAYLOADS</span><span class="p">),</span>
+                <span class="s2">&quot;yesterday&quot;</span><span class="p">,</span>
+            <span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="SchemaAwareFuzzer.fuzz_numeric_field">
+<a class="viewcode-back" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_numeric_field">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fuzz_numeric_field</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">original_value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;type_mismatch&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fuzz a numeric field with various attack vectors.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            field_name: Name of the field</span>
+<span class="sd">            original_value: Original field value</span>
+<span class="sd">            mode: Fuzzing mode (&quot;type_mismatch&quot;, &quot;negative&quot;, &quot;max_int&quot;, &quot;random&quot;)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Fuzzed value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;type_mismatch&quot;</span><span class="p">:</span>
+            <span class="c1"># Convert to string (type mismatch)</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">original_value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;abc&quot;</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;negative&quot;</span><span class="p">:</span>
+            <span class="c1"># Inject negative number (if original was positive)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">original_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">and</span> <span class="n">original_value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">original_value</span><span class="p">)</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">999999</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;max_int&quot;</span><span class="p">:</span>
+            <span class="c1"># Inject maximum integer</span>
+            <span class="k">return</span> <span class="mi">2</span><span class="o">**</span><span class="mi">31</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># MAX_INT</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;zero&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;null&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># random</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">original_value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;abc&quot;</span><span class="p">,</span>  <span class="c1"># Type mismatch</span>
+                <span class="o">-</span><span class="mi">999999</span><span class="p">,</span>  <span class="c1"># Negative</span>
+                <span class="mi">2</span><span class="o">**</span><span class="mi">31</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># MAX_INT</span>
+                <span class="mi">0</span><span class="p">,</span>  <span class="c1"># Zero</span>
+                <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Null</span>
+            <span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="SchemaAwareFuzzer.fuzz_string_field">
+<a class="viewcode-back" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_string_field">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fuzz_string_field</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">original_value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;buffer_overflow&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fuzz a string field with various attack vectors.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            field_name: Name of the field</span>
+<span class="sd">            original_value: Original field value</span>
+<span class="sd">            mode: Fuzzing mode (&quot;buffer_overflow&quot;, &quot;empty&quot;, &quot;sql_injection&quot;, &quot;random&quot;)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Fuzzed value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;buffer_overflow&quot;</span><span class="p">:</span>
+            <span class="c1"># Inject large payload (buffer overflow simulation)</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="s2">&quot;large&quot;</span><span class="p">,</span> <span class="s2">&quot;huge&quot;</span><span class="p">,</span> <span class="s2">&quot;massive&quot;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">BUFFER_OVERFLOW_PAYLOADS</span><span class="p">[</span><span class="n">size</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;empty&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># Empty string</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;sql_injection&quot;</span><span class="p">:</span>
+            <span class="c1"># Inject SQL injection payload</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SQL_INJECTION_PAYLOADS</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;xss&quot;</span><span class="p">:</span>
+            <span class="c1"># XSS payload</span>
+            <span class="k">return</span> <span class="s2">&quot;&lt;script&gt;alert(&#39;XSS&#39;)&lt;/script&gt;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># random</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">BUFFER_OVERFLOW_PAYLOADS</span><span class="p">[</span><span class="s2">&quot;large&quot;</span><span class="p">],</span>  <span class="c1"># Buffer overflow</span>
+                <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Empty</span>
+                <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SQL_INJECTION_PAYLOADS</span><span class="p">),</span>  <span class="c1"># SQL injection</span>
+            <span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="SchemaAwareFuzzer.fuzz_field">
+<a class="viewcode-back" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_field">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fuzz_field</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">field_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;random&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fuzz a field based on its detected type.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            field_name: Name of the field</span>
+<span class="sd">            field_value: Original field value</span>
+<span class="sd">            field_type: Detected field type</span>
+<span class="sd">            mode: Fuzzing mode</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Fuzzed value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">field_type</span> <span class="o">==</span> <span class="s2">&quot;date&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">fuzz_date_field</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">field_type</span> <span class="o">==</span> <span class="s2">&quot;numeric&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">fuzz_numeric_field</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">field_type</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">fuzz_string_field</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Unknown type - try generic fuzzing</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">fuzz_string_field</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">fuzz_numeric_field</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># Null injection</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MCPProtocolFuzzingStrategy">
+<a class="viewcode-back" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.MCPProtocolFuzzingStrategy">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MCPProtocolFuzzingStrategy</span><span class="p">(</span><span class="n">BaseStrategy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Schema-aware MCP Protocol Fuzzing Strategy.</span>
+<span class="sd">    </span>
+<span class="sd">    This strategy intercepts tool calls (MCP protocol) and injects intelligent</span>
+<span class="sd">    faults based on field types and schemas. It causes logic errors, not just</span>
+<span class="sd">    network errors.</span>
+<span class="sd">    </span>
+<span class="sd">    Features:</span>
+<span class="sd">    - Schema-aware field detection</span>
+<span class="sd">    - Type-specific fuzzing (date, numeric, string)</span>
+<span class="sd">    - Configurable attack modes</span>
+<span class="sd">    - Logic error injection</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="MCPProtocolFuzzingStrategy.__init__">
+<a class="viewcode-back" href="../../../../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.MCPProtocolFuzzingStrategy.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;mcp_fuzzing&quot;</span><span class="p">,</span>
+        <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">fuzz_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;schema_violation&quot;</span><span class="p">,</span>
+        <span class="n">target_endpoint</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">field_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the schema-aware MCP fuzzing strategy.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Strategy name identifier.</span>
+<span class="sd">            enabled: Whether this strategy is enabled.</span>
+<span class="sd">            fuzz_type: Type of fuzzing (&quot;schema_violation&quot;, &quot;type_mismatch&quot;, &quot;null_injection&quot;, &quot;garbage_value&quot;, &quot;random&quot;).</span>
+<span class="sd">            target_endpoint: Optional target endpoint pattern (e.g., &quot;/search_flights&quot;).</span>
+<span class="sd">            field_mode: Optional dict mapping field types to fuzzing modes (e.g., {&quot;date&quot;: &quot;sql_injection&quot;, &quot;numeric&quot;: &quot;type_mismatch&quot;}).</span>
+<span class="sd">            **kwargs: Additional parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">enabled</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fuzz_type&#39;</span><span class="p">,</span> <span class="n">fuzz_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_endpoint</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;target_endpoint&#39;</span><span class="p">,</span> <span class="n">target_endpoint</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">field_mode</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;field_mode&#39;</span><span class="p">,</span> <span class="n">field_mode</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+        
+        <span class="c1"># Valid fuzz types</span>
+        <span class="n">valid_types</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;schema_violation&quot;</span><span class="p">,</span>  <span class="c1"># Schema-aware fuzzing (default)</span>
+            <span class="s2">&quot;type_mismatch&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;null_injection&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;garbage_value&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;random&quot;</span>
+        <span class="p">]</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_types</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid fuzz_type: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span><span class="si">}</span><span class="s2">. Using &#39;schema_violation&#39;.&quot;</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span> <span class="o">=</span> <span class="s2">&quot;schema_violation&quot;</span>
+        
+        <span class="c1"># Initialize schema-aware fuzzer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuzzer</span> <span class="o">=</span> <span class="n">SchemaAwareFuzzer</span><span class="p">()</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;MCPProtocolFuzzingStrategy initialized: &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;fuzz_type=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span><span class="si">}</span><span class="s2">, target_endpoint=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">target_endpoint</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span></div>
+
+    
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_intercept_impl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow</span><span class="p">:</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFlow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply schema-aware fuzzing to the flow.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flow: The HTTP flow object.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if fuzzing was applied, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Check if this is a tool call request</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_tool_call_request</span><span class="p">(</span><span class="n">flow</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Check target endpoint if specified</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_endpoint</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_endpoint</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">pretty_url</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Apply fuzzing based on type</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span> <span class="o">==</span> <span class="s2">&quot;schema_violation&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_schema_violation</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span> <span class="o">==</span> <span class="s2">&quot;type_mismatch&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_type_mismatch</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span> <span class="o">==</span> <span class="s2">&quot;null_injection&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_null_injection</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span> <span class="o">==</span> <span class="s2">&quot;garbage_value&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_garbage_value</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzz_type</span> <span class="o">==</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span>
+            <span class="c1"># Randomly choose a fuzzing method</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply_schema_violation</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply_type_mismatch</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply_null_injection</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply_garbage_value</span><span class="p">,</span>
+            <span class="p">])</span>
+            <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_schema_violation_to_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply schema-aware fuzzing to a JSON body (direct API call format).</span>
+<span class="sd">        </span>
+<span class="sd">        This handles direct API calls like POST /search_flights with JSON body.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            body: JSON body dictionary.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if fuzzing was applied.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Track fuzzed fields for logging</span>
+        <span class="n">fuzzed_fields</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># Iterate through all fields and fuzz based on type</span>
+        <span class="k">for</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># Detect field type</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzzer</span><span class="o">.</span><span class="n">detect_field_type</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">field_type</span> <span class="o">==</span> <span class="s2">&quot;unknown&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="c1"># Get fuzzing mode for this field type</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">field_mode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field_type</span><span class="p">,</span> <span class="s2">&quot;random&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Fuzz the field</span>
+            <span class="n">fuzzed_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuzzer</span><span class="o">.</span><span class="n">fuzz_field</span><span class="p">(</span>
+                <span class="n">field_name</span><span class="p">,</span> <span class="n">field_value</span><span class="p">,</span> <span class="n">field_type</span><span class="p">,</span> <span class="n">mode</span>
+            <span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">fuzzed_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">body</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">fuzzed_value</span>
+                <span class="n">fuzzed_fields</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="n">field_name</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">field_type</span><span class="p">,</span>
+                    <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">field_value</span><span class="p">,</span>
+                    <span class="s2">&quot;fuzzed&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">fuzzed_value</span><span class="p">)[:</span><span class="mi">100</span><span class="p">]</span>  <span class="c1"># Truncate for logging</span>
+                <span class="p">})</span>
+        
+        <span class="k">if</span> <span class="n">fuzzed_fields</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Schema-aware fuzzing: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">fuzzed_fields</span><span class="p">)</span><span class="si">}</span><span class="s2"> fields fuzzed&quot;</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">field_info</span> <span class="ow">in</span> <span class="n">fuzzed_fields</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">field_info</span><span class="p">[</span><span class="s1">&#39;field&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">field_info</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">): &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">field_info</span><span class="p">[</span><span class="s1">&#39;original&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">field_info</span><span class="p">[</span><span class="s1">&#39;fuzzed&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_tool_call_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow</span><span class="p">:</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFlow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if this is a tool call request (MCP protocol or direct API call).</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flow: The HTTP flow object.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if this looks like a tool call request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check if request has JSON body</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Check Content-Type (handle both bytes and str from mitmproxy)</span>
+        <span class="n">content_type_header</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="c1"># Convert bytes to string if needed</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content_type_header</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">content_type</span> <span class="o">=</span> <span class="n">content_type_header</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">content_type</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">content_type_header</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s2">&quot;application/json&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">body_text</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">body_text</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            
+            <span class="c1"># Try to parse as JSON</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body_text</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            
+            <span class="c1"># Check for tool call indicators in various formats:</span>
+            
+            <span class="c1"># 1. OpenAI format: {&quot;tool_calls&quot;: [...]} or {&quot;function_call&quot;: {...}}</span>
+            <span class="k">if</span> <span class="s2">&quot;tool_calls&quot;</span> <span class="ow">in</span> <span class="n">body</span> <span class="ow">or</span> <span class="s2">&quot;function_call&quot;</span> <span class="ow">in</span> <span class="n">body</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            
+            <span class="c1"># 2. Anthropic format: messages with tool_use blocks</span>
+            <span class="k">if</span> <span class="s2">&quot;messages&quot;</span> <span class="ow">in</span> <span class="n">body</span><span class="p">:</span>
+                <span class="n">messages</span> <span class="o">=</span> <span class="n">body</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                            <span class="k">if</span> <span class="s2">&quot;tool_calls&quot;</span> <span class="ow">in</span> <span class="n">msg</span> <span class="ow">or</span> <span class="s2">&quot;function_call&quot;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+                                <span class="k">return</span> <span class="kc">True</span>
+                            <span class="k">if</span> <span class="s2">&quot;content&quot;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+                                <span class="n">content</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
+                                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                                    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+                                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">block</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;tool_use&quot;</span><span class="p">:</span>
+                                            <span class="k">return</span> <span class="kc">True</span>
+            
+            <span class="c1"># 3. Direct API call format (our mock server):</span>
+            <span class="c1"># POST to /search_flights with {&quot;origin&quot;: &quot;...&quot;, &quot;destination&quot;: &quot;...&quot;, &quot;date&quot;: &quot;...&quot;}</span>
+            <span class="c1"># POST to /book_ticket with {&quot;flight_id&quot;: &quot;...&quot;}</span>
+            <span class="k">if</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">pretty_url</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="c1"># Check if it&#39;s a tool/API endpoint (not just any POST)</span>
+                <span class="n">tool_indicators</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="s2">&quot;/search_flights&quot;</span><span class="p">,</span> <span class="s2">&quot;/book_ticket&quot;</span><span class="p">,</span>  <span class="c1"># Our mock server</span>
+                    <span class="s2">&quot;/v1/chat/completions&quot;</span><span class="p">,</span>  <span class="c1"># OpenAI</span>
+                    <span class="s2">&quot;/v1/messages&quot;</span><span class="p">,</span>  <span class="c1"># Anthropic</span>
+                    <span class="s2">&quot;/api/chat&quot;</span><span class="p">,</span>  <span class="c1"># Generic chat API</span>
+                <span class="p">]</span>
+                
+                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">indicator</span> <span class="ow">in</span> <span class="n">url</span> <span class="k">for</span> <span class="n">indicator</span> <span class="ow">in</span> <span class="n">tool_indicators</span><span class="p">):</span>
+                    <span class="c1"># Check if body has structured data (looks like tool call parameters)</span>
+                    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">body</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span>
+                        <span class="s2">&quot;origin&quot;</span><span class="p">,</span> <span class="s2">&quot;destination&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>  <span class="c1"># Flight search</span>
+                        <span class="s2">&quot;flight_id&quot;</span><span class="p">,</span>  <span class="c1"># Booking</span>
+                        <span class="s2">&quot;tool_calls&quot;</span><span class="p">,</span> <span class="s2">&quot;function_call&quot;</span><span class="p">,</span>  <span class="c1"># Tool calls</span>
+                        <span class="s2">&quot;messages&quot;</span><span class="p">,</span>  <span class="c1"># Chat messages</span>
+                    <span class="p">]):</span>
+                        <span class="k">return</span> <span class="kc">True</span>
+            
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_schema_violation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow</span><span class="p">:</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFlow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply schema-aware fuzzing (intelligent field-based fuzzing).</span>
+<span class="sd">        </span>
+<span class="sd">        This is the main schema-aware fuzzing method that detects field types</span>
+<span class="sd">        and injects appropriate faults. It handles both:</span>
+<span class="sd">        - Direct API calls (e.g., POST /search_flights with JSON body)</span>
+<span class="sd">        - Tool call formats (OpenAI, Anthropic)</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flow: The HTTP flow object.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if fuzzing was applied.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">body_text</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">body_text</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            
+            <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body_text</span><span class="p">)</span>
+            
+            <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">False</span>
+            
+            <span class="c1"># Check for direct API call format (our mock server)</span>
+            <span class="c1"># Format: {&quot;origin&quot;: &quot;...&quot;, &quot;destination&quot;: &quot;...&quot;, &quot;date&quot;: &quot;...&quot;}</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">body</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">,</span> <span class="s2">&quot;function_call&quot;</span><span class="p">,</span> <span class="s2">&quot;messages&quot;</span><span class="p">]):</span>
+                <span class="c1"># Direct API call - fuzz the body directly</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_schema_violation_to_body</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
+                    <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">True</span>
+            
+            <span class="c1"># Check for OpenAI format: tool_calls in messages</span>
+            <span class="k">elif</span> <span class="s2">&quot;messages&quot;</span> <span class="ow">in</span> <span class="n">body</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">body</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="s2">&quot;tool_calls&quot;</span> <span class="ow">in</span> <span class="n">message</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">]:</span>
+                            <span class="k">if</span> <span class="s2">&quot;function&quot;</span> <span class="ow">in</span> <span class="n">tool_call</span> <span class="ow">and</span> <span class="s2">&quot;arguments&quot;</span> <span class="ow">in</span> <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]:</span>
+                                <span class="k">try</span><span class="p">:</span>
+                                    <span class="n">args_str</span> <span class="o">=</span> <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">]</span>
+                                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args_str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                                        <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">args_str</span><span class="p">)</span>
+                                    <span class="k">else</span><span class="p">:</span>
+                                        <span class="n">args</span> <span class="o">=</span> <span class="n">args_str</span>
+                                    
+                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_schema_violation_to_body</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+                                        <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                        <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">True</span>
+                                <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
+                                    <span class="k">pass</span>
+                    
+                    <span class="c1"># Check for function_call format</span>
+                    <span class="k">if</span> <span class="s2">&quot;function_call&quot;</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">args_str</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;arguments&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args_str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                                <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">args_str</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">args</span> <span class="o">=</span> <span class="n">args_str</span>
+                            
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_schema_violation_to_body</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+                                <span class="n">message</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
+                            <span class="k">pass</span>
+            
+            <span class="c1"># Check for Anthropic format: tool_use blocks</span>
+            <span class="k">elif</span> <span class="s2">&quot;messages&quot;</span> <span class="ow">in</span> <span class="n">body</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;content&quot;</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+                        <span class="n">content</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                            <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">block</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;tool_use&quot;</span><span class="p">:</span>
+                                    <span class="k">if</span> <span class="s2">&quot;input&quot;</span> <span class="ow">in</span> <span class="n">block</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_schema_violation_to_body</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">]):</span>
+                                            <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">True</span>
+            
+            <span class="k">if</span> <span class="n">fuzzed</span><span class="p">:</span>
+                <span class="c1"># Update request body</span>
+                <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>
+                
+                <span class="n">redacted_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_redact_url</span><span class="p">(</span><span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">pretty_url</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Schema-aware fuzzing applied to </span><span class="si">{</span><span class="n">redacted_url</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in schema-aware fuzzing: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_type_mismatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow</span><span class="p">:</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFlow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply type mismatch fuzzing (legacy method).</span>
+<span class="sd">        </span>
+<span class="sd">        Handles both direct API calls and nested tool call formats.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flow: The HTTP flow object.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if fuzzing was applied.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">body_text</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">body_text</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            
+            <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body_text</span><span class="p">)</span>
+            <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">False</span>
+            
+            <span class="c1"># Handle nested tool call format (messages -&gt; tool_calls -&gt; function -&gt; arguments)</span>
+            <span class="k">if</span> <span class="s2">&quot;messages&quot;</span> <span class="ow">in</span> <span class="n">body</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">body</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="s2">&quot;tool_calls&quot;</span> <span class="ow">in</span> <span class="n">message</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">]:</span>
+                            <span class="k">if</span> <span class="s2">&quot;function&quot;</span> <span class="ow">in</span> <span class="n">tool_call</span> <span class="ow">and</span> <span class="s2">&quot;arguments&quot;</span> <span class="ow">in</span> <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]:</span>
+                                <span class="k">try</span><span class="p">:</span>
+                                    <span class="n">args_str</span> <span class="o">=</span> <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">]</span>
+                                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args_str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                                        <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">args_str</span><span class="p">)</span>
+                                    <span class="k">else</span><span class="p">:</span>
+                                        <span class="n">args</span> <span class="o">=</span> <span class="n">args_str</span>
+                                    
+                                    <span class="c1"># Find a numeric field and convert to string</span>
+                                    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+                                            <span class="n">args</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;abc&quot;</span>
+                                            <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                            <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">True</span>
+                                            <span class="k">break</span>
+                                <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
+                                    <span class="k">pass</span>
+            
+            <span class="c1"># Handle direct API call format</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">fuzzed</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">body</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+                        <span class="n">body</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;abc&quot;</span>
+                        <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">break</span>
+            
+            <span class="k">if</span> <span class="n">fuzzed</span><span class="p">:</span>
+                <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Type mismatch fuzzing applied&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_null_injection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow</span><span class="p">:</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFlow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply null injection fuzzing (legacy method).</span>
+<span class="sd">        </span>
+<span class="sd">        Handles both direct API calls and nested tool call formats.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flow: The HTTP flow object.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if fuzzing was applied.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">body_text</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">body_text</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            
+            <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body_text</span><span class="p">)</span>
+            <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">False</span>
+            
+            <span class="c1"># Handle nested tool call format (messages -&gt; tool_calls -&gt; function -&gt; arguments)</span>
+            <span class="k">if</span> <span class="s2">&quot;messages&quot;</span> <span class="ow">in</span> <span class="n">body</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">body</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="s2">&quot;tool_calls&quot;</span> <span class="ow">in</span> <span class="n">message</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;tool_calls&quot;</span><span class="p">]:</span>
+                            <span class="k">if</span> <span class="s2">&quot;function&quot;</span> <span class="ow">in</span> <span class="n">tool_call</span> <span class="ow">and</span> <span class="s2">&quot;arguments&quot;</span> <span class="ow">in</span> <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]:</span>
+                                <span class="k">try</span><span class="p">:</span>
+                                    <span class="n">args_str</span> <span class="o">=</span> <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">]</span>
+                                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args_str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                                        <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">args_str</span><span class="p">)</span>
+                                    <span class="k">else</span><span class="p">:</span>
+                                        <span class="n">args</span> <span class="o">=</span> <span class="n">args_str</span>
+                                    
+                                    <span class="c1"># Remove a required field (set to None)</span>
+                                    <span class="k">if</span> <span class="n">args</span><span class="p">:</span>
+                                        <span class="n">key</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                                        <span class="n">original_value</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                                        <span class="n">args</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                                        <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                        <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">True</span>
+                                        <span class="k">break</span>
+                                <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
+                                    <span class="k">pass</span>
+            
+            <span class="c1"># Handle direct API call format</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">fuzzed</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">body</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                <span class="n">original_value</span> <span class="o">=</span> <span class="n">body</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">body</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">fuzzed</span> <span class="o">=</span> <span class="kc">True</span>
+            
+            <span class="k">if</span> <span class="n">fuzzed</span><span class="p">:</span>
+                <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Null injection fuzzing applied&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_garbage_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow</span><span class="p">:</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFlow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apply garbage value fuzzing (legacy method).</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            flow: The HTTP flow object.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if fuzzing was applied.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">body_text</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">body_text</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            
+            <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body_text</span><span class="p">)</span>
+            
+            <span class="c1"># Replace a value with garbage</span>
+            <span class="k">if</span> <span class="n">body</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                <span class="n">original_value</span> <span class="o">=</span> <span class="n">body</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">body</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;💥 CHAOS 💥&quot;</span>
+                <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+                <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Garbage value: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">original_value</span><span class="si">}</span><span class="s2"> → 💥 CHAOS 💥&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Agent Chaos Platform Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Observability Reference
+
+This document lists metrics emitted by the proxy and helpers.
+
+### Metrics (Prometheus / OTEL)
+- `ai_requests_total`  
+  Total AI requests observed.
+
+- `ai_token_usage`  
+  Estimated token usage.
+
+- `ai_latency_ttft`  
+  Time to first token (seconds). Uses explicit buckets.
+
+- `ai_chaos_injections`  
+  Total chaos injections. Labels: `strategy`, `model`.
+
+- `chaos_injection_skipped_total`  
+  Skipped injections. Labels: `strategy_type`, `reason`.
+
+- `chaos_error_codes_total`  
+  Structured error codes. Labels: `error_code`, `strategy`.
+
+### Tracing
+Traces are exported via OTLP. Configure:
+- `OTEL_EXPORTER_OTLP_ENDPOINT`
+- `OTEL_SAMPLE_RATE`
