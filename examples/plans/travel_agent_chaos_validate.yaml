@@ -1,0 +1,57 @@
+version: "1.0"
+metadata:
+  name: "Travel Agent Chaos (Validation Profile)"
+  description: "High-probability chaos profile for functional verification"
+  experiment_id: "travel_agent_chaos_validate_001"
+  author: "Chaos Engineering Team"
+  created_at: "2026-01-19"
+
+classifier_rule_packs:
+  - name: "validate-default"
+    rules:
+      llm_patterns:
+        - ".*127\\.0\\.0\\.1:11434/api/chat.*"
+      tool_patterns:
+        - "localhost:8001"
+        - ".*/search_flights.*"
+        - ".*/book_ticket.*"
+      agent_patterns:
+        - ".*agent-[a-z0-9]+.*"
+
+targets:
+  - name: "flight_search_api"
+    type: "http_endpoint"
+    pattern: ".*/search_flights.*"
+    description: "Flight search API endpoint"
+
+  - name: "booking_api"
+    type: "http_endpoint"
+    pattern: ".*/book_ticket.*"
+    description: "Flight booking API endpoint"
+
+scenarios:
+  - name: "flight_search_latency_spike"
+    type: "latency"
+    target_ref: "flight_search_api"
+    enabled: true
+    probability: 1.0
+    params:
+      delay: 1.0
+
+  - name: "booking_internal_error"
+    type: "error"
+    target_ref: "booking_api"
+    enabled: true
+    probability: 0.7
+    params:
+      error_code: 500
+      error_message: "Booking service error"
+
+  - name: "booking_rate_limit"
+    type: "error"
+    target_ref: "booking_api"
+    enabled: true
+    probability: 0.5
+    params:
+      error_code: 429
+      error_message: "Rate limit exceeded"

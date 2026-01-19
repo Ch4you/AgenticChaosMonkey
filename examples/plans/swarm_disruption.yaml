@@ -1,0 +1,54 @@
+version: "1.0"
+metadata:
+  name: "Multi-Agent Swarm Disruption Test"
+  description: "Test agent resilience against inter-agent communication failures"
+  experiment_id: "swarm_disruption_001"
+
+targets:
+  - name: "agent_to_agent_traffic"
+    type: "custom"
+    pattern: ".*agent-[a-z0-9]+.*|.*/api/agent/.*|.*swarm.*/messages"
+    description: "Inter-agent communication endpoints"
+  
+  - name: "consensus_phase"
+    type: "custom"
+    pattern: ".*consensus.*|.*vote.*|.*/api/swarm/consensus"
+    description: "Consensus/voting phase endpoints"
+  
+  - name: "supervisor_communication"
+    type: "custom"
+    pattern: ".*supervisor.*|.*manager.*|.*/api/agent/supervisor"
+    description: "Supervisor-to-worker communication"
+
+scenarios:
+  - name: "mutate_supervisor_messages"
+    type: "swarm_disruption"
+    target_ref: "supervisor_communication"
+    enabled: true
+    probability: 0.5
+    params:
+      attack_type: "message_mutation"
+      target_subtype: "supervisor_to_worker"
+      mutation_rules:
+        priority: "low"  # Flip priority from high to low
+        enabled: false   # Flip boolean flag
+  
+  - name: "delay_consensus"
+    type: "swarm_disruption"
+    target_ref: "consensus_phase"
+    enabled: true
+    probability: 0.8
+    params:
+      attack_type: "consensus_delay"
+      target_subtype: "consensus_vote"
+      consensus_delay: 10.0  # 10 second delay during consensus
+  
+  - name: "isolate_worker_agent"
+    type: "swarm_disruption"
+    target_ref: "agent_to_agent_traffic"
+    enabled: false  # Disabled by default (very disruptive)
+    probability: 1.0
+    params:
+      attack_type: "agent_isolation"
+      isolated_agents: ["worker-1", "worker-2"]  # Block these agents
+

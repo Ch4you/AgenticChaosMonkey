@@ -1,0 +1,30 @@
+stages:
+  - test
+
+variables:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+test:
+  image: python:3.11-slim
+  stage: test
+  script:
+    - python -m pip install --upgrade pip
+    - python -m pip install -e ".[dev]"
+    - agent-chaos health-check --plan examples/plans/travel_agent_chaos.yaml --mode live
+    - agent-chaos run examples/plans/travel_agent_chaos.yaml --mock-server
+      --repeat 10 --repeat-concurrency 2 --repeat-delay 0.1
+      --report-json logs/agent_summary.json
+      --report-csv logs/agent_summary.csv
+      --report-md logs/agent_summary.md
+      --report-pdf logs/agent_summary.pdf
+      --failure-artifacts-dir logs/failures
+      --failure-artifacts-zip logs/failures.zip
+      --failure-artifacts-tar logs/failures.tar.gz
+      --acceptance-report reports/acceptance.md
+      --sla-success-rate 0.8
+    - pytest
+  artifacts:
+    when: always
+    paths:
+      - logs/
+      - reports/

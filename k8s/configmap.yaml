@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agent-chaos-plan
+  labels:
+    app: agent-chaos
+data:
+  chaos_plan.yaml: |
+    version: "1.0"
+    revision: 1
+    metadata:
+      name: "k8s-sidecar-demo"
+      experiment_id: "k8s-demo"
+      description: "Sample chaos plan for Kubernetes sidecar"
+    targets:
+      - name: "agent_api"
+        type: "http_endpoint"
+        pattern: "http://agent-app:8000/.*"
+        description: "Agent application API"
+    scenarios:
+      - name: "latency_injection"
+        type: "latency"
+        target_ref: "agent_api"
+        enabled: true
+        probability: 0.3
+        params:
+          delay: 0.25

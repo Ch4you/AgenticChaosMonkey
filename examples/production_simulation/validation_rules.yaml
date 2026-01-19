@@ -1,0 +1,6 @@
+airport_code_regex: "^[A-Z]{3}$"
+default_origin: "JFK"
+default_destination: "LAX"
+date_format: "%Y-%m-%d"
+min_days_ahead: 1
+max_days_ahead: 365

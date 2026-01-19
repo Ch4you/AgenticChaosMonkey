@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # OpenTelemetry Collector - receives traces and metrics, forwards to appropriate backends
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    container_name: otel-collector
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./config/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"  # OTLP gRPC receiver
+      - "4318:4318"  # OTLP HTTP receiver
+      - "8889:8889"  # Prometheus metrics exporter
+    networks:
+      - chaos-network
+    depends_on:
+      - jaeger
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8889/metrics"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Jaeger - trace visualization
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    ports:
+      - "16686:16686"  # Jaeger UI
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - chaos-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:16686/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Prometheus - metrics storage
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"  # Prometheus UI
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - chaos-network
+    depends_on:
+      - otel-collector
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Grafana - metrics visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"  # Grafana UI
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - chaos-network
+    depends_on:
+      - prometheus
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  chaos-network:
+    driver: bridge

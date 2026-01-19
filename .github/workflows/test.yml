@@ -1,0 +1,61 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-asyncio pytest-cov pytest-mock mypy types-PyYAML types-requests
+
+    - name: Install package
+      run: |
+        pip install -e .
+
+    - name: Run pytest
+      run: |
+        pytest tests/ -v --cov=agent_chaos_sdk --cov-report=xml --cov-report=term-missing || true
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+
+    - name: Run mypy (strict mode)
+      run: |
+        mypy agent_chaos_sdk/ --config-file mypy.ini || true
+      continue-on-error: true
+
+    - name: Check test results
+      run: |
+        pytest tests/ --tb=short -q

@@ -1,0 +1,28 @@
+experiment_id: travel_agent_chaos_validate_001
+strategies:
+- enabled: true
+  name: flight_search_latency_spike
+  params:
+    delay: 1.0
+    target_ref: flight_search_api
+    url_pattern: .*/search_flights.*
+  probability: 1.0
+  type: latency
+- enabled: true
+  name: booking_internal_error
+  params:
+    error_code: 500
+    error_message: Booking service error
+    target_ref: booking_api
+    url_pattern: .*/book_ticket.*
+  probability: 0.7
+  type: error
+- enabled: true
+  name: booking_rate_limit
+  params:
+    error_code: 429
+    error_message: Rate limit exceeded
+    target_ref: booking_api
+    url_pattern: .*/book_ticket.*
+  probability: 0.5
+  type: error

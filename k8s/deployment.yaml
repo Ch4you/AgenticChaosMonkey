@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-app
+  labels:
+    app: agent-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agent-app
+  template:
+    metadata:
+      labels:
+        app: agent-app
+    spec:
+      containers:
+        - name: agent-app
+          image: your-org/agent-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: HTTP_PROXY
+              value: "http://localhost:8080"
+            - name: HTTPS_PROXY
+              value: "http://localhost:8080"
+            - name: NO_PROXY
+              value: "localhost,127.0.0.1"
+        - name: agent-chaos
+          image: agentic-chaos-monkey:latest
+          imagePullPolicy: IfNotPresent
+          args:
+            - "run"
+            - "/etc/agent-chaos/chaos_plan.yaml"
+            - "--port"
+            - "8080"
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: chaos-plan
+              mountPath: /etc/agent-chaos
+              readOnly: true
+      volumes:
+        - name: chaos-plan
+          configMap:
+            name: agent-chaos-plan

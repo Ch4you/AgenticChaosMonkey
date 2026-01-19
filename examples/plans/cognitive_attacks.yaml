@@ -1,0 +1,53 @@
+version: "1.0"
+metadata:
+  name: "Cognitive Layer Attack Plan"
+  description: "Test agent resilience against cognitive attacks (hallucination, context overflow)"
+  experiment_id: "cognitive_attacks_001"
+  author: "Chaos Engineering Team"
+  created_at: "2025-12-16"
+
+targets:
+  - name: "tool_responses"
+    type: "http_endpoint"
+    pattern: ".*/search_flights.*|.*/book_ticket.*"
+    description: "Tool API responses that agents trust"
+  
+  - name: "llm_requests"
+    type: "http_endpoint"
+    pattern: ".*/v1/chat/completions.*|.*/api/chat.*|.*ollama.*"
+    description: "LLM API requests (prompts sent to models)"
+  
+  - name: "all_responses"
+    type: "http_endpoint"
+    pattern: ".*"
+    description: "All HTTP responses"
+
+scenarios:
+  # Hallucination: Inject false but plausible data into tool responses
+  - name: "hallucinate_flight_prices"
+    type: "hallucination"
+    target_ref: "tool_responses"
+    enabled: false
+    probability: 0.8
+    params:
+      mode: "swap_entities"  # Options: "swap_entities", "invert_numbers", "shift_dates"
+  
+  # Context Overflow: Inject massive noise into LLM prompts
+  - name: "overflow_llm_context"
+    type: "context_overflow"
+    target_ref: "llm_requests"
+    enabled: false
+    probability: 1.0
+    params:
+      token_count: 7500  # ~30k characters, ~5k-10k tokens
+      mode: "repeating_chars"  # Options: "repeating_chars", "random_words", "gibberish"
+  
+  # Combined: Hallucinate all responses
+  - name: "hallucinate_all_responses"
+    type: "hallucination"
+    target_ref: "all_responses"
+    enabled: false
+    probability: 0.5
+    params:
+      mode: "swap_entities"
+

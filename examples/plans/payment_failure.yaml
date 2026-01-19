@@ -1,0 +1,58 @@
+version: "1.0"
+metadata:
+  name: "Payment Service Failure Simulation"
+  description: "Simulate network failures for payment processing endpoints"
+  experiment_id: "payment_failure_001"
+  author: "Chaos Engineering Team"
+  created_at: "2025-12-16"
+
+targets:
+  - name: "stripe_api"
+    type: "http_endpoint"
+    pattern: ".*api\\.stripe\\.com.*"
+    description: "Stripe payment API endpoints"
+  
+  - name: "payment_endpoints"
+    type: "http_endpoint"
+    pattern: ".*/payment|.*/checkout|.*/charge.*"
+    description: "Generic payment processing endpoints"
+  
+  - name: "payment_agents"
+    type: "agent_role"
+    pattern: "PaymentAgent|CheckoutAgent"
+    description: "Agents responsible for payment processing"
+
+scenarios:
+  - name: "stripe_network_error"
+    type: "error"
+    target_ref: "stripe_api"
+    enabled: true
+    probability: 0.8
+    params:
+      error_code: 503
+      error_message: "Service Temporarily Unavailable"
+  
+  - name: "payment_timeout"
+    type: "latency"
+    target_ref: "payment_endpoints"
+    enabled: true
+    probability: 0.6
+    params:
+      delay: 30.0  # 30 second timeout
+  
+  - name: "payment_agent_failure"
+    type: "group_failure"
+    target_ref: "payment_agents"
+    enabled: false
+    probability: 1.0
+    params:
+      target_role: "PaymentAgent"
+  
+  - name: "payment_data_corruption"
+    type: "data_corruption"
+    target_ref: "payment_endpoints"
+    enabled: false
+    probability: 0.3
+    params:
+      corruption_text: "💥 PAYMENT CHAOS 💥"
+
