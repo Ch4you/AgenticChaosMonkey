@@ -46,7 +46,6 @@ html_favicon = None
 # Theme options
 html_theme_options = {
     "collapse_navigation": False,
-    "display_version": True,
     "logo_only": False,
 }
 
@@ -86,6 +85,9 @@ intersphinx_mapping = {
     "pydantic": ("https://docs.pydantic.dev/", None),
     "typer": ("https://typer.tiangolo.com/", None),
 }
+
+# MyST configuration
+myst_heading_anchors = 3
 
 # Todo settings
 todo_include_todos = True

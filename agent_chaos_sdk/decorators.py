@@ -26,33 +26,34 @@ def simulate_chaos(
 ) -> Callable:
     """
     Decorator to inject chaos into function calls.
-    
-    This allows users to inject faults into internal function calls
-    (e.g., local Agent-to-Agent communication in AutoGen), not just HTTP requests.
-    
+
+    This allows users to inject faults into internal function calls (e.g., local
+    agent-to-agent communication in AutoGen), not just HTTP requests.
+
     Supported strategies:
+
     - "latency": Add delay before function execution
-      - params: delay (float, seconds, default=1.0)
+      Params: delay (float, seconds, default=1.0)
     - "exception": Raise an exception
-      - params: exception_type (Exception class, default=RuntimeError), message (str)
+      Params: exception_type (Exception class, default=RuntimeError), message (str)
     - "return_error": Return an error value instead of executing
-      - params: error_value (Any, default=None)
+      Params: error_value (Any, default=None)
     - "skip": Skip function execution entirely
-      - params: return_value (Any, default=None)
-    
+      Params: return_value (Any, default=None)
+
     Args:
         strategy: Type of chaos to inject ("latency", "exception", "return_error", "skip")
         probability: Probability (0.0-1.0) of applying the chaos
         **strategy_params: Strategy-specific parameters
-    
+
     Returns:
-        Decorated function with chaos injection
-    
+        Decorated function with chaos injection.
+
     Example:
         @simulate_chaos(strategy="latency", probability=0.3, delay=2.0)
         def my_agent_function():
             return "result"
-        
+
         @simulate_chaos(strategy="exception", probability=0.1, message="Chaos!")
         def critical_function():
             return "important"

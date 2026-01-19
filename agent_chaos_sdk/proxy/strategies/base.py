@@ -226,12 +226,18 @@ class BaseStrategy(ABC):
                     self._circuit_breaker._failure_count = 0
 
             if result:
-                applied = flow.metadata.get("chaos_applied")
-                if not isinstance(applied, list):
-                    applied = []
-                if self.name not in applied:
-                    applied.append(self.name)
-                flow.metadata["chaos_applied"] = applied
+                try:
+                    metadata = getattr(flow, "metadata", None)
+                    if isinstance(metadata, dict):
+                        applied = metadata.get("chaos_applied")
+                        if not isinstance(applied, list):
+                            applied = []
+                        if self.name not in applied:
+                            applied.append(self.name)
+                        metadata["chaos_applied"] = applied
+                except Exception:
+                    # Avoid breaking on mock flows without dict-like metadata
+                    pass
 
             return result
             

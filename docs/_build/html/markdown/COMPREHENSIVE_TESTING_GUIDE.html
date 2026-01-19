@@ -1,0 +1,1553 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>完整测试指南 - Agent Chaos Platform &mdash; Agent Chaos Platform 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Production Validation Checklist" href="PRODUCTION_VALIDATION.html" />
+    <link rel="prev" title="🚀 快速开始指南" href="QUICK_START.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Agent Chaos Platform
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#using-the-cli">Using the CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#strict-modes-recommended-for-production">Strict Modes (Recommended for Production)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#python-api">Python API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#module-agent_chaos_sdk.decorators">Decorators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.decorators.simulate_chaos"><code class="docutils literal notranslate"><span class="pre">simulate_chaos()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#configuration-loader">Configuration Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#module-agent_chaos_sdk.proxy.addon">Proxy Addon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.strategies"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.strategies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.config_path"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.config_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.config"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.last_config_mtime"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.last_config_mtime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.__init__"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.done"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.done()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.request"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.response"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.responseheaders"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.responseheaders()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.addon.ChaosProxyAddon.set_dashboard_server"><code class="docutils literal notranslate"><span class="pre">ChaosProxyAddon.set_dashboard_server()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#module-agent_chaos_sdk.proxy.strategies.base">Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy"><code class="docutils literal notranslate"><span class="pre">BaseStrategy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy.__init__"><code class="docutils literal notranslate"><span class="pre">BaseStrategy.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy.__repr__"><code class="docutils literal notranslate"><span class="pre">BaseStrategy.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy.intercept"><code class="docutils literal notranslate"><span class="pre">BaseStrategy.intercept()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.base.BaseStrategy.should_trigger"><code class="docutils literal notranslate"><span class="pre">BaseStrategy.should_trigger()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.network.ErrorStrategy"><code class="docutils literal notranslate"><span class="pre">ErrorStrategy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.network.ErrorStrategy.__init__"><code class="docutils literal notranslate"><span class="pre">ErrorStrategy.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.network.LatencyStrategy"><code class="docutils literal notranslate"><span class="pre">LatencyStrategy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.network.LatencyStrategy.__init__"><code class="docutils literal notranslate"><span class="pre">LatencyStrategy.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.MCPProtocolFuzzingStrategy"><code class="docutils literal notranslate"><span class="pre">MCPProtocolFuzzingStrategy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.MCPProtocolFuzzingStrategy.__init__"><code class="docutils literal notranslate"><span class="pre">MCPProtocolFuzzingStrategy.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.BUFFER_OVERFLOW_PAYLOADS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.BUFFER_OVERFLOW_PAYLOADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.DATE_FIELDS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.DATE_FIELDS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.INVALID_DATE_FORMATS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.INVALID_DATE_FORMATS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.NUMERIC_FIELDS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.NUMERIC_FIELDS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.SQL_INJECTION_PAYLOADS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.SQL_INJECTION_PAYLOADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.STRING_FIELDS"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.STRING_FIELDS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.detect_field_type"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.detect_field_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_date_field"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.fuzz_date_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_field"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.fuzz_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_numeric_field"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.fuzz_numeric_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.proxy.strategies.mcp.SchemaAwareFuzzer.fuzz_string_field"><code class="docutils literal notranslate"><span class="pre">SchemaAwareFuzzer.fuzz_string_field()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#module-agent_chaos_sdk.swarm_runner">Swarm Runner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.Agent"><code class="docutils literal notranslate"><span class="pre">Agent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.Agent.__init__"><code class="docutils literal notranslate"><span class="pre">Agent.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.Agent.process"><code class="docutils literal notranslate"><span class="pre">Agent.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig"><code class="docutils literal notranslate"><span class="pre">AgentConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.__init__"><code class="docutils literal notranslate"><span class="pre">AgentConfig.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.base_url"><code class="docutils literal notranslate"><span class="pre">AgentConfig.base_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.metadata"><code class="docutils literal notranslate"><span class="pre">AgentConfig.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.model"><code class="docutils literal notranslate"><span class="pre">AgentConfig.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.name"><code class="docutils literal notranslate"><span class="pre">AgentConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.role"><code class="docutils literal notranslate"><span class="pre">AgentConfig.role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.system_prompt"><code class="docutils literal notranslate"><span class="pre">AgentConfig.system_prompt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.temperature"><code class="docutils literal notranslate"><span class="pre">AgentConfig.temperature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.AgentConfig.tools"><code class="docutils literal notranslate"><span class="pre">AgentConfig.tools</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.FlowType"><code class="docutils literal notranslate"><span class="pre">FlowType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.FlowType.HIERARCHICAL"><code class="docutils literal notranslate"><span class="pre">FlowType.HIERARCHICAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.FlowType.PARALLEL"><code class="docutils literal notranslate"><span class="pre">FlowType.PARALLEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.FlowType.PIPELINE"><code class="docutils literal notranslate"><span class="pre">FlowType.PIPELINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.FlowType.SEQUENTIAL"><code class="docutils literal notranslate"><span class="pre">FlowType.SEQUENTIAL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.StateGraph"><code class="docutils literal notranslate"><span class="pre">StateGraph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig"><code class="docutils literal notranslate"><span class="pre">SwarmConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.__init__"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.agents"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.agents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.chaos_config"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.chaos_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.description"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.flow"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.flow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.name"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.reviewer"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.reviewer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.supervisor"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.supervisor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmConfig.workflow"><code class="docutils literal notranslate"><span class="pre">SwarmConfig.workflow</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory"><code class="docutils literal notranslate"><span class="pre">SwarmFactory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.__init__"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.agents"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.agents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.config"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.execute"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.load_from_yaml"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.load_from_yaml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.reviewer"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.reviewer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.supervisor"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.supervisor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmFactory.workers"><code class="docutils literal notranslate"><span class="pre">SwarmFactory.workers</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState"><code class="docutils literal notranslate"><span class="pre">SwarmState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.completed_agents"><code class="docutils literal notranslate"><span class="pre">SwarmState.completed_agents</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.current_agent"><code class="docutils literal notranslate"><span class="pre">SwarmState.current_agent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.messages"><code class="docutils literal notranslate"><span class="pre">SwarmState.messages</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.next_agent"><code class="docutils literal notranslate"><span class="pre">SwarmState.next_agent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.results"><code class="docutils literal notranslate"><span class="pre">SwarmState.results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.SwarmState.task"><code class="docutils literal notranslate"><span class="pre">SwarmState.task</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.add_messages"><code class="docutils literal notranslate"><span class="pre">add_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.swarm_runner.build_swarm_from_yaml"><code class="docutils literal notranslate"><span class="pre">build_swarm_from_yaml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#module-agent_chaos_sdk.storage.tape">Storage (Tape Replay)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext"><code class="docutils literal notranslate"><span class="pre">ChaosContext</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.agent_role"><code class="docutils literal notranslate"><span class="pre">ChaosContext.agent_role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.applied_strategies"><code class="docutils literal notranslate"><span class="pre">ChaosContext.applied_strategies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.chaos_applied"><code class="docutils literal notranslate"><span class="pre">ChaosContext.chaos_applied</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.model_config"><code class="docutils literal notranslate"><span class="pre">ChaosContext.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.to_dict"><code class="docutils literal notranslate"><span class="pre">ChaosContext.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.traffic_subtype"><code class="docutils literal notranslate"><span class="pre">ChaosContext.traffic_subtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ChaosContext.traffic_type"><code class="docutils literal notranslate"><span class="pre">ChaosContext.traffic_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.__eq__"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.__hash__"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.__hash__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.body_hash"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.body_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.headers_hash"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.headers_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.method"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.model_config"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.to_dict"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.RequestFingerprint.url"><code class="docutils literal notranslate"><span class="pre">RequestFingerprint.url</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.content"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.content_encoding"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.content_encoding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.from_dict"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.headers"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.headers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.model_config"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.reason"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.reason</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.status_code"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.status_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.ResponseSnapshot.to_dict"><code class="docutils literal notranslate"><span class="pre">ResponseSnapshot.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape"><code class="docutils literal notranslate"><span class="pre">Tape</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape.entries"><code class="docutils literal notranslate"><span class="pre">Tape.entries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape.from_dict"><code class="docutils literal notranslate"><span class="pre">Tape.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape.load"><code class="docutils literal notranslate"><span class="pre">Tape.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape.metadata"><code class="docutils literal notranslate"><span class="pre">Tape.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape.model_config"><code class="docutils literal notranslate"><span class="pre">Tape.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape.save"><code class="docutils literal notranslate"><span class="pre">Tape.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape.to_dict"><code class="docutils literal notranslate"><span class="pre">Tape.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.Tape.version"><code class="docutils literal notranslate"><span class="pre">Tape.version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry"><code class="docutils literal notranslate"><span class="pre">TapeEntry</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.chaos_context"><code class="docutils literal notranslate"><span class="pre">TapeEntry.chaos_context</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.fingerprint"><code class="docutils literal notranslate"><span class="pre">TapeEntry.fingerprint</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.from_dict"><code class="docutils literal notranslate"><span class="pre">TapeEntry.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.model_config"><code class="docutils literal notranslate"><span class="pre">TapeEntry.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.redacted"><code class="docutils literal notranslate"><span class="pre">TapeEntry.redacted</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.request_body_redacted"><code class="docutils literal notranslate"><span class="pre">TapeEntry.request_body_redacted</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.response"><code class="docutils literal notranslate"><span class="pre">TapeEntry.response</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.sequence"><code class="docutils literal notranslate"><span class="pre">TapeEntry.sequence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.timestamp"><code class="docutils literal notranslate"><span class="pre">TapeEntry.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeEntry.to_dict"><code class="docutils literal notranslate"><span class="pre">TapeEntry.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapePlayer"><code class="docutils literal notranslate"><span class="pre">TapePlayer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapePlayer.__init__"><code class="docutils literal notranslate"><span class="pre">TapePlayer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapePlayer.find_match"><code class="docutils literal notranslate"><span class="pre">TapePlayer.find_match()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapePlayer.get_chaos_context"><code class="docutils literal notranslate"><span class="pre">TapePlayer.get_chaos_context()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeRecorder"><code class="docutils literal notranslate"><span class="pre">TapeRecorder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeRecorder.__init__"><code class="docutils literal notranslate"><span class="pre">TapeRecorder.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeRecorder.record"><code class="docutils literal notranslate"><span class="pre">TapeRecorder.record()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.TapeRecorder.save"><code class="docutils literal notranslate"><span class="pre">TapeRecorder.save()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.storage.tape.normalize_request"><code class="docutils literal notranslate"><span class="pre">normalize_request()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#chaos-strategies">Chaos Strategies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#swarm-testing">Swarm Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#quick-summary">Quick Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html">Configuration Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html#chaosplan-yaml">ChaosPlan (YAML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html#targetconfig">TargetConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html#strategyconfig">StrategyConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html#replayconfig">ReplayConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html#production-env-vars">Production Env Vars</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../OBSERVABILITY.html">Observability Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../OBSERVABILITY.html#metrics-prometheus-otel">Metrics (Prometheus / OTEL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OBSERVABILITY.html#tracing">Tracing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../KUBERNETES.html">Kubernetes Deployment Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../KUBERNETES.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KUBERNETES.html#how-it-works">How It Works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KUBERNETES.html#customize-the-chaos-plan">Customize the Chaos Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KUBERNETES.html#image-references">Image References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../KUBERNETES.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../RAG_POISONING.html">RAG Poisoning Strategy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../RAG_POISONING.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RAG_POISONING.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../RAG_POISONING.html#responsemutationstrategy-base-class">ResponseMutationStrategy (Base Class)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RAG_POISONING.html#phantomdocumentstrategy">PhantomDocumentStrategy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../RAG_POISONING.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../RAG_POISONING.html#basic-configuration">Basic Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RAG_POISONING.html#jsonpath-examples">JSONPath Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RAG_POISONING.html#misinformation-source">Misinformation Source</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../RAG_POISONING.html#implementation-details">Implementation Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../RAG_POISONING.html#compression-handling">Compression Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RAG_POISONING.html#performance">Performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RAG_POISONING.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../RAG_POISONING.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RAG_POISONING.html#example-response-mutation">Example Response Mutation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RAG_POISONING.html#integration">Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../RAG_POISONING.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SWARM_DISRUPTION.html">Multi-Agent Swarm Disruption</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#traffic-classifier">Traffic Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#swarm-disruption-strategy">Swarm Disruption Strategy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../SWARM_DISRUPTION.html#message-mutation">1. Message Mutation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../SWARM_DISRUPTION.html#consensus-delay">2. Consensus Delay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../SWARM_DISRUPTION.html#agent-isolation">3. Agent Isolation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#integration">Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#addon-integration">Addon Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#scorecard-integration">Scorecard Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#example-yaml-configuration">Example YAML Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#strategy-parameters">Strategy Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#with-chaosplan">With ChaosPlan</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#testing">Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#manual-testing">Manual Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#verification">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#design-principles">Design Principles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#decoupling">Decoupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#extensibility">Extensibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#future-enhancements">Future Enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SWARM_DISRUPTION.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#traffic-not-classified-as-agent-to-agent">Traffic Not Classified as AGENT_TO_AGENT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#strategy-not-triggering">Strategy Not Triggering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../SWARM_DISRUPTION.html#scorecard-not-showing-swarm-errors">Scorecard Not Showing Swarm Errors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../TAPE_REPLAY.html">Deterministic Replay System (VCR Pattern)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#storage-layer">Storage Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#proxy-modes">Proxy Modes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#request-fingerprinting">Request Fingerprinting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#determinism">Determinism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#recording">Recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#replaying">Replaying</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#tape-file-format">Tape File Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#matching-algorithm">Matching Algorithm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#exact-match">Exact Match</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#partial-match-fallback">Partial Match (Fallback)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#no-match">No Match</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#integration">Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#cli-commands">CLI Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#programmatic-usage">Programmatic Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#use-cases">Use Cases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#debugging-flaky-failures">1. Debugging Flaky Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#offline-testing">2. Offline Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#regression-testing">3. Regression Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TAPE_REPLAY.html#performance-testing">4. Performance Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TAPE_REPLAY.html#future-enhancements">Future Enhancements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html">Dashboard Troubleshooting Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#issue-connection-refused-err-connection-refused">Issue: Connection Refused (ERR_CONNECTION_REFUSED)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#check-if-dashboard-server-started">1. Check if Dashboard Server Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#verify-port-availability">2. Verify Port Availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#check-dashboard-server-logs">3. Check Dashboard Server Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#manual-test">4. Manual Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#check-dependencies">5. Check Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#check-html-file">6. Check HTML File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#common-issues">7. Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#alternative-standalone-dashboard-server">8. Alternative: Standalone Dashboard Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#debug-mode">9. Debug Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#network-issues">10. Network Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#quick-fix-checklist">Quick Fix Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/DASHBOARD_TROUBLESHOOTING.html#still-not-working">Still Not Working?</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Markdown Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="README.html">Documentation Index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#core-documentation">Core Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#feature-documentation">Feature Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#governance">Governance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#api-documentation">API Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QUICK_START.html">🚀 快速开始指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id2">📋 目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id3">环境准备</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id4">1. 检查前置条件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id5">2. 安装依赖</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id6">三种使用方式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id7">方式1：一键测试脚本（最简单）⭐</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#cli-dashboard">方式2：CLI工具 + Dashboard（推荐）⭐</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id9">方式3：手动启动（最灵活）⭐</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id12">完整测试流程</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id13">1. 运行单元测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id14">2. 运行端到端测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id15">3. 查看结果</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id19">4. 理解报告</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id20">常用命令</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#cli">CLI命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id21">报告生成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id22">测试命令</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id23">🔧 配置Chaos策略</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#chaos-plan">编辑Chaos Plan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id24">可用的策略类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id25">重新加载配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id26">📊 可观测性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id27">Dashboard（实时监控）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#jaeger">Jaeger（分布式追踪）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#prometheus-grafana">Prometheus/Grafana（指标监控）</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id28">🐛 故障排除</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QUICK_START.html#id29">常见问题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id30">📚 更多资源</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QUICK_START.html#id31">🎯 下一步</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">完整测试指南 - Agent Chaos Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">📋 目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">快速开始</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">前置条件检查</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">一键完整测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">阶段1: 单元测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">运行所有单元测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">测试各个模块</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">阶段2: 集成测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id13">运行集成测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">阶段3: 端到端测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">3.1 基础端到端测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">3.2 手动端到端测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cli">阶段4: CLI测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id19">4.1 CLI基础命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chaos-plan">4.2 测试不同Chaos Plan</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dashboard">阶段5: Dashboard测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id22">5.1 启动Dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">5.2 访问Dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">5.3 验证Dashboard功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">5.4 触发事件测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">阶段6: 可观测性测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">6.1 启动可观测性栈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jaeger">6.2 查看Jaeger追踪</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prometheus">6.3 查看Prometheus指标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grafana-dashboard">6.4 查看Grafana Dashboard</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">阶段7: 高级功能测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mcp-fuzzing">7.1 协议模糊测试（MCP Fuzzing）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">7.2 竞态条件检测</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">7.3 组策略测试（基于角色）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tape-replay">7.4 记录和回放（Tape Replay）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rag">7.5 RAG投毒测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">7.6 Swarm破坏测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">测试检查清单</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id42">✅ 基础功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id43">✅ 策略功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id44">✅ CLI功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id45">✅ Dashboard功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id46">✅ 可观测性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id47">✅ 高级功能</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id48">故障排除</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id49">常见问题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id50">性能测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id51">并发请求测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id52">压力测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id53">持续集成</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#github-actions">GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id54">总结</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id55">快速测试命令总结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PRODUCTION_VALIDATION.html">Production Validation Checklist</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PRODUCTION_VALIDATION.html#local-validation-developer-machine">1) Local Validation (Developer Machine)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PRODUCTION_VALIDATION.html#prereqs">Prereqs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PRODUCTION_VALIDATION.html#steps">Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PRODUCTION_VALIDATION.html#kubernetes-validation-cluster">2) Kubernetes Validation (Cluster)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PRODUCTION_VALIDATION.html#ci-validation-automated">3) CI Validation (Automated)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html">Contributing to Agent Chaos Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#how-can-i-contribute">How Can I Contribute?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#suggesting-enhancements">Suggesting Enhancements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#pull-requests">Pull Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#development-setup">Development Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#coding-standards">Coding Standards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#type-hints">Type Hints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#code-formatting">Code Formatting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#docstrings">Docstrings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#testing">Testing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#running-tests">Running Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#writing-tests">Writing Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#documentation">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#code-documentation">Code Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#user-documentation">User Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#api-documentation">API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#pull-request-process">Pull Request Process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#before-submitting">Before Submitting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#pr-checklist">PR Checklist</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#review-process">Review Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#adding-new-chaos-strategies">Adding New Chaos Strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#questions">Questions?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CHANGELOG.html">Changelog</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CHANGELOG.html#unreleased">Unreleased</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#added">Added</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#changed">Changed</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGELOG.html#id1">0.1.0 - 2025-12-17</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#id2">Added</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#technical-details">Technical Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SECURITY.html">Security Policy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SECURITY.html#reporting-a-vulnerability">Reporting a Vulnerability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SECURITY.html#supported-versions">Supported Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SECURITY.html#safe-testing">Safe Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CODE_OF_CONDUCT.html#our-pledge">Our Pledge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CODE_OF_CONDUCT.html#our-standards">Our Standards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CODE_OF_CONDUCT.html#enforcement">Enforcement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CODE_OF_CONDUCT.html#attribution">Attribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SUPPORT.html">Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SUPPORT.html#where-to-ask-questions">Where to ask questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SUPPORT.html#what-to-include-in-a-bug-report">What to include in a bug report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SUPPORT.html#security-issues">Security issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SUPPORT.html#support-scope">Support scope</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="VERSIONING.html">Versioning &amp; Release Policy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="VERSIONING.html#version-meanings">Version meanings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VERSIONING.html#deprecations">Deprecations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VERSIONING.html#release-cadence">Release cadence</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="EXAMPLES_PLANS.html">Chaos Plan Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="EXAMPLES_PLANS.html#what-is-a-chaos-plan">What is a Chaos Plan?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EXAMPLES_PLANS.html#example-plans">Example Plans</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EXAMPLES_PLANS.html#payment-failure-yaml"><code class="docutils literal notranslate"><span class="pre">payment_failure.yaml</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="EXAMPLES_PLANS.html#travel-agent-chaos-yaml"><code class="docutils literal notranslate"><span class="pre">travel_agent_chaos.yaml</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="EXAMPLES_PLANS.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EXAMPLES_PLANS.html#plan-schema">Plan Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EXAMPLES_PLANS.html#converting-to-legacy-format">Converting to Legacy Format</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Agent Chaos Platform</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Markdown Documentation</a></li>
+      <li class="breadcrumb-item active">完整测试指南 - Agent Chaos Platform</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/markdown/COMPREHENSIVE_TESTING_GUIDE.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="agent-chaos-platform">
+<h1>完整测试指南 - Agent Chaos Platform<a class="headerlink" href="#agent-chaos-platform" title="Link to this heading"></a></h1>
+<p>本指南涵盖项目的所有测试阶段，从单元测试到端到端集成测试。</p>
+<section id="id1">
+<h2>📋 目录<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#id2">快速开始</a></p></li>
+<li><p><a class="reference internal" href="#id5">阶段1: 单元测试</a></p></li>
+<li><p><a class="reference internal" href="#id12">阶段2: 集成测试</a></p></li>
+<li><p><a class="reference internal" href="#id14">阶段3: 端到端测试</a></p></li>
+<li><p><a class="reference internal" href="#cli">阶段4: CLI测试</a></p></li>
+<li><p><a class="reference internal" href="#dashboard">阶段5: Dashboard测试</a></p></li>
+<li><p><a class="reference internal" href="#id26">阶段6: 可观测性测试</a></p></li>
+<li><p><a class="reference internal" href="#id28">阶段7: 高级功能测试</a></p></li>
+<li><p><a class="reference internal" href="#id41">测试检查清单</a></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>快速开始<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>前置条件检查<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行前置条件检查脚本</span>
+./scripts/check_prerequisites.sh
+</pre></div>
+</div>
+<p>确保以下组件已安装：</p>
+<ul class="simple">
+<li><p>✅ Python 3.10+</p></li>
+<li><p>✅ Ollama (本地LLM)</p></li>
+<li><p>✅ mitmproxy</p></li>
+<li><p>✅ 所有Python依赖 (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> 或 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code>)</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>一键完整测试<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行完整的端到端测试（推荐）</span>
+./scripts/run_chaos_test.sh
+</pre></div>
+</div>
+<p>这个脚本会自动：</p>
+<ol class="arabic simple">
+<li><p>启动Mock Server</p></li>
+<li><p>启动Chaos Proxy</p></li>
+<li><p>运行Travel Agent测试</p></li>
+<li><p>生成Resilience Scorecard报告</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id5">
+<h2>阶段1: 单元测试<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>测试各个组件的独立功能。</p>
+<section id="id6">
+<h3>运行所有单元测试<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行所有单元测试</span>
+pytest<span class="w"> </span>tests/unit/<span class="w"> </span>-v
+
+<span class="c1"># 带覆盖率报告</span>
+pytest<span class="w"> </span>tests/unit/<span class="w"> </span>--cov<span class="o">=</span>agent_chaos_sdk<span class="w"> </span>--cov-report<span class="o">=</span>term-missing
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>测试各个模块<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<section id="id8">
+<h4>1.1 安全模块测试<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># PII脱敏和认证测试</span>
+pytest<span class="w"> </span>tests/unit/test_security.py<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ PII脱敏（邮箱、信用卡、API密钥）</p></li>
+<li><p>✅ URL脱敏</p></li>
+<li><p>✅ Header脱敏</p></li>
+<li><p>✅ 认证验证（X-Chaos-Token）</p></li>
+</ul>
+</section>
+<section id="id9">
+<h4>1.2 策略测试<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 延迟策略</span>
+pytest<span class="w"> </span>tests/unit/test_latency_strategy.py<span class="w"> </span>-v
+
+<span class="c1"># 错误注入策略</span>
+pytest<span class="w"> </span>tests/unit/test_error_strategy.py<span class="w"> </span>-v
+
+<span class="c1"># MCP协议模糊测试</span>
+pytest<span class="w"> </span>tests/unit/test_mcp_fuzzing.py<span class="w"> </span>-v
+
+<span class="c1"># 数据损坏策略</span>
+pytest<span class="w"> </span>tests/unit/test_data_corruption.py<span class="w"> </span>-v
+
+<span class="c1"># 组策略（基于角色的chaos）</span>
+pytest<span class="w"> </span>tests/unit/test_group_strategy.py<span class="w"> </span>-v
+
+<span class="c1"># 认知层攻击</span>
+pytest<span class="w"> </span>tests/unit/test_cognitive_strategies.py<span class="w"> </span>-v
+
+<span class="c1"># RAG投毒策略</span>
+pytest<span class="w"> </span>tests/unit/test_rag_strategy.py<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 策略正确应用延迟/错误</p></li>
+<li><p>✅ 概率控制工作正常</p></li>
+<li><p>✅ 模式匹配正确</p></li>
+<li><p>✅ 异步执行不阻塞</p></li>
+</ul>
+</section>
+<section id="id10">
+<h4>1.3 配置加载测试<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 配置加载和验证</span>
+pytest<span class="w"> </span>tests/unit/test_config_loader.py<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ YAML解析正确</p></li>
+<li><p>✅ Pydantic验证工作</p></li>
+<li><p>✅ 目标引用检查</p></li>
+<li><p>✅ 场景配置验证</p></li>
+</ul>
+</section>
+<section id="id11">
+<h4>1.4 装饰器测试<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 函数级chaos装饰器</span>
+pytest<span class="w"> </span>tests/unit/test_decorators.py<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 装饰器正确注入chaos</p></li>
+<li><p>✅ 概率控制</p></li>
+<li><p>✅ OpenTelemetry追踪</p></li>
+</ul>
+</section>
+<section id="swarm-runner">
+<h4>1.5 Swarm Runner测试<a class="headerlink" href="#swarm-runner" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 多Agent Swarm构建器</span>
+pytest<span class="w"> </span>tests/unit/test_swarm_runner.py<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ YAML解析</p></li>
+<li><p>✅ Agent实例化</p></li>
+<li><p>✅ 代理配置注入</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id12">
+<h2>阶段2: 集成测试<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>测试组件之间的交互。</p>
+<section id="id13">
+<h3>运行集成测试<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行所有集成测试</span>
+pytest<span class="w"> </span>tests/integration/<span class="w"> </span>-v
+
+<span class="c1"># 测试Proxy Addon</span>
+pytest<span class="w"> </span>tests/integration/test_proxy_addon.py<span class="w"> </span>-v
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ Proxy正确拦截请求</p></li>
+<li><p>✅ 策略正确应用</p></li>
+<li><p>✅ 认证中间件工作</p></li>
+<li><p>✅ 日志记录正确</p></li>
+<li><p>✅ 并发请求处理</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id14">
+<h2>阶段3: 端到端测试<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<p>测试完整的系统流程。</p>
+<section id="id15">
+<h3>3.1 基础端到端测试<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用shell脚本（推荐）</span>
+./scripts/run_chaos_test.sh
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ Mock Server启动成功</p></li>
+<li><p>✅ Chaos Proxy启动成功</p></li>
+<li><p>✅ Agent成功调用工具</p></li>
+<li><p>✅ Chaos正确注入</p></li>
+<li><p>✅ 报告成功生成</p></li>
+</ul>
+</section>
+<section id="id16">
+<h3>3.2 手动端到端测试<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<section id="mock-server">
+<h4>步骤1: 启动Mock Server<a class="headerlink" href="#mock-server" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端1</span>
+python<span class="w"> </span>src/tools/mock_server.py
+<span class="c1"># 应该看到: &quot;Mock server running on http://127.0.0.1:8001&quot;</span>
+</pre></div>
+</div>
+<p><strong>验证</strong>：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>http://localhost:8001/health
+<span class="c1"># 应该返回: {&quot;status&quot;: &quot;healthy&quot;}</span>
+</pre></div>
+</div>
+</section>
+<section id="chaos-proxy">
+<h4>步骤2: 启动Chaos Proxy<a class="headerlink" href="#chaos-proxy" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端2</span>
+mitmdump<span class="w"> </span>-s<span class="w"> </span>agent_chaos_sdk/proxy/addon.py<span class="w"> </span>--listen-port<span class="w"> </span><span class="m">8080</span>
+</pre></div>
+</div>
+<p><strong>验证</strong>：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 检查端口是否监听</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:8080
+<span class="c1"># 应该显示mitmdump进程</span>
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h4>步骤3: 配置代理环境变量<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端3</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://localhost:8080
+<span class="nb">export</span><span class="w"> </span><span class="nv">HTTPS_PROXY</span><span class="o">=</span>http://localhost:8080
+<span class="nb">export</span><span class="w"> </span><span class="nv">NO_PROXY</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="travel-agent">
+<h4>步骤4: 运行Travel Agent<a class="headerlink" href="#travel-agent" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端3（继续）</span>
+python<span class="w"> </span>examples/production_simulation/travel_agent.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s2">&quot;Book a flight from New York to Los Angeles on December 25th, 2025&quot;</span>
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ Agent成功生成工具调用</p></li>
+<li><p>✅ 请求通过Proxy（检查proxy日志）</p></li>
+<li><p>✅ Chaos策略被应用（如果启用）</p></li>
+<li><p>✅ Agent处理响应或错误</p></li>
+</ul>
+</section>
+<section id="id18">
+<h4>步骤5: 生成报告<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端3（继续）</span>
+python<span class="w"> </span>src/reporter/generate.py
+</pre></div>
+</div>
+<p><strong>验证</strong>：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看报告</span>
+cat<span class="w"> </span>reports/resilience_report.md
+cat<span class="w"> </span>reports/resilience_report.json
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 报告成功生成</p></li>
+<li><p>✅ 包含工具调用统计</p></li>
+<li><p>✅ 包含chaos注入统计</p></li>
+<li><p>✅ 包含恢复率分析</p></li>
+<li><p>✅ 包含竞态条件检测</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="cli">
+<h2>阶段4: CLI测试<a class="headerlink" href="#cli" title="Link to this heading"></a></h2>
+<p>测试Python CLI工具。</p>
+<section id="id19">
+<h3>4.1 CLI基础命令<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<section id="id20">
+<h4>初始化模板<a class="headerlink" href="#id20" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 生成chaos plan模板</span>
+agent-chaos<span class="w"> </span>init
+
+<span class="c1"># 验证生成的文件</span>
+cat<span class="w"> </span>chaos_plan.yaml
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 文件成功创建</p></li>
+<li><p>✅ 包含所有必需字段</p></li>
+<li><p>✅ YAML格式正确</p></li>
+</ul>
+</section>
+<section id="plan">
+<h4>验证Plan<a class="headerlink" href="#plan" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 验证示例plan</span>
+agent-chaos<span class="w"> </span>validate<span class="w"> </span>examples/plans/travel_agent_chaos.yaml
+
+<span class="c1"># 验证无效plan（应该报错）</span>
+agent-chaos<span class="w"> </span>validate<span class="w"> </span>examples/plans/invalid.yaml<span class="w">  </span><span class="c1"># 如果存在</span>
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 有效plan通过验证</p></li>
+<li><p>✅ 无效plan被拒绝</p></li>
+<li><p>✅ 错误信息清晰</p></li>
+</ul>
+</section>
+<section id="id21">
+<h4>运行实验<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行实验（带Mock Server）</span>
+agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos.yaml<span class="w"> </span>--mock-server
+
+<span class="c1"># 在另一个终端运行Agent</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://localhost:8080
+python<span class="w"> </span>examples/production_simulation/travel_agent.py
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ CLI成功启动所有服务</p></li>
+<li><p>✅ Dashboard URL显示</p></li>
+<li><p>✅ 实时指标更新</p></li>
+<li><p>✅ Ctrl+C优雅关闭</p></li>
+</ul>
+</section>
+</section>
+<section id="chaos-plan">
+<h3>4.2 测试不同Chaos Plan<a class="headerlink" href="#chaos-plan" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试支付失败场景</span>
+agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/payment_failure.yaml<span class="w"> </span>--mock-server
+
+<span class="c1"># 测试认知层攻击</span>
+agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/cognitive_attacks.yaml<span class="w"> </span>--mock-server
+
+<span class="c1"># 测试RAG投毒</span>
+agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/rag_poisoning.yaml<span class="w"> </span>--mock-server
+
+<span class="c1"># 测试Swarm破坏</span>
+agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/swarm_disruption.yaml<span class="w"> </span>--mock-server
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="dashboard">
+<h2>阶段5: Dashboard测试<a class="headerlink" href="#dashboard" title="Link to this heading"></a></h2>
+<p>测试实时可视化Dashboard。</p>
+<section id="id22">
+<h3>5.1 启动Dashboard<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用CLI（自动启动）</span>
+agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos.yaml<span class="w"> </span>--mock-server
+
+<span class="c1"># 应该看到: &quot;✓ Dashboard available at http://127.0.0.1:8081&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h3>5.2 访问Dashboard<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>打开浏览器</strong>: <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8081</span></code></p></li>
+<li><p><strong>配置浏览器代理绕过</strong>（如果遇到503错误）:</p>
+<ul class="simple">
+<li><p>Chrome: 设置 → 系统 → 代理 → 高级 → 例外: <code class="docutils literal notranslate"><span class="pre">127.0.0.1,</span> <span class="pre">localhost</span></code></p></li>
+<li><p>Firefox: 设置 → 网络设置 → 不使用代理: <code class="docutils literal notranslate"><span class="pre">127.0.0.1,</span> <span class="pre">localhost</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id24">
+<h3>5.3 验证Dashboard功能<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ Dashboard页面加载</p></li>
+<li><p>✅ WebSocket连接成功（状态指示器变绿）</p></li>
+<li><p>✅ 实时统计更新（Total Requests, Chaos Injected等）</p></li>
+<li><p>✅ 拓扑图显示（User → Agent → Proxy → Tool）</p></li>
+<li><p>✅ 事件列表显示实时事件</p></li>
+<li><p>✅ 点击节点/事件显示详情</p></li>
+<li><p>✅ 颜色编码正确（红色=错误，橙色=Chaos，绿色=成功）</p></li>
+</ul>
+</section>
+<section id="id25">
+<h3>5.4 触发事件测试<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<p>在Dashboard运行时，运行Agent：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 另一个终端</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://localhost:8080
+python<span class="w"> </span>examples/production_simulation/travel_agent.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s2">&quot;Book a flight from NY to LA&quot;</span>
+</pre></div>
+</div>
+<p><strong>观察Dashboard</strong>：</p>
+<ul class="simple">
+<li><p>✅ 请求事件出现</p></li>
+<li><p>✅ Chaos注入事件出现（如果启用）</p></li>
+<li><p>✅ 响应事件出现</p></li>
+<li><p>✅ 拓扑图更新</p></li>
+<li><p>✅ 统计数字增加</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id26">
+<h2>阶段6: 可观测性测试<a class="headerlink" href="#id26" title="Link to this heading"></a></h2>
+<p>测试OpenTelemetry集成。</p>
+<section id="id27">
+<h3>6.1 启动可观测性栈<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 启动Docker Compose（Jaeger + Prometheus + Grafana）</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># 验证服务启动</span>
+docker-compose<span class="w"> </span>ps
+</pre></div>
+</div>
+</section>
+<section id="jaeger">
+<h3>6.2 查看Jaeger追踪<a class="headerlink" href="#jaeger" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>打开Jaeger UI</strong>: <code class="docutils literal notranslate"><span class="pre">http://localhost:16686</span></code></p></li>
+<li><p><strong>运行测试</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/run_chaos_test.sh
+</pre></div>
+</div>
+</li>
+<li><p><strong>在Jaeger中查看</strong>:</p>
+<ul class="simple">
+<li><p>选择服务: <code class="docutils literal notranslate"><span class="pre">victim-agent</span></code> 或 <code class="docutils literal notranslate"><span class="pre">chaos-proxy</span></code></p></li>
+<li><p>点击 “Find Traces”</p></li>
+<li><p>查看完整的追踪链路</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 追踪显示完整的请求流程</p></li>
+<li><p>✅ 包含chaos注入span</p></li>
+<li><p>✅ 包含工具调用span</p></li>
+<li><p>✅ 错误正确标记</p></li>
+</ul>
+</section>
+<section id="prometheus">
+<h3>6.3 查看Prometheus指标<a class="headerlink" href="#prometheus" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>打开Prometheus</strong>: <code class="docutils literal notranslate"><span class="pre">http://localhost:9090</span></code></p></li>
+<li><p><strong>查询指标</strong>:</p>
+<div class="highlight-promql notranslate"><div class="highlight"><pre><span></span><span class="c1"># 总请求数</span>
+<span class="nv">chaos_engineering_ai_requests_total</span>
+
+<span class="c1"># Token使用</span>
+<span class="nv">chaos_engineering_ai_token_usage_total</span>
+
+<span class="c1"># Chaos注入次数</span>
+<span class="nv">chaos_engineering_ai_chaos_injections_total</span>
+
+<span class="c1"># 按角色分组的请求</span>
+<span class="nv">chaos_engineering_ai_requests_total</span><span class="p">{</span><span class="nl">agent_role</span><span class="o">=</span><span class="p">&quot;</span><span class="s">TravelAgent</span><span class="p">&quot;}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 指标正确记录</p></li>
+<li><p>✅ 标签正确应用</p></li>
+<li><p>✅ 时间序列数据可用</p></li>
+</ul>
+</section>
+<section id="grafana-dashboard">
+<h3>6.4 查看Grafana Dashboard<a class="headerlink" href="#grafana-dashboard" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>打开Grafana</strong>: <code class="docutils literal notranslate"><span class="pre">http://localhost:3000</span></code> (默认: admin/admin)</p></li>
+<li><p><strong>导入预配置Dashboard</strong>（如果有）</p></li>
+<li><p><strong>查看图表</strong>:</p>
+<ul class="simple">
+<li><p>请求率</p></li>
+<li><p>错误率</p></li>
+<li><p>延迟分布</p></li>
+<li><p>Token使用</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id28">
+<h2>阶段7: 高级功能测试<a class="headerlink" href="#id28" title="Link to this heading"></a></h2>
+<section id="mcp-fuzzing">
+<h3>7.1 协议模糊测试（MCP Fuzzing）<a class="headerlink" href="#mcp-fuzzing" title="Link to this heading"></a></h3>
+<section id="schema-aware-fuzzing">
+<h4>启用Schema-Aware Fuzzing<a class="headerlink" href="#schema-aware-fuzzing" title="Link to this heading"></a></h4>
+<p>编辑 <code class="docutils literal notranslate"><span class="pre">config/chaos_config.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">strategies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcp_fuzzing</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcp_fuzzing</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">probability</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">fuzz_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema_violation</span>
+<span class="w">      </span><span class="nt">target_endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/search_flights&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id29">
+<h4>运行测试<a class="headerlink" href="#id29" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/run_chaos_test.sh
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 日期字段被注入无效格式</p></li>
+<li><p>✅ 数字字段被注入类型错误</p></li>
+<li><p>✅ 字符串字段被注入边界值</p></li>
+<li><p>✅ Agent正确处理或失败</p></li>
+</ul>
+</section>
+</section>
+<section id="id30">
+<h3>7.2 竞态条件检测<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<section id="id31">
+<h4>测试场景<a class="headerlink" href="#id31" title="Link to this heading"></a></h4>
+<p>Agent可能并行调用 <code class="docutils literal notranslate"><span class="pre">search_flights</span></code> 和 <code class="docutils literal notranslate"><span class="pre">book_ticket</span></code>，导致竞态条件。</p>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 报告检测到竞态条件</p></li>
+<li><p>✅ 显示依赖关系违规</p></li>
+<li><p>✅ 提供修复建议</p></li>
+</ul>
+<p>查看报告：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>reports/resilience_report.md<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="s2">&quot;Race Condition&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id32">
+<h3>7.3 组策略测试（基于角色）<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<section id="id33">
+<h4>配置组策略<a class="headerlink" href="#id33" title="Link to this heading"></a></h4>
+<p>编辑 <code class="docutils literal notranslate"><span class="pre">config/chaos_config.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">strategies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disable_qa</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">group_failure</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">target_role</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;QAEngineer&quot;</span>
+<span class="w">      </span><span class="nt">probability</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</pre></div>
+</div>
+</section>
+<section id="swarm">
+<h4>运行Swarm测试<a class="headerlink" href="#swarm" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 如果有swarm示例</span>
+python<span class="w"> </span>examples/scalable_swarm/run_enterprise.py
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 所有QA工程师的请求被拦截</p></li>
+<li><p>✅ 其他角色不受影响</p></li>
+<li><p>✅ 指标按角色分组</p></li>
+</ul>
+</section>
+</section>
+<section id="tape-replay">
+<h3>7.4 记录和回放（Tape Replay）<a class="headerlink" href="#tape-replay" title="Link to this heading"></a></h3>
+<section id="id34">
+<h4>记录会话<a class="headerlink" href="#id34" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用CLI记录模式</span>
+agent-chaos<span class="w"> </span>record<span class="w"> </span>examples/plans/travel_agent_chaos.yaml<span class="w"> </span>--tape<span class="w"> </span>test_session.tape
+
+<span class="c1"># 在另一个终端运行Agent</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://localhost:8080
+python<span class="w"> </span>examples/production_simulation/travel_agent.py
+</pre></div>
+</div>
+</section>
+<section id="id35">
+<h4>回放会话<a class="headerlink" href="#id35" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用CLI回放模式</span>
+agent-chaos<span class="w"> </span>replay<span class="w"> </span>test_session.tape<span class="w"> </span>--plan<span class="w"> </span>examples/plans/travel_agent_chaos.yaml
+
+<span class="c1"># 在另一个终端运行Agent（应该使用录制的响应）</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://localhost:8080
+python<span class="w"> </span>examples/production_simulation/travel_agent.py
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 请求匹配正确</p></li>
+<li><p>✅ 返回录制的响应</p></li>
+<li><p>✅ 无网络访问（Mock Server可以关闭）</p></li>
+<li><p>✅ Chaos上下文被保留</p></li>
+</ul>
+</section>
+</section>
+<section id="rag">
+<h3>7.5 RAG投毒测试<a class="headerlink" href="#rag" title="Link to this heading"></a></h3>
+<section id="id36">
+<h4>配置RAG投毒策略<a class="headerlink" href="#id36" title="Link to this heading"></a></h4>
+<p>编辑 <code class="docutils literal notranslate"><span class="pre">examples/plans/rag_poisoning.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scenarios</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inject_fake_docs</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phantom_document</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">target_json_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$.results[*].snippet&quot;</span>
+<span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">injection</span>
+<span class="w">      </span><span class="nt">probability</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</pre></div>
+</div>
+</section>
+<section id="id37">
+<h4>运行测试<a class="headerlink" href="#id37" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/rag_poisoning.yaml<span class="w"> </span>--mock-server
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 响应被正确修改</p></li>
+<li><p>✅ 虚假信息被注入</p></li>
+<li><p>✅ Agent是否检测到异常</p></li>
+</ul>
+</section>
+</section>
+<section id="id38">
+<h3>7.6 Swarm破坏测试<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<section id="id39">
+<h4>配置Swarm破坏策略<a class="headerlink" href="#id39" title="Link to this heading"></a></h4>
+<p>编辑 <code class="docutils literal notranslate"><span class="pre">examples/plans/swarm_disruption.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scenarios</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mutate_messages</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">swarm_disruption</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">attack_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">message_mutation</span>
+<span class="w">      </span><span class="nt">target_traffic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AGENT_TO_AGENT</span>
+</pre></div>
+</div>
+</section>
+<section id="id40">
+<h4>运行测试<a class="headerlink" href="#id40" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/swarm_disruption.yaml<span class="w"> </span>--mock-server
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ Agent间通信被正确分类</p></li>
+<li><p>✅ 消息被正确修改</p></li>
+<li><p>✅ Swarm行为受影响</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id41">
+<h2>测试检查清单<a class="headerlink" href="#id41" title="Link to this heading"></a></h2>
+<section id="id42">
+<h3>✅ 基础功能<a class="headerlink" href="#id42" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] 单元测试全部通过 (<code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">tests/unit/</span></code>)</p></li>
+<li><p>[ ] 集成测试全部通过 (<code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">tests/integration/</span></code>)</p></li>
+<li><p>[ ] Mock Server启动成功</p></li>
+<li><p>[ ] Chaos Proxy启动成功</p></li>
+<li><p>[ ] Agent成功调用工具</p></li>
+<li><p>[ ] 报告成功生成</p></li>
+</ul>
+</section>
+<section id="id43">
+<h3>✅ 策略功能<a class="headerlink" href="#id43" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] 延迟策略工作</p></li>
+<li><p>[ ] 错误注入策略工作</p></li>
+<li><p>[ ] MCP模糊测试工作</p></li>
+<li><p>[ ] 数据损坏策略工作</p></li>
+<li><p>[ ] 组策略工作</p></li>
+<li><p>[ ] 认知层攻击工作</p></li>
+<li><p>[ ] RAG投毒工作</p></li>
+<li><p>[ ] Swarm破坏工作</p></li>
+</ul>
+</section>
+<section id="id44">
+<h3>✅ CLI功能<a class="headerlink" href="#id44" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] <code class="docutils literal notranslate"><span class="pre">agent-chaos</span> <span class="pre">init</span></code> 工作</p></li>
+<li><p>[ ] <code class="docutils literal notranslate"><span class="pre">agent-chaos</span> <span class="pre">validate</span></code> 工作</p></li>
+<li><p>[ ] <code class="docutils literal notranslate"><span class="pre">agent-chaos</span> <span class="pre">run</span></code> 工作</p></li>
+<li><p>[ ] <code class="docutils literal notranslate"><span class="pre">agent-chaos</span> <span class="pre">record</span></code> 工作</p></li>
+<li><p>[ ] <code class="docutils literal notranslate"><span class="pre">agent-chaos</span> <span class="pre">replay</span></code> 工作</p></li>
+</ul>
+</section>
+<section id="id45">
+<h3>✅ Dashboard功能<a class="headerlink" href="#id45" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] Dashboard页面加载</p></li>
+<li><p>[ ] WebSocket连接成功</p></li>
+<li><p>[ ] 实时事件更新</p></li>
+<li><p>[ ] 拓扑图显示</p></li>
+<li><p>[ ] 统计数字更新</p></li>
+<li><p>[ ] 详情查看工作</p></li>
+</ul>
+</section>
+<section id="id46">
+<h3>✅ 可观测性<a class="headerlink" href="#id46" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] Jaeger追踪显示</p></li>
+<li><p>[ ] Prometheus指标记录</p></li>
+<li><p>[ ] Grafana Dashboard显示（如果配置）</p></li>
+</ul>
+</section>
+<section id="id47">
+<h3>✅ 高级功能<a class="headerlink" href="#id47" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] 竞态条件检测工作</p></li>
+<li><p>[ ] 记录和回放工作</p></li>
+<li><p>[ ] 协议模糊测试工作</p></li>
+<li><p>[ ] 组策略工作</p></li>
+<li><p>[ ] RAG投毒工作</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id48">
+<h2>故障排除<a class="headerlink" href="#id48" title="Link to this heading"></a></h2>
+<section id="id49">
+<h3>常见问题<a class="headerlink" href="#id49" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>端口被占用</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 检查端口</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:8080<span class="w">  </span><span class="c1"># Proxy</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:8081<span class="w">  </span><span class="c1"># Dashboard</span>
+lsof<span class="w"> </span>-i<span class="w"> </span>:8001<span class="w">  </span><span class="c1"># Mock Server</span>
+
+<span class="c1"># 杀死进程</span>
+<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>&lt;PID&gt;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Dashboard连接被拒绝</strong></p>
+<ul class="simple">
+<li><p>查看 <code class="docutils literal notranslate"><span class="pre">DASHBOARD_FIX.md</span></code></p></li>
+<li><p>配置浏览器绕过代理</p></li>
+</ul>
+</li>
+<li><p><strong>Agent无法连接Mock Server</strong></p>
+<ul class="simple">
+<li><p>检查 <code class="docutils literal notranslate"><span class="pre">HTTP_PROXY</span></code> 环境变量</p></li>
+<li><p>确保 <code class="docutils literal notranslate"><span class="pre">NO_PROXY</span></code> 为空（强制localhost走代理）</p></li>
+</ul>
+</li>
+<li><p><strong>测试失败</strong></p>
+<ul class="simple">
+<li><p>检查日志: <code class="docutils literal notranslate"><span class="pre">logs/proxy.log</span></code>, <code class="docutils literal notranslate"><span class="pre">logs/agent_output.log</span></code></p></li>
+<li><p>运行 <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-v</span></code> 查看详细错误</p></li>
+<li><p>检查Ollama是否运行: <code class="docutils literal notranslate"><span class="pre">ollama</span> <span class="pre">list</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>报告生成错误</strong></p>
+<ul class="simple">
+<li><p>确保 <code class="docutils literal notranslate"><span class="pre">logs/proxy.log</span></code> 存在</p></li>
+<li><p>检查日志格式是否正确（JSON格式）</p></li>
+<li><p>查看错误信息: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">src/reporter/generate.py</span> <span class="pre">-v</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id50">
+<h2>性能测试<a class="headerlink" href="#id50" title="Link to this heading"></a></h2>
+<section id="id51">
+<h3>并发请求测试<a class="headerlink" href="#id51" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用Apache Bench或类似工具</span>
+ab<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w"> </span>-c<span class="w"> </span><span class="m">10</span><span class="w"> </span>http://localhost:8001/search_flights
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ Proxy处理并发请求</p></li>
+<li><p>✅ 无阻塞</p></li>
+<li><p>✅ 日志正确记录</p></li>
+</ul>
+</section>
+<section id="id52">
+<h3>压力测试<a class="headerlink" href="#id52" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行多个Agent实例</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..10<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span>python<span class="w"> </span>examples/production_simulation/travel_agent.py<span class="w"> </span><span class="p">&amp;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p><strong>验证点</strong>：</p>
+<ul class="simple">
+<li><p>✅ 系统稳定</p></li>
+<li><p>✅ 无内存泄漏</p></li>
+<li><p>✅ 响应时间合理</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id53">
+<h2>持续集成<a class="headerlink" href="#id53" title="Link to this heading"></a></h2>
+<section id="github-actions">
+<h3>GitHub Actions<a class="headerlink" href="#github-actions" title="Link to this heading"></a></h3>
+<p>查看 <code class="docutils literal notranslate"><span class="pre">.github/workflows/test.yml</span></code> 了解CI配置。</p>
+<p><strong>自动运行</strong>：</p>
+<ul class="simple">
+<li><p>单元测试</p></li>
+<li><p>集成测试</p></li>
+<li><p>类型检查 (mypy)</p></li>
+<li><p>覆盖率报告</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id54">
+<h2>总结<a class="headerlink" href="#id54" title="Link to this heading"></a></h2>
+<p>完成以上所有测试阶段后，你应该能够：</p>
+<ol class="arabic simple">
+<li><p>✅ <strong>验证核心功能</strong>: 所有策略和组件工作正常</p></li>
+<li><p>✅ <strong>验证集成</strong>: 系统各组件正确协作</p></li>
+<li><p>✅ <strong>验证用户体验</strong>: CLI和Dashboard易用</p></li>
+<li><p>✅ <strong>验证可观测性</strong>: 追踪和指标正确记录</p></li>
+<li><p>✅ <strong>验证高级功能</strong>: 所有前沿功能工作正常</p></li>
+</ol>
+<p><strong>下一步</strong>: 根据测试结果修复问题，然后可以开始使用平台进行实际的Agent混沌测试！</p>
+</section>
+<hr class="docutils" />
+<section id="id55">
+<h2>快速测试命令总结<a class="headerlink" href="#id55" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 完整测试（推荐）</span>
+./scripts/run_chaos_test.sh
+
+<span class="c1"># 2. 单元测试</span>
+pytest<span class="w"> </span>tests/unit/<span class="w"> </span>-v
+
+<span class="c1"># 3. CLI测试</span>
+agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos.yaml<span class="w"> </span>--mock-server
+
+<span class="c1"># 4. Dashboard测试</span>
+<span class="c1"># 访问 http://127.0.0.1:8081</span>
+
+<span class="c1"># 5. 可观测性测试</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+<span class="c1"># 访问 http://localhost:16686 (Jaeger)</span>
+<span class="c1"># 访问 http://localhost:9090 (Prometheus)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="QUICK_START.html" class="btn btn-neutral float-left" title="🚀 快速开始指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="PRODUCTION_VALIDATION.html" class="btn btn-neutral float-right" title="Production Validation Checklist" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Agent Chaos Platform Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

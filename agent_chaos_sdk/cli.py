@@ -1517,6 +1517,8 @@ def health_check(
         chaos_plan = ChaosPlan()
 
     try:
+        # Health-check should not require a running local LLM by default.
+        os.environ["CHAOS_LLM_HEALTH_SKIP"] = "true"
         _preflight_checks(chaos_plan, mode_map[mode_lower])
         console.print(Panel(
             "[green]✓ All preflight checks passed[/green]",

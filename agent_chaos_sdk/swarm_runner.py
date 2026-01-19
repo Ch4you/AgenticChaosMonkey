@@ -55,6 +55,10 @@ try:
 except ImportError:
     LANGGRAPH_AVAILABLE = False
     print("Warning: LangGraph not available. Using simplified workflow.")
+    class StateGraph:  # type: ignore
+        """Fallback stub for LangGraph StateGraph when unavailable."""
+        pass
+    END = "END"
     def add_messages(messages):
         """Fallback reducer when LangGraph is unavailable."""
         return messages
