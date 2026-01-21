@@ -1,0 +1,115 @@
+version: "1.0"
+metadata:
+  name: "Stress Test Chaos"
+  description: "High-concurrency stress testing with various failure modes"
+  experiment_id: "stress_test_001"
+  author: "Agent Chaos Platform"
+  created_at: "2025-01-20"
+
+targets:
+  # All external service calls
+  - name: "all_services"
+    type: "http_endpoint"
+    pattern: ".*"
+    description: "All HTTP endpoints for comprehensive stress testing"
+
+  # High-traffic endpoints
+  - name: "travel_services"
+    type: "http_endpoint"
+    pattern: ".*(search_flights|book_ticket|search_hotels|book_hotel|search_cars|book_car).*"
+    description: "Travel booking services under stress"
+
+scenarios:
+  # Network stress - simulate high load conditions
+  - name: "high_load_latency"
+    type: "latency"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.3
+    params:
+      delay: 1.0
+
+  # Service degradation under load
+  - name: "load_balancing_failure"
+    type: "error"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.1
+    params:
+      error_code: 503
+
+  # Resource exhaustion simulation
+  - name: "rate_limiting_under_load"
+    type: "error"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.2
+    params:
+      error_code: 429
+
+  # Data corruption under concurrent access
+  - name: "concurrent_data_corruption"
+    type: "json_corruption"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.05
+    params:
+      corruption_type: "value_swap"
+
+  # Memory/resource pressure simulation
+  - name: "memory_pressure_hallucinations"
+    type: "hallucination"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.15
+    params:
+      mode: "swap_entities"
+
+  # Context overflow under sustained load
+  - name: "sustained_context_overflow"
+    type: "context_overflow"
+    target_ref: "all_services"
+    enabled: true
+    probability: 0.02
+    params:
+      token_count: 3000
+      mode: "random_words"
+
+# Stress test specific configuration
+stress_test_config:
+  enabled: true
+  ramp_up_seconds: 30
+  max_concurrency: 20
+  duration_seconds: 300  # 5 minutes
+  metrics_interval: 10   # Report metrics every 10 seconds
+
+# Resource monitoring
+resource_monitoring:
+  enabled: true
+  memory_threshold: 80
+  cpu_threshold: 70
+  network_threshold: 1000000  # 1MB/s
+
+# Load patterns
+load_patterns:
+  - name: "gradual_ramp"
+    type: "linear"
+    start_concurrency: 1
+    end_concurrency: 20
+    duration: 60
+
+  - name: "spike_test"
+    type: "step"
+    steps:
+      - concurrency: 5
+        duration: 30
+      - concurrency: 15
+        duration: 30
+      - concurrency: 25
+        duration: 30
+
+# Performance SLAs for stress testing
+performance_slas:
+  p95_response_time_ms: 5000
+  error_rate_threshold: 0.05  # 5% error rate
+  throughput_min: 10  # Minimum requests per second

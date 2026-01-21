@@ -5,11 +5,8 @@ This directory contains all markdown documentation for the Agent Chaos Platform.
 ## Core Documentation
 
 - **[Project Overview](../index)** - Main documentation landing page
-- **[QUICK_START.md](QUICK_START.md)** - Quick start guide with usage examples
-- **[COMPREHENSIVE_TESTING_GUIDE.md](COMPREHENSIVE_TESTING_GUIDE.md)** - Complete testing guide
-- **[PRODUCTION_VALIDATION.md](PRODUCTION_VALIDATION.md)** - Local/K8s/CI validation checklist
+- **[QUICK_START.md](QUICK_START.md)** - Standard usage instructions
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
-- **[CHANGELOG.md](CHANGELOG.md)** - Version history and changes
 - **[CONFIGURATION_REFERENCE.md](../CONFIGURATION_REFERENCE)** - Full config schema and env vars
 - **[OBSERVABILITY.md](../OBSERVABILITY)** - Metrics and tracing reference
 

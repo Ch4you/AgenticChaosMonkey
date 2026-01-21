@@ -5,9 +5,9 @@ This module provides the mitmproxy addon that intercepts HTTP/HTTPS traffic
 and applies chaos strategies using the Strategy Pattern with dynamic configuration loading.
 
 Usage:
-    mitmdump -s src/proxy/addon.py
+    mitmdump -s agent_chaos_sdk/proxy/addon.py
     or
-    mitmweb -s src/proxy/addon.py
+    mitmweb -s agent_chaos_sdk/proxy/addon.py
 """
 
 from mitmproxy import http
@@ -783,10 +783,41 @@ class ChaosProxyAddon:
                 
                 # Emit swarm message event if applicable
                 if traffic_type == "AGENT_TO_AGENT":
+                    from_agent = (
+                        flow.request.headers.get("X-Agent-From")
+                        or flow.request.headers.get("X-Agent-Role")
+                        or flow.request.headers.get("Agent-Role")
+                        or flow.metadata.get("agent_role")
+                    )
+                    to_agent = (
+                        flow.request.headers.get("X-Agent-To")
+                        or flow.request.headers.get("X-Target-Agent")
+                    )
+                    if (not from_agent or not to_agent) and flow.request.content:
+                        try:
+                            body_text = flow.request.get_text()
+                            if body_text:
+                                body = await run_cpu_bound(json.loads, body_text)
+                                if isinstance(body, dict):
+                                    if not from_agent:
+                                        from_agent = (
+                                            body.get("from_agent")
+                                            or body.get("sender")
+                                            or body.get("agent_role")
+                                            or body.get("agent_id")
+                                        )
+                                    if not to_agent:
+                                        to_agent = (
+                                            body.get("to_agent")
+                                            or body.get("receiver")
+                                            or body.get("target_agent")
+                                        )
+                        except Exception:
+                            pass
                     await self._emit_dashboard_event(SwarmMessageEvent(
                         request_id=request_id,
-                        from_agent=flow.metadata.get("agent_role"),
-                        to_agent=None,  # Could be extracted from URL or headers
+                        from_agent=from_agent,
+                        to_agent=to_agent,
                         message_type=flow.metadata.get(METADATA_TRAFFIC_SUBTYPE, "agent_to_agent"),
                         mutated=len(all_applied_strategies) > 0,
                     ))

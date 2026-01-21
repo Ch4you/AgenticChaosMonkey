@@ -21,6 +21,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
+          python -m pip install "langchain-core>=0.1.0,<0.4.0" "openai>=1.0.0,<2.0.0"
 
       - name: Health check (live)
         run: |
@@ -43,6 +44,9 @@ jobs:
       - name: Run tests
         run: |
           pytest
+      - name: Run SDK integration tests
+        run: |
+          pytest tests/integration/test_sdk_middleware_langchain.py tests/integration/test_sdk_middleware_openai_responses.py -q
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

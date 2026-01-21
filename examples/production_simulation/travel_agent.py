@@ -212,7 +212,7 @@ class HTTPToolWrapper:
                 self._record("tool_errors")
                 import logging
                 logger = logging.getLogger("travel_agent")
-                from src.common.file_logger import log_error
+                from agent_chaos_sdk.common.file_logger import log_error
                 error_detail = response.json().get("detail", "Unknown error") if response.content else "Unknown error"
                 log_error(
                     logger,
@@ -242,22 +242,220 @@ class HTTPToolWrapper:
         except httpx.TimeoutException:
             import logging
             logger = logging.getLogger("travel_agent")
-            from src.common.file_logger import log_error
+            from agent_chaos_sdk.common.file_logger import log_error
             log_error(logger, error_type="timeout", message=f"Request timed out: {url}")
             return "Error: Request timed out. The external service may be slow or unavailable."
         except httpx.RequestError as e:
             import logging
             logger = logging.getLogger("travel_agent")
-            from src.common.file_logger import log_error
+            from agent_chaos_sdk.common.file_logger import log_error
             log_error(logger, error_type="network_error", message=f"Network request failed: {str(e)}", url=url)
             return f"Error: Network request failed - {str(e)}"
         except Exception as e:
             import logging
             logger = logging.getLogger("travel_agent")
-            from src.common.file_logger import log_error
+            from agent_chaos_sdk.common.file_logger import log_error
             log_error(logger, error_type="exception", message=str(e), url=url)
             return f"Error: {str(e)}"
     
+    def search_hotels(self, city: str, checkin_date: str, checkout_date: str, guests: int = 1, budget_max: Optional[float] = None) -> str:
+        """
+        Search for hotels in a city.
+
+        Args:
+            city: City name (e.g., "New York", "Los Angeles")
+            checkin_date: Check-in date in YYYY-MM-DD format
+            checkout_date: Check-out date in YYYY-MM-DD format
+            guests: Number of guests
+            budget_max: Maximum budget per night (optional)
+
+        Returns:
+            String with hotel search results
+        """
+        url = f"{self.base_url}/search_hotels"
+
+        self._record("tool_calls")
+        payload = {
+            "city": city,
+            "checkin_date": checkin_date,
+            "checkout_date": checkout_date,
+            "guests": guests,
+            "budget_max": budget_max
+        }
+
+        try:
+            print(f"\n[HTTP Tool] POST {url}")
+            print(f"  Payload: {json.dumps(payload, indent=2)}")
+            print(f"  → Request going through proxy: {os.environ.get('HTTP_PROXY')}")
+
+            response = self.client.post(url, json=payload)
+            print(f"  ← Response: {response.status_code}")
+
+            if response.status_code == 200:
+                self._record("tool_success")
+                result = response.json()
+                hotels = result.get("hotels", [])
+                hotels_str = "\n".join([
+                    f"Hotel {h['hotel_id']}: {h['name']} "
+                    f"({h['stars']}★) - ${h['price_per_night']:.2f}/night "
+                    f"({h['amenities'][:50]}...)"  # Truncate amenities
+                    for h in hotels
+                ])
+                return f"Found {len(hotels)} hotels in {city}:\n{hotels_str}"
+            else:
+                error_detail = response.json().get("detail", "Unknown error") if response.content else "Unknown error"
+                return f"Error {response.status_code}: {error_detail}"
+
+        except httpx.TimeoutException:
+            return "Error: Hotel search request timed out."
+        except httpx.RequestError as e:
+            return f"Error: Hotel search network request failed - {str(e)}"
+        except Exception as e:
+            return f"Error: {str(e)}"
+
+    def book_hotel(self, hotel_id: str, checkin_date: str, checkout_date: str, guests: int = 1) -> str:
+        """
+        Book a hotel room.
+
+        Args:
+            hotel_id: Hotel ID from search results
+            checkin_date: Check-in date in YYYY-MM-DD format
+            checkout_date: Check-out date in YYYY-MM-DD format
+            guests: Number of guests
+
+        Returns:
+            String with booking confirmation
+        """
+        url = f"{self.base_url}/book_hotel"
+
+        self._record("tool_calls")
+        payload = {
+            "hotel_id": hotel_id,
+            "checkin_date": checkin_date,
+            "checkout_date": checkout_date,
+            "guests": guests
+        }
+
+        try:
+            print(f"\n[HTTP Tool] POST {url}")
+            print(f"  Payload: {json.dumps(payload, indent=2)}")
+            print(f"  → Request going through proxy: {os.environ.get('HTTP_PROXY')}")
+
+            response = self.client.post(url, json=payload)
+            print(f"  ← Response: {response.status_code}")
+
+            if response.status_code == 200:
+                self._record("tool_success")
+                result = response.json()
+                return f"Hotel booking confirmed: {result.get('confirmation_id', 'N/A')} for {result.get('hotel_name', 'Unknown')}"
+            else:
+                error_detail = response.json().get("detail", "Unknown error") if response.content else "Unknown error"
+                return f"Error {response.status_code}: {error_detail}"
+
+        except httpx.TimeoutException:
+            return "Error: Hotel booking request timed out."
+        except httpx.RequestError as e:
+            return f"Error: Hotel booking network request failed - {str(e)}"
+        except Exception as e:
+            return f"Error: {str(e)}"
+
+    def search_cars(self, pickup_city: str, pickup_date: str, dropoff_date: str, passengers: int = 1) -> str:
+        """
+        Search for car rentals.
+
+        Args:
+            pickup_city: City for car pickup
+            pickup_date: Pickup date in YYYY-MM-DD format
+            dropoff_date: Dropoff date in YYYY-MM-DD format
+            passengers: Number of passengers
+
+        Returns:
+            String with car rental search results
+        """
+        url = f"{self.base_url}/search_cars"
+
+        self._record("tool_calls")
+        payload = {
+            "pickup_city": pickup_city,
+            "pickup_date": pickup_date,
+            "dropoff_date": dropoff_date,
+            "passengers": passengers
+        }
+
+        try:
+            print(f"\n[HTTP Tool] POST {url}")
+            print(f"  Payload: {json.dumps(payload, indent=2)}")
+            print(f"  → Request going through proxy: {os.environ.get('HTTP_PROXY')}")
+
+            response = self.client.post(url, json=payload)
+            print(f"  ← Response: {response.status_code}")
+
+            if response.status_code == 200:
+                self._record("tool_success")
+                result = response.json()
+                cars = result.get("cars", [])
+                cars_str = "\n".join([
+                    f"Car {c['car_id']}: {c['model']} "
+                    f"({c['category']}) - ${c['price_per_day']:.2f}/day "
+                    f"({c['seats']} seats, {c['transmission']})"
+                    for c in cars
+                ])
+                return f"Found {len(cars)} cars in {pickup_city}:\n{cars_str}"
+            else:
+                error_detail = response.json().get("detail", "Unknown error") if response.content else "Unknown error"
+                return f"Error {response.status_code}: {error_detail}"
+
+        except httpx.TimeoutException:
+            return "Error: Car search request timed out."
+        except httpx.RequestError as e:
+            return f"Error: Car search network request failed - {str(e)}"
+        except Exception as e:
+            return f"Error: {str(e)}"
+
+    def book_car(self, car_id: str, pickup_date: str, dropoff_date: str) -> str:
+        """
+        Book a rental car.
+
+        Args:
+            car_id: Car ID from search results
+            pickup_date: Pickup date in YYYY-MM-DD format
+            dropoff_date: Dropoff date in YYYY-MM-DD format
+
+        Returns:
+            String with booking confirmation
+        """
+        url = f"{self.base_url}/book_car"
+
+        self._record("tool_calls")
+        payload = {
+            "car_id": car_id,
+            "pickup_date": pickup_date,
+            "dropoff_date": dropoff_date
+        }
+
+        try:
+            print(f"\n[HTTP Tool] POST {url}")
+            print(f"  Payload: {json.dumps(payload, indent=2)}")
+            print(f"  → Request going through proxy: {os.environ.get('HTTP_PROXY')}")
+
+            response = self.client.post(url, json=payload)
+            print(f"  ← Response: {response.status_code}")
+
+            if response.status_code == 200:
+                self._record("tool_success")
+                result = response.json()
+                return f"Car booking confirmed: {result.get('confirmation_id', 'N/A')} for {result.get('car_model', 'Unknown')}"
+            else:
+                error_detail = response.json().get("detail", "Unknown error") if response.content else "Unknown error"
+                return f"Error {response.status_code}: {error_detail}"
+
+        except httpx.TimeoutException:
+            return "Error: Car booking request timed out."
+        except httpx.RequestError as e:
+            return f"Error: Car booking network request failed - {str(e)}"
+        except Exception as e:
+            return f"Error: {str(e)}"
+
     def book_ticket(self, flight_id: str) -> str:
         """
         Book a flight ticket via HTTP request.
@@ -376,19 +574,91 @@ def create_http_tools(http_wrapper: HTTPToolWrapper):
     def book_ticket(flight_id: str) -> str:
         """
         Book a flight ticket.
-        
+
         Use this tool when the user wants to book a specific flight.
         You need the flight_id from search_flights results.
-        
+
         Args:
             flight_id: Flight ID (e.g., "FL-ABC12345")
-            
+
         Returns:
             String with booking confirmation
         """
         return http_wrapper.book_ticket(flight_id)
-    
-    return [search_flights, book_ticket]
+
+    @tool
+    def search_hotels(city: str, checkin_date: str, checkout_date: str, guests: int = 1, budget_max: Optional[float] = None) -> str:
+        """
+        Search for hotels in a city.
+
+        Use this tool when the user needs accommodation options.
+
+        Args:
+            city: City name (e.g., "New York", "Los Angeles")
+            checkin_date: Check-in date in YYYY-MM-DD format
+            checkout_date: Check-out date in YYYY-MM-DD format
+            guests: Number of guests (default: 1)
+            budget_max: Maximum budget per night (optional)
+
+        Returns:
+            String with hotel search results
+        """
+        return http_wrapper.search_hotels(city, checkin_date, checkout_date, guests, budget_max)
+
+    @tool
+    def book_hotel(hotel_id: str, checkin_date: str, checkout_date: str, guests: int = 1) -> str:
+        """
+        Book a hotel room.
+
+        Use this tool when the user wants to book a specific hotel.
+
+        Args:
+            hotel_id: Hotel ID from search_hotels results
+            checkin_date: Check-in date in YYYY-MM-DD format
+            checkout_date: Check-out date in YYYY-MM-DD format
+            guests: Number of guests (default: 1)
+
+        Returns:
+            String with hotel booking confirmation
+        """
+        return http_wrapper.book_hotel(hotel_id, checkin_date, checkout_date, guests)
+
+    @tool
+    def search_cars(pickup_city: str, pickup_date: str, dropoff_date: str, passengers: int = 1) -> str:
+        """
+        Search for rental cars.
+
+        Use this tool when the user needs transportation options.
+
+        Args:
+            pickup_city: City for car pickup
+            pickup_date: Pickup date in YYYY-MM-DD format
+            dropoff_date: Dropoff date in YYYY-MM-DD format
+            passengers: Number of passengers (default: 1)
+
+        Returns:
+            String with car rental search results
+        """
+        return http_wrapper.search_cars(pickup_city, pickup_date, dropoff_date, passengers)
+
+    @tool
+    def book_car(car_id: str, pickup_date: str, dropoff_date: str) -> str:
+        """
+        Book a rental car.
+
+        Use this tool when the user wants to book a specific car.
+
+        Args:
+            car_id: Car ID from search_cars results
+            pickup_date: Pickup date in YYYY-MM-DD format
+            dropoff_date: Dropoff date in YYYY-MM-DD format
+
+        Returns:
+            String with car booking confirmation
+        """
+        return http_wrapper.book_car(car_id, pickup_date, dropoff_date)
+
+    return [search_flights, book_ticket, search_hotels, book_hotel, search_cars, book_car]
 
 
 class TravelAgent:
@@ -441,21 +711,62 @@ class TravelAgent:
         # Bind tools to LLM (enables tool calling)
         self.llm = self.llm.bind_tools(self.tools)
         
-        # Create prompt template
+        # Create prompt template with enhanced capabilities
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", """You are a helpful travel agent that assists users in booking flights.
-You have access to tools that search for flights and book tickets.
-These tools communicate via HTTP with external services.
+            ("system", """You are an advanced travel planning assistant that helps users with comprehensive travel arrangements.
 
-When a user asks about flights:
-1. Use search_flights to find available flights
-   - IMPORTANT: The date parameter MUST be in YYYY-MM-DD format (e.g., "2025-12-25")
-   - Always use the exact year mentioned by the user, or the current/future year if not specified
-   - Never use past dates
-2. Present the options to the user
-3. If they want to book, use book_ticket with the flight_id from the search results
+You have access to multiple tools for flights, hotels, car rentals, and travel planning. All tools communicate via HTTP with external services.
 
-Always use the tools to interact with external services. Never make up flight information."""),
+CAPABILITIES:
+1. ✈️ FLIGHT BOOKING - Search and book flights with budget optimization
+2. 🏨 HOTEL RESERVATIONS - Find and book accommodations
+3. 🚗 CAR RENTALS - Arrange transportation
+4. 🌍 MULTI-CITY ITINERARIES - Plan complex travel routes
+5. 💰 BUDGET OPTIMIZATION - Find best deals within user budget
+6. 🎯 PREFERENCE MATCHING - Match user preferences (luxury, budget, business, leisure)
+
+FLIGHT OPERATIONS:
+- Use search_flights to find available flights
+- IMPORTANT: Date parameter MUST be in YYYY-MM-DD format (e.g., "2025-12-25")
+- Always use the exact year mentioned by the user, or the current/future year if not specified
+- Never use past dates
+- For multi-city trips, plan connections and layovers
+
+HOTEL OPERATIONS:
+- Use search_hotels to find accommodations
+- Consider location, price, amenities, and user preferences
+- Match hotel class to user budget (budget/luxury/business)
+
+CAR RENTAL OPERATIONS:
+- Use search_cars to find rental options
+- Consider pickup/dropoff locations and dates
+- Match vehicle type to group size and preferences
+
+MULTI-CITY PLANNING:
+- Break down complex itineraries into manageable segments
+- Optimize for time, cost, and convenience
+- Consider layover times, connection cities, and alternative routes
+
+BUDGET OPTIMIZATION:
+- Always check user budget constraints
+- Compare multiple options to find best value
+- Suggest alternatives if preferred options exceed budget
+- Provide cost breakdowns for all recommendations
+
+PREFERENCE MATCHING:
+- Ask about travel purpose (business/leisure/family)
+- Consider amenities preferences (pool, gym, breakfast, etc.)
+- Match service level to user expectations
+- Respect special requirements (accessibility, pet-friendly, etc.)
+
+RESPONSE FORMAT:
+- Present options clearly with prices and key details
+- Explain your recommendations and why they fit user needs
+- For complex itineraries, provide day-by-day breakdown
+- Always confirm before making bookings
+- Provide total cost summaries
+
+Always use the tools to interact with external services. Never make up information."""),
             ("human", "{input}"),
             MessagesPlaceholder(variable_name="agent_scratchpad"),
         ])
@@ -596,7 +907,7 @@ Always use the tools to interact with external services. Never make up flight in
                 # Log successful completion
                 import logging
                 logger = logging.getLogger("travel_agent")
-                from src.common.file_logger import log_completion
+                from agent_chaos_sdk.common.file_logger import log_completion
                 log_completion(logger, success=True)
                 
                 return response.content
@@ -607,7 +918,7 @@ Always use the tools to interact with external services. Never make up flight in
         # Log incomplete completion
         import logging
         logger = logging.getLogger("travel_agent")
-        from src.common.file_logger import log_completion
+        from agent_chaos_sdk.common.file_logger import log_completion
         log_completion(logger, success=False, reason="max_iterations")
         
         return messages[-1].content if messages else "Agent processing incomplete"
@@ -721,7 +1032,7 @@ Examples:
         # Log crash
         import logging
         logger = logging.getLogger("travel_agent")
-        from src.common.file_logger import log_completion
+        from agent_chaos_sdk.common.file_logger import log_completion
         log_completion(logger, success=False, reason="interrupted")
         sys.exit(1)
     except Exception as e:
@@ -729,7 +1040,7 @@ Examples:
         # Log crash
         import logging
         logger = logging.getLogger("travel_agent")
-        from src.common.file_logger import log_completion, log_error
+        from agent_chaos_sdk.common.file_logger import log_completion, log_error
         log_error(logger, error_type="crash", message=str(e))
         log_completion(logger, success=False, reason="exception")
         import traceback

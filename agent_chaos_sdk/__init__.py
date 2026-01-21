@@ -9,10 +9,12 @@ internal agent communication.
 import importlib
 from typing import TYPE_CHECKING
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 if TYPE_CHECKING:
     from agent_chaos_sdk.decorators import simulate_chaos
+    from agent_chaos_sdk.decorators import audit_agent
+    from agent_chaos_sdk.middleware import ChaosMiddleware, AgentChaosSDK, wrap_client
     from agent_chaos_sdk.proxy.addon import ChaosProxyAddon
     from agent_chaos_sdk.swarm_runner import SwarmFactory, build_swarm_from_yaml
     from agent_chaos_sdk.config_loader import (
@@ -36,6 +38,10 @@ if TYPE_CHECKING:
 
 _LAZY_IMPORTS = {
     "simulate_chaos": ("agent_chaos_sdk.decorators", "simulate_chaos"),
+    "audit_agent": ("agent_chaos_sdk.decorators", "audit_agent"),
+    "ChaosMiddleware": ("agent_chaos_sdk.middleware", "ChaosMiddleware"),
+    "AgentChaosSDK": ("agent_chaos_sdk.middleware", "AgentChaosSDK"),
+    "wrap_client": ("agent_chaos_sdk.middleware", "wrap_client"),
     "ChaosProxyAddon": ("agent_chaos_sdk.proxy.addon", "ChaosProxyAddon"),
     "SwarmFactory": ("agent_chaos_sdk.swarm_runner", "SwarmFactory"),
     "build_swarm_from_yaml": ("agent_chaos_sdk.swarm_runner", "build_swarm_from_yaml"),
@@ -71,6 +77,10 @@ def __dir__() -> list[str]:
 
 __all__ = [
     "simulate_chaos",
+    "audit_agent",
+    "ChaosMiddleware",
+    "AgentChaosSDK",
+    "wrap_client",
     "ChaosProxyAddon",
     "SwarmFactory",
     "build_swarm_from_yaml",

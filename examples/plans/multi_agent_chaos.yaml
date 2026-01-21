@@ -1,0 +1,161 @@
+version: "1.0"
+metadata:
+  name: "Multi-Agent Chaos Testing"
+  description: "Chaos testing for multi-agent travel planning system"
+  experiment_id: "multi_agent_chaos_001"
+  author: "Agent Chaos Platform"
+  created_at: "2025-01-20"
+
+targets:
+  # Travel planning services (original APIs)
+  - name: "travel_services"
+    type: "http_endpoint"
+    pattern: ".*(search_flights|book_ticket|search_hotels|book_hotel|search_cars|book_car).*"
+    description: "Core travel booking APIs"
+
+  # Agent communication channels
+  - name: "agent_communication"
+    type: "http_endpoint"
+    pattern: ".*localhost:8002.*"
+    description: "Inter-agent communication via communication server"
+
+  # Individual agent endpoints
+  - name: "coordinator_agent"
+    type: "agent_role"
+    pattern: "coordinator"
+    description: "Main travel coordinator agent"
+
+  - name: "hotel_agent"
+    type: "agent_role"
+    pattern: "hotel_agent"
+    description: "Hotel booking specialist agent"
+
+  - name: "car_agent"
+    type: "agent_role"
+    pattern: "car_agent"
+    description: "Car rental specialist agent"
+
+  - name: "flight_agent"
+    type: "agent_role"
+    pattern: "flight_agent"
+    description: "Flight booking specialist agent"
+
+scenarios:
+  # Prompt Injection - Test AI safety in multi-agent context
+  - name: "multi_agent_prompt_injection"
+    type: "prompt_injection"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.3
+    params:
+      injection_type: "instruction_override"
+
+  # Swarm Disruption - Test inter-agent communication resilience
+  - name: "agent_message_delay"
+    type: "swarm_disruption"
+    target_ref: "agent_communication"
+    enabled: true
+    probability: 0.4
+    params:
+      disruption_type: "message_delay"
+      delay_range: [2.0, 8.0]
+
+  - name: "agent_message_drop"
+    type: "swarm_disruption"
+    target_ref: "agent_communication"
+    enabled: true
+    probability: 0.1
+    params:
+      disruption_type: "message_drop"
+
+  - name: "agent_isolation"
+    type: "swarm_disruption"
+    target_ref: "agent_communication"
+    enabled: true
+    probability: 0.05
+    params:
+      disruption_type: "agent_isolation"
+
+  # Data corruption in agent communication
+  - name: "agent_payload_corruption"
+    type: "swarm_disruption"
+    target_ref: "agent_communication"
+    enabled: true
+    probability: 0.15
+    params:
+      disruption_type: "payload_corruption"
+      corruption_fields: ["payload", "message_type"]
+
+  # Service-level chaos
+  - name: "service_degradation"
+    type: "latency"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.3
+    params:
+      delay: 2.0
+
+  - name: "service_outage"
+    type: "error"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.1
+    params:
+      error_code: 503
+
+  # Agent-specific failures
+  - name: "coordinator_overload"
+    type: "latency"
+    target_ref: "coordinator_agent"
+    enabled: true
+    probability: 0.5
+    params:
+      delay: 5.0
+
+  - name: "hotel_agent_failure"
+    type: "error"
+    target_ref: "hotel_agent"
+    enabled: true
+    probability: 0.2
+    params:
+      error_code: 500
+
+  # Hallucinations in service responses
+  - name: "booking_hallucinations"
+    type: "hallucination"
+    target_ref: "travel_services"
+    enabled: true
+    probability: 0.25
+    params:
+      mode: "swap_entities"
+
+# Multi-agent specific configuration
+multi_agent_config:
+  enabled: true
+  communication_server_url: "http://localhost:8002"
+  agents:
+    - id: "coordinator_001"
+      type: "coordinator"
+      capabilities: ["travel_planning", "coordination"]
+    - id: "hotel_agent_001"
+      type: "hotel_agent"
+      capabilities: ["hotel_search", "hotel_booking"]
+    - id: "car_agent_001"
+      type: "car_agent"
+      capabilities: ["car_rental", "vehicle_booking"]
+    - id: "flight_agent_001"
+      type: "flight_agent"
+      capabilities: ["flight_search", "flight_booking"]
+
+# Monitoring and observability
+observability:
+  metrics_enabled: true
+  tracing_enabled: true
+  dashboard_enabled: true
+  multi_agent_monitoring: true
+
+# Performance expectations for multi-agent system
+performance_slas:
+  inter_agent_latency_ms: 1000  # Max 1s between agent communications
+  end_to_end_booking_time_ms: 10000  # Max 10s for complete booking
+  agent_failure_tolerance: 0.5  # System should work with 50% agent failures

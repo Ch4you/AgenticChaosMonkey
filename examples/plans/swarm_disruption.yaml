@@ -4,6 +4,21 @@ metadata:
   description: "Test agent resilience against inter-agent communication failures"
   experiment_id: "swarm_disruption_001"
 
+classifier_rule_packs:
+  - name: "swarm-default"
+    rules:
+      llm_patterns:
+        - "openai\\.com.*/v1/(chat|completions|embeddings)"
+        - "api\\.openai\\.com/.*"
+      tool_patterns:
+        - ".*localhost:8001/.*"
+        - ".*/search_flights.*"
+        - ".*/book_ticket.*"
+      agent_patterns:
+        - ".*agent-[a-z0-9]+.*"
+        - ".*/api/agent/.*"
+        - ".*/api/swarm/.*"
+
 targets:
   - name: "agent_to_agent_traffic"
     type: "custom"

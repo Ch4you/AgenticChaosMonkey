@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel", "build>=1.2.0", "twine>=5.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "agentic-chaos-monkey"
-version = "0.1.0"
+version = "0.2.0"
 description = "Universal Chaos Engineering SDK for AI Agents"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -104,10 +104,10 @@ rag_poisoning = "agent_chaos_sdk.proxy.strategies.rag:PhantomDocumentStrategy"
 swarm_disruption = "agent_chaos_sdk.proxy.strategies.swarm:SwarmDisruptionStrategy"
 
 [tool.setuptools]
-packages = ["agent_chaos_sdk"]
+packages = { find = { where = ["."] , include = ["agent_chaos_sdk*", "agent_chaos*"] } }
 
 [tool.setuptools.package-data]
-"*" = ["*.yaml", "*.yml", "*.json"]
+"*" = ["*.yaml", "*.yml", "*.json", "*.md", "*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

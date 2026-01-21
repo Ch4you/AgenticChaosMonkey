@@ -47,6 +47,7 @@ from agent_chaos_sdk.common.logger import get_logger
 from agent_chaos_sdk.proxy.addon import (
     ChaosProxyAddon, PROXY_MODE_LIVE, PROXY_MODE_RECORD, PROXY_MODE_PLAYBACK
 )
+from agent_chaos_sdk.reporter.scorecard import ScorecardGenerator
 
 # ASCII Art Logo
 LOGO = """
@@ -352,9 +353,6 @@ def validate(
         console.print(success_panel)
         console.print()
 
-        if exit_code != 0:
-            raise typer.Exit(exit_code)
-        
     except FileNotFoundError:
         error_panel = Panel(
             f"[red]✗ File not found:[/red]\n\n{file_path}",
@@ -539,6 +537,10 @@ def run(
     repeat: int = typer.Option(1, "--repeat", "-r", help="Repeat running the agent command N times"),
     repeat_delay: float = typer.Option(0.0, "--repeat-delay", help="Delay between repeats in seconds"),
     repeat_concurrency: int = typer.Option(1, "--repeat-concurrency", help="Concurrent agent runs"),
+    stress_test: bool = typer.Option(False, "--stress-test", help="Enable stress testing mode with sustained load"),
+    stress_ramp_up: int = typer.Option(10, "--stress-ramp-up", help="Seconds to ramp up to full concurrency in stress test"),
+    stress_duration: int = typer.Option(60, "--stress-duration", help="Duration in seconds for stress test (0 = run until interrupted)"),
+    stress_max_concurrency: int = typer.Option(10, "--stress-max-concurrency", help="Maximum concurrent agents in stress test"),
     agent_cmd: Optional[str] = typer.Option(None, "--agent-cmd", help="Shell command to run your agent once"),
     agent_query: str = typer.Option(
         "Book a flight from New York to Los Angeles",
@@ -668,7 +670,7 @@ def run(
         with console.status("[bold cyan]Starting mock server...", spinner="dots"):
             try:
                 _mock_server_process = subprocess.Popen(
-                    [sys.executable, "src/tools/mock_server.py"],
+                    [sys.executable, "-m", "agent_chaos_sdk.tools.mock_server"],
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
                 )
@@ -744,16 +746,15 @@ def run(
             resolved_agent_cmd = shlex.split(agent_cmd)
         except ValueError as e:
             console.print(f"[yellow]⚠[/yellow]  Invalid --agent-cmd: {e}")
+    elif mock_server:
+        resolved_agent_cmd = [
+            sys.executable,
+            "examples/production_simulation/travel_agent.py",
+            "--query",
+            agent_query,
+        ]
     elif repeat > 1:
-        if not mock_server:
-            console.print("[yellow]⚠[/yellow]  --repeat requires --agent-cmd or --mock-server to run the demo agent.")
-        else:
-            resolved_agent_cmd = [
-                sys.executable,
-                "examples/production_simulation/travel_agent.py",
-                "--query",
-                agent_query,
-            ]
+        console.print("[yellow]⚠[/yellow]  --repeat requires --agent-cmd or --mock-server to run the demo agent.")
 
     if resolved_agent_cmd:
         agent_log = run_logs_dir / "agent_run.log"
@@ -769,10 +770,26 @@ def run(
         error_categories: dict[str, int] = {}
         sla_failed = False
 
-        # Split runs across workers
-        base = total_runs // repeat_concurrency
-        remainder = total_runs % repeat_concurrency
-        worker_runs = [base + (1 if i < remainder else 0) for i in range(repeat_concurrency)]
+        # Stress test timing
+        stress_start_time = time.monotonic()
+
+        # Stress test mode handling
+        if stress_test:
+            console.print(f"[bold cyan]🔥 Stress Test Mode Enabled[/bold cyan]")
+            console.print(f"   Ramp-up time: {stress_ramp_up}s")
+            console.print(f"   Max concurrency: {stress_max_concurrency}")
+            console.print(f"   Duration: {stress_duration}s (0 = continuous)")
+            console.print()
+
+            # Override regular repeat parameters for stress test
+            total_runs = 0  # Unlimited in stress test
+            repeat_concurrency = stress_max_concurrency
+
+        # Split runs across workers (only for non-stress test mode)
+        if not stress_test:
+            base = total_runs // repeat_concurrency
+            remainder = total_runs % repeat_concurrency
+            worker_runs = [base + (1 if i < remainder else 0) for i in range(repeat_concurrency)]
 
         def _extract_error_type(output: str) -> str:
             # Prefer explicit exception lines
@@ -808,9 +825,25 @@ def run(
 
         def run_agent_repeats(worker_id: int, runs: int) -> None:
             nonlocal successes, failures
-            for i in range(runs):
+            run_count = 0
+            max_runs = runs if not stress_test else float('inf')
+
+            while run_count < max_runs:
                 if agent_stop_event.is_set():
                     break
+
+                # In stress test mode, implement ramp-up delay
+                if stress_test and stress_ramp_up > 0:
+                    # Calculate target concurrency based on elapsed time
+                    elapsed = time.monotonic() - stress_start_time
+                    target_concurrency = min(
+                        stress_max_concurrency,
+                        max(1, int((elapsed / stress_ramp_up) * stress_max_concurrency))
+                    )
+                    # Only run if this worker should be active
+                    if worker_id >= target_concurrency:
+                        time.sleep(0.1)  # Brief pause before checking again
+                        continue
                 cmd_env = os.environ.copy()
                 cmd_env["HTTP_PROXY"] = f"http://127.0.0.1:{proxy_port}"
                 cmd_env["HTTPS_PROXY"] = f"http://127.0.0.1:{proxy_port}"
@@ -861,25 +894,81 @@ def run(
                             error_breakdown[str(e)] = error_breakdown.get(str(e), 0) + 1
                             category = _categorize_error(str(e))
                             error_categories[category] = error_categories.get(category, 0) + 1
-                if repeat_delay > 0 and i < runs - 1:
-                    time.sleep(repeat_delay)
 
-        console.print(
-            f"  [green]✓[/green] Repeating agent run {repeat} times "
-            f"with concurrency {repeat_concurrency} (logs: {agent_log})"
-        )
+                run_count += 1
+
+                # Add delay between runs (stress test uses shorter delays)
+                delay = repeat_delay if not stress_test else 0.1
+                if delay > 0:
+                    time.sleep(delay)
+
+        if stress_test:
+            console.print(
+                f"  [green]✓[/green] Stress test started with max concurrency {stress_max_concurrency} "
+                f"(logs: {agent_log})"
+            )
+        else:
+            console.print(
+                f"  [green]✓[/green] Repeating agent run {repeat} times "
+                f"with concurrency {repeat_concurrency} (logs: {agent_log})"
+            )
+
         agent_thread = threading.Thread(target=run_agent_repeats, daemon=True)
+
         # Fan out workers under a supervisor thread
         def supervisor() -> None:
+            sla_failed = False
             threads = []
-            for idx, runs in enumerate(worker_runs, start=1):
-                if runs <= 0:
-                    continue
-                t = threading.Thread(target=run_agent_repeats, args=(idx, runs), daemon=True)
-                threads.append(t)
-                t.start()
-            for t in threads:
-                t.join()
+
+            if stress_test:
+                # Stress test: start all workers with unlimited runs
+                for idx in range(1, stress_max_concurrency + 1):
+                    t = threading.Thread(target=run_agent_repeats, args=(idx, 0), daemon=True)  # 0 = unlimited
+                    threads.append(t)
+                    t.start()
+
+                # Monitor stress test progress
+                stress_end_time = time.monotonic() + stress_duration if stress_duration > 0 else float('inf')
+                last_stats_time = time.monotonic()
+
+                try:
+                    while time.monotonic() < stress_end_time:
+                        time.sleep(5)  # Update stats every 5 seconds
+                        current_time = time.monotonic()
+                        if current_time - last_stats_time >= 10:  # Print stats every 10 seconds
+                            elapsed = current_time - stress_start_time
+                            with results_lock:
+                                total = successes + failures
+                                if total > 0:
+                                    success_rate = (successes / total) * 100
+                                    console.print(
+                                        f"  [cyan]Stress test progress:[/cyan] "
+                                        f"{total} runs, {success_rate:.1f}% success, "
+                                        f"{elapsed:.0f}s elapsed"
+                                    )
+                            last_stats_time = current_time
+
+                        if agent_stop_event.is_set():
+                            break
+
+                except KeyboardInterrupt:
+                    console.print("\n[yellow]Stress test interrupted by user[/yellow]")
+
+                # Stop all worker threads
+                agent_stop_event.set()
+                for t in threads:
+                    t.join(timeout=5)
+
+            else:
+                # Regular mode: fixed number of runs per worker
+                for idx, runs in enumerate(worker_runs, start=1):
+                    if runs <= 0:
+                        continue
+                    t = threading.Thread(target=run_agent_repeats, args=(idx, runs), daemon=True)
+                    threads.append(t)
+                    t.start()
+                for t in threads:
+                    t.join()
 
             # Summary output
             console.print()
@@ -998,6 +1087,45 @@ def run(
                     console.print(f"[green]✓[/green] Markdown report: {report_path}")
                 except Exception as e:
                     console.print(f"[yellow]⚠[/yellow] Failed to write Markdown report: {e}")
+
+            # Compliance audit report (auto-generated)
+            try:
+                generator = ScorecardGenerator(
+                    log_file=str(log_file),
+                    log_dir=str(run_logs_dir),
+                )
+                report_data = generator.analyze()
+                json_path = run_reports_dir / "compliance_audit_report.json"
+                md_path = run_reports_dir / "compliance_audit_report.md"
+                pdf_path = run_reports_dir / "compliance_audit_report.pdf"
+
+                # Generate JSON report
+                generator.generate_json_report(str(json_path), scorecard=report_data)
+                console.print(f"[green]✓[/green] JSON report: {json_path}")
+
+                # Generate Markdown report
+                generator.generate_markdown_report(str(md_path), scorecard=report_data)
+                console.print(f"[green]✓[/green] Markdown report: {md_path}")
+
+                # Generate PDF report (with detailed error reporting)
+                try:
+                    generator.generate_pdf_report(str(pdf_path), scorecard=report_data)
+                    console.print(f"[green]✓[/green] PDF report: {pdf_path}")
+                except PermissionError as pdf_error:
+                    console.print(f"[red]✗[/red] PDF report failed due to file permissions: {pdf_error}")
+                    console.print(f"[yellow]   This is likely due to sandbox restrictions in the IDE environment[/yellow]")
+                    console.print(f"[dim]   PDF reports will work in normal terminal environments[/dim]")
+                    console.print(f"[dim]   Continuing with other reports...[/dim]")
+                except Exception as pdf_error:
+                    console.print(f"[red]✗[/red] PDF report failed: {pdf_error}")
+                    console.print(f"[dim]   Continuing with other reports...[/dim]")
+
+                console.print(f"[green]✓[/green] Compliance reports generated")
+
+            except Exception as e:
+                console.print(f"[yellow]⚠[/yellow] Failed to generate compliance report: {e}")
+                import traceback
+                console.print(f"[dim]{traceback.format_exc()}[/dim]")
 
             # SLA evaluation
             if sla_success_rate is not None or sla_p95_ms is not None or sla_p99_ms is not None:

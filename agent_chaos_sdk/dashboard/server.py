@@ -97,6 +97,7 @@ class DashboardServer:
             """Serve the dashboard HTML."""
             # Try multiple possible paths
             possible_paths = [
+                Path(__file__).parent / "index.html",
                 Path(__file__).parent.parent.parent / "src" / "dashboard" / "index.html",
                 Path(__file__).parent.parent / ".." / "src" / "dashboard" / "index.html",
                 Path.cwd() / "src" / "dashboard" / "index.html",

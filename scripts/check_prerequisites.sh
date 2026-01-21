@@ -191,7 +191,7 @@ for dir in "${REQUIRED_DIRS[@]}"; do
     fi
 done
 
-REQUIRED_FILES=("scripts/run_chaos_test.sh" "src/tools/mock_server.py" "examples/production_simulation/travel_agent.py" "config/chaos_config.yaml")
+REQUIRED_FILES=("scripts/run_chaos_test.sh" "agent_chaos_sdk/tools/mock_server.py" "examples/production_simulation/travel_agent.py" "config/chaos_config.yaml")
 for file in "${REQUIRED_FILES[@]}"; do
     if [ -f "$file" ]; then
         print_success "File '$file' exists"

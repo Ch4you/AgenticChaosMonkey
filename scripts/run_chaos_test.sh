@@ -7,7 +7,7 @@
 # 1. Starts Mock Server
 # 2. Starts Chaos Proxy with logging
 # 3. Runs Travel Agent with test query
-# 4. Generates Resilience Scorecard Report
+# 4. Generates Compliance Audit Report
 #
 # Usage: ./scripts/run_chaos_test.sh [options]
 ###############################################################################
@@ -278,7 +278,7 @@ if [ "$SKIP_MOCK" = false ]; then
         print_info "Assuming Mock Server is already running. Use --skip-mock to skip this check."
     else
         cd "$PROJECT_ROOT"
-        $PYTHON_CMD src/tools/mock_server.py > "$LOG_DIR/mock_server.log" 2>&1 &
+        $PYTHON_CMD -m agent_chaos_sdk.tools.mock_server > "$LOG_DIR/mock_server.log" 2>&1 &
         MOCK_PID=$!
         
         print_info "Started Mock Server (PID: $MOCK_PID) using $PYTHON_CMD"
@@ -384,7 +384,7 @@ sleep 2
 # Generate Resilience Report
 ###############################################################################
 
-print_header "Generating Resilience Report"
+print_header "Generating Compliance Audit Report"
 
 cd "$PROJECT_ROOT"
 
@@ -407,14 +407,14 @@ if [ ! -f "$LOG_FILE" ]; then
 fi
 
 # Generate reports
-$PYTHON_CMD src/reporter/generate.py \
+$PYTHON_CMD -m agent_chaos_sdk.reporter.generate \
     --log-file "$LOG_FILE" \
     --output-dir "$REPORT_DIR"
 
 if [ $? -eq 0 ]; then
     print_success "Report generated successfully"
-    print_info "JSON Report: $REPORT_DIR/resilience_report.json"
-    print_info "Markdown Report: $REPORT_DIR/resilience_report.md"
+    print_info "JSON Report: $REPORT_DIR/compliance_audit_report.json"
+    print_info "Markdown Report: $REPORT_DIR/compliance_audit_report.md"
 else
     print_error "Failed to generate report"
     exit 1
@@ -435,19 +435,19 @@ echo "  - Proxy: $LOG_DIR/proxy.log"
 echo "  - Agent: $LOG_DIR/agent_output.log"
 echo ""
 print_info "Reports:"
-echo "  - JSON: $REPORT_DIR/resilience_report.json"
-echo "  - Markdown: $REPORT_DIR/resilience_report.md"
+echo "  - JSON: $REPORT_DIR/compliance_audit_report.json"
+echo "  - Markdown: $REPORT_DIR/compliance_audit_report.md"
 echo ""
 
 # Display report summary if available
-if [ -f "$REPORT_DIR/resilience_report.md" ]; then
+if [ -f "$REPORT_DIR/compliance_audit_report.md" ]; then
     print_info "Report Summary:"
     echo ""
-    head -n 30 "$REPORT_DIR/resilience_report.md" | grep -E "^(##|Grade:|Resilience|System)" || true
+    head -n 30 "$REPORT_DIR/compliance_audit_report.md" | grep -E "^(##|Result:|Risk|Compliance)" || true
     echo ""
 fi
 
-print_info "View full report: cat $REPORT_DIR/resilience_report.md"
-print_info "View JSON report: cat $REPORT_DIR/resilience_report.json"
+print_info "View full report: cat $REPORT_DIR/compliance_audit_report.md"
+print_info "View JSON report: cat $REPORT_DIR/compliance_audit_report.json"
 echo ""
 

@@ -21,6 +21,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Installation**: Now uses `pyproject.toml` as primary configuration
 - **Project Structure**: Cleaner organization with all docs in one place
 
+## [0.2.0] - 2026-01-20
+
+### Added
+- **In-Process SDK Mode**: `AgentChaosSDK` + `wrap_client` (zero-infra)
+- **OpenAI SDK Hooks**: `chat.completions.create` + `responses.create`
+- **LangChain 2.x Hooks**: Runnable, ChatModel, Retriever (sync/async)
+- **LlamaIndex Hooks**: Retriever + QueryEngine (sync/async)
+- **Haystack Hooks**: Pipeline + Retriever (sync/async)
+- **JSONPath RAG Poisoning** in SDK mode
+- **SDK Tape Viewer**: `scripts/tape_viewer.py`
+
 ## [0.1.0] - 2025-12-17
 
 ### Added
@@ -50,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Prometheus metrics export
   - Grafana dashboard support
 - **Real-time Dashboard**: WebSocket-based visualization dashboard
-- **Resilience Scorecard**: Automated analysis and reporting
+- **Compliance Audit Report**: Security-focused audit reporting
   - Tool call statistics
   - Fuzzing effectiveness
   - Recovery rate analysis
@@ -71,7 +82,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**:
   - README.md with quick start guide
   - QUICK_START.md with detailed usage instructions
-  - COMPREHENSIVE_TESTING_GUIDE.md
   - API documentation in docstrings
 
 ### Technical Details
@@ -81,6 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Test Coverage**: 120+ unit tests and integration tests
 - **CI/CD**: GitHub Actions with multi-Python version testing
 
-[Unreleased]: https://github.com/AgenticChaosMonkey/AgenticChaosMonkey/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/AgenticChaosMonkey/AgenticChaosMonkey/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/AgenticChaosMonkey/AgenticChaosMonkey/releases/tag/v0.2.0
 [0.1.0]: https://github.com/AgenticChaosMonkey/AgenticChaosMonkey/releases/tag/v0.1.0
 

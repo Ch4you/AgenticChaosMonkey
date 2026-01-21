@@ -52,6 +52,9 @@ tapes/
 runs/
 config/chaos_config.yaml
 proxy_script*.py
+# Sphinx build output
+docs/_build/
+docs/logs/
 # But keep README.md
 !README.md
 

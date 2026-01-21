@@ -71,7 +71,7 @@ cleanup() {
 trap cleanup EXIT
 
 start_mock_server() {
-  python "${ROOT_DIR}/src/tools/mock_server.py" >"${MOCK_SERVER_LOG}" 2>&1 &
+  python -m agent_chaos_sdk.tools.mock_server >"${MOCK_SERVER_LOG}" 2>&1 &
   MOCK_SERVER_PID="$!"
   if ! wait_for_port "localhost" "${TARGET_PORT}" 10; then
     echo "Mock server failed to start within 10s."

@@ -23,5 +23,5 @@ We support the latest `main` branch and the most recent tagged release.
 
 ### Safe Testing
 
-Use the mock server (`src/tools/mock_server.py`) or a dedicated test environment.  
+Use the mock server (`python -m agent_chaos_sdk.tools.mock_server`) or a dedicated test environment.  
 Do not target production systems without explicit authorization.

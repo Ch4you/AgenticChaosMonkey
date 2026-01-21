@@ -1,4 +1,4 @@
-# 🐵 Agent Chaos Platform
+# 🐵 Agent Chaos Platform (v0.2.0)
 
 <div align="center">
 
@@ -140,10 +140,10 @@ classifier_rule_packs:
 
 ```bash
 # Record a session
-agent-chaos record examples/plans/travel_agent_chaos.yaml --tape session.tape
+agent-chaos record examples/plans/travel_agent_chaos_validate.yaml --tape session.tape
 
 # Replay 100% deterministically
-agent-chaos replay session.tape --plan examples/plans/travel_agent_chaos.yaml
+agent-chaos replay session.tape --plan examples/plans/travel_agent_chaos_validate.yaml
 ```
 
 #### 4. **Real-Time Visualization** 📊
@@ -169,7 +169,7 @@ Access at: `http://127.0.0.1:8081` when running experiments
 
 - **OpenTelemetry Integration**: Distributed tracing with Jaeger
 - **Prometheus Metrics**: Token usage, latency, error rates by agent role
-- **Resilience Scorecard**: Automated analysis and reporting (A-F grade)
+- **Compliance Audit Report**: Security-focused audit report (PASS/FAIL + risk)
 - **Real-time Dashboard**: WebSocket-based visualization
 
 ---
@@ -198,17 +198,33 @@ pip install -e .
 pip install -e ".[dev]"
 ```
 
-### Run Your First Chaos Test
-
-**Core 3-Step Flow (Recommended)**
-
-**A. Validation Plan (see chaos now)**
+### Run Your First Chaos Test (Standard Flow)
 
 1) Start the chaos proxy + dashboard:
 
 ```bash
 agent-chaos run examples/plans/travel_agent_chaos_validate.yaml --mock-server --repeat 10
 ```
+
+2) Route your agent traffic through the proxy:
+
+```bash
+export HTTP_PROXY=http://localhost:8080
+export HTTPS_PROXY=http://localhost:8080
+```
+
+3) Run the demo agent:
+
+```bash
+python examples/production_simulation/travel_agent.py --query "Book a flight from New York to Los Angeles on December 25th, 2025"
+```
+
+4) View results:
+
+- Dashboard: `http://127.0.0.1:8081`
+- Report: `runs/<latest>/reports/compliance_audit_report.md`
+
+---
 
 2) View results:
 - Dashboard: `http://127.0.0.1:8081`
@@ -260,33 +276,15 @@ agent-chaos replay session.tape --plan examples/plans/travel_agent_chaos_validat
 
 ---
 
-## 🧩 Usage Modes (Pick One)
-
-1) **Proxy Mode (Recommended)**  
-Run the chaos proxy and route your agent traffic through it (most common).
-
-2) **Record & Replay**  
-Capture a real failure once, replay it deterministically for debugging.
-
-3) **Kubernetes Sidecar**  
-Deploy in clusters with a sidecar to avoid app code changes.
-
-4) **SDK / Decorators**  
-Inject chaos inside Python functions for unit-level testing.
-
-If you’re new, start with **Proxy Mode** in the Quick Start above.
-
 ---
 
 ## 📖 Documentation
 
-- **[Quick Start Guide](docs/markdown/QUICK_START.md)** - Detailed usage instructions
-- **[Comprehensive Testing Guide](docs/markdown/COMPREHENSIVE_TESTING_GUIDE.md)** - Complete test suite guide
+- **[Quick Start Guide](docs/markdown/QUICK_START.md)** - Standard usage instructions
 - **[RAG Poisoning](docs/RAG_POISONING.md)** - Inject misinformation into RAG responses
 - **[Swarm Disruption](docs/SWARM_DISRUPTION.md)** - Disrupt multi-agent communication
 - **[Deterministic Replay](docs/TAPE_REPLAY.md)** - Record & replay system
 - **[Kubernetes Deployment](docs/KUBERNETES.md)** - Sidecar deployment guide
-- **[Production Validation](docs/markdown/PRODUCTION_VALIDATION.md)** - Local/K8s/CI checklist
 - **[API Documentation](docs/index.rst)** - Complete API reference (Sphinx)
 
 ---
@@ -343,7 +341,7 @@ agent-chaos replay failure.tape
 **Solution**: Use the real-time dashboard to visualize agent communication topology.
 
 ```bash
-agent-chaos run examples/plans/travel_agent_chaos.yaml --mock-server
+agent-chaos run examples/plans/travel_agent_chaos_validate.yaml --mock-server --repeat 10
 # Open http://127.0.0.1:8081 to see live topology
 ```
 
@@ -400,9 +398,9 @@ AgenticChaosMonkey/
 │   │   └── events.py         # Event models
 │   ├── decorators.py         # Function-level chaos
 │   └── swarm_runner.py       # Multi-agent swarm builder
-├── src/
+├── agent_chaos_sdk/
 │   ├── tools/                # Mock external services
-│   │   └── mock_server.py    # Flight booking API simulator
+│   │   └── mock_server.py    # Flight booking API simulator (agent_chaos_sdk/tools)
 │   └── reporter/             # Resilience analysis
 │       ├── scorecard.py      # Scorecard generator
 │       └── generate.py       # Report generation CLI
@@ -441,9 +439,9 @@ python examples/production_simulation/travel_agent.py \
 1. Agent calls `search_flights` → Proxy injects 5s delay
 2. Agent calls `book_ticket` → Proxy injects 500 error (50% probability)
 3. Agent receives fuzzed data → Invalid date format injected
-4. Scorecard analyzes: Did agent retry? Did it recover? Did it crash?
+4. Audit report analyzes: hallucination rate, PII leakage, injection risk
 
-**Result**: Resilience Scorecard with grade (A-F) and recommendations.
+**Result**: Compliance Audit Report with PASS/FAIL, risk level, and remediation.
 
 ---
 
@@ -558,43 +556,11 @@ pytest tests/unit/test_rag_strategy.py -v
 
 **Test Coverage**: see CI results for current status
 
-See [docs/markdown/COMPREHENSIVE_TESTING_GUIDE.md](docs/markdown/COMPREHENSIVE_TESTING_GUIDE.md) for complete testing guide.
+See [docs/markdown/QUICK_START.md](docs/markdown/QUICK_START.md) for standard usage.
 
 ---
 
-## 🛠️ SDK Usage
-
-### As a Python Package
-
-```python
-from agent_chaos_sdk.decorators import simulate_chaos
-
-@simulate_chaos(strategy="latency", probability=0.5, delay=2.0)
-def my_agent_function():
-    # This function may be delayed
-    pass
-```
-
-### Proxy Mode (Recommended)
-
-```python
-from agent_chaos_sdk.proxy.addon import ChaosProxyAddon
-
-# Used automatically by mitmproxy
-addons = [ChaosProxyAddon()]
-```
-
-### Load Chaos Plans
-
-```python
-from agent_chaos_sdk.config_loader import load_chaos_plan
-
-plan = load_chaos_plan("examples/plans/travel_agent_chaos.yaml")
-print(f"Loaded: {plan.metadata.name}")
-```
-
 ---
-
 ## 🎓 Advanced Features
 
 ### Multi-Agent Swarm Testing
@@ -704,10 +670,9 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 📚 Resources
 
-- **[Quick Start Guide](docs/markdown/QUICK_START.md)** - Get started in 5 minutes
+- **[Quick Start Guide](docs/markdown/QUICK_START.md)** - Standard usage
 - **[API Documentation](docs/index.rst)** - Complete API reference
 - **[Examples](examples/)** - Ready-to-use chaos plans
-- **[Changelog](docs/markdown/CHANGELOG.md)** - Version history
 - **[Configuration Reference](docs/CONFIGURATION_REFERENCE.md)** - Full schema and env vars
 - **[Observability Reference](docs/OBSERVABILITY.md)** - Metrics and tracing
 - **[Security Policy](SECURITY.md)** - Vulnerability reporting

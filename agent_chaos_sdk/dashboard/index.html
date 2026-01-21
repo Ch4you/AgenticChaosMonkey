@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Chaos Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1020;
+      --panel: #111827;
+      --panel-border: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(16, 23, 42, 0.96);
+      border-bottom: 1px solid var(--panel-border);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      backdrop-filter: blur(10px);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+    }
+    .status-dot.connected {
+      background: var(--accent-2);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .panel h2 {
+      margin: 0 0 0.75rem 0;
+      font-size: 1rem;
+      color: #f9fafb;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .stat {
+      padding: 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--panel-border);
+      background: #0f172a;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-value {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    select, button {
+      background: #0f172a;
+      border: 1px solid var(--panel-border);
+      color: var(--text);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    button {
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    button:hover {
+      border-color: var(--accent);
+      color: #fff;
+    }
+    #events {
+      max-height: 360px;
+      overflow: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.85rem;
+    }
+    .event {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 0.5rem 0;
+      color: #cbd5f5;
+    }
+    .event small {
+      color: var(--muted);
+    }
+    #topology {
+      min-height: 300px;
+      background: #0f172a;
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+      border-radius: 12px;
+      padding: 0.75rem;
+    }
+    .agent-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .metric {
+      background: #0f172a;
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 0.6rem;
+    }
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    @media (max-width: 1100px) {
+      main { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Agent Chaos Dashboard</h1>
+    <div class="status">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Disconnected</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Run Summary</h2>
+      <div class="controls">
+        <label for="runSelect">Run:</label>
+        <select id="runSelect"></select>
+        <button id="loadLatest">Load Latest</button>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-label">Total Requests</div>
+          <div class="stat-value" id="totalRequests">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Errors</div>
+          <div class="stat-value" id="errorRequests">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Chaos Injections</div>
+          <div class="stat-value" id="chaosInjections">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Success Rate</div>
+          <div class="stat-value" id="successRate">0%</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Chaos Hit Rate</div>
+          <div class="stat-value" id="chaosHitRate">0%</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Input Errors</div>
+          <div class="stat-value" id="inputErrors">0</div>
+        </div>
+      </div>
+
+      <div class="agent-metrics" id="agentMetrics"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Topology</h2>
+      <div id="topology"></div>
+    </section>
+
+    <section class="panel" style="grid-column: 1 / -1;">
+      <h2>Recent Events</h2>
+      <div id="events"></div>
+    </section>
+  </main>
+
+  <script>
+    mermaid.initialize({ startOnLoad: false, theme: "dark" });
+
+    const statusDot = document.getElementById("statusDot");
+    const statusText = document.getElementById("statusText");
+    const runSelect = document.getElementById("runSelect");
+    const loadLatest = document.getElementById("loadLatest");
+    const eventsEl = document.getElementById("events");
+    const agentMetricsEl = document.getElementById("agentMetrics");
+
+    const counters = {
+      total: 0,
+      errors: 0,
+      chaos: 0,
+      chaosRequests: 0,
+      inputErrors: 0,
+    };
+
+    let ws;
+    let topologyEdges = new Set();
+
+    function setStatus(connected) {
+      statusDot.classList.toggle("connected", connected);
+      statusText.textContent = connected ? "Connected" : "Disconnected";
+    }
+
+    function updateStat(id, value) {
+      document.getElementById(id).textContent = value;
+    }
+
+    function updateRates() {
+      const total = counters.total || 0;
+      const success = total ? ((total - counters.errors) / total) * 100 : 0;
+      const chaosHit = total ? (counters.chaosRequests / total) * 100 : 0;
+      updateStat("successRate", `${success.toFixed(1)}%`);
+      updateStat("chaosHitRate", `${chaosHit.toFixed(1)}%`);
+    }
+
+    function addEvent(entry) {
+      const div = document.createElement("div");
+      div.className = "event";
+      div.innerHTML = `<small>${entry.timestamp || ""}</small> ${entry.event_type} ${entry.message || ""}`;
+      eventsEl.prepend(div);
+      while (eventsEl.children.length > 200) {
+        eventsEl.removeChild(eventsEl.lastChild);
+      }
+    }
+
+    function normalizeId(value) {
+      return (value || "unknown").toString().replace(/[^a-zA-Z0-9_]/g, "_");
+    }
+
+    function renderTopology() {
+      const base = [
+        "graph LR",
+        "user([User]) --> agent([Agent])",
+        "agent --> proxy([Chaos Proxy])",
+      ];
+      const edges = Array.from(topologyEdges).map(edge => edge);
+      const graph = base.concat(edges).join("\n");
+      mermaid.render("topologyGraph", graph).then(({ svg }) => {
+        document.getElementById("topology").innerHTML = svg;
+      });
+    }
+
+    function handleEvent(event) {
+      addEvent(event);
+      switch (event.event_type) {
+        case "request_started":
+          counters.total += 1;
+          updateStat("totalRequests", counters.total);
+          break;
+        case "response_received":
+          if (!event.success) {
+            counters.errors += 1;
+            updateStat("errorRequests", counters.errors);
+          }
+          break;
+        case "chaos_injected":
+          counters.chaos += 1;
+          updateStat("chaosInjections", counters.chaos);
+          counters.chaosRequests += 1;
+          break;
+        case "swarm_message":
+          if (event.from_agent && event.to_agent) {
+            const fromId = normalizeId(event.from_agent);
+            const toId = normalizeId(event.to_agent);
+            topologyEdges.add(`${fromId}[${event.from_agent}] --> ${toId}[${event.to_agent}]`);
+            renderTopology();
+          }
+          break;
+        default:
+          break;
+      }
+      updateRates();
+    }
+
+    async function loadRuns() {
+      const response = await fetch("/api/runs");
+      const data = await response.json();
+      runSelect.innerHTML = "";
+      data.runs.forEach(run => {
+        const option = document.createElement("option");
+        option.value = run.id;
+        option.textContent = run.id + (run.has_log ? "" : " (missing log)");
+        runSelect.appendChild(option);
+      });
+      if (data.runs.length) {
+        runSelect.value = data.runs[0].id;
+        await loadRun(runSelect.value);
+      }
+    }
+
+    async function loadRun(runId) {
+      if (!runId) return;
+      const summaryRes = await fetch(`/api/runs/${runId}/summary`);
+      const summary = await summaryRes.json();
+      counters.total = summary.total_requests || 0;
+      counters.errors = summary.error_requests || 0;
+      counters.chaos = summary.chaos_injections || 0;
+      counters.chaosRequests = summary.chaos_requests || 0;
+      counters.inputErrors = summary.input_validation_errors || 0;
+
+      updateStat("totalRequests", counters.total);
+      updateStat("errorRequests", counters.errors);
+      updateStat("chaosInjections", counters.chaos);
+      updateStat("inputErrors", counters.inputErrors);
+      updateRates();
+
+      // Agent metrics
+      agentMetricsEl.innerHTML = "";
+      const agentMetrics = summary.agent_metrics || {};
+      Object.entries(agentMetrics).forEach(([key, value]) => {
+        const metric = document.createElement("div");
+        metric.className = "metric";
+        metric.innerHTML = `<span>${key}</span>${value}`;
+        agentMetricsEl.appendChild(metric);
+      });
+
+      // Load events
+      const eventsRes = await fetch(`/api/runs/${runId}/events`);
+      const eventsData = await eventsRes.json();
+      eventsEl.innerHTML = "";
+      topologyEdges = new Set();
+      renderTopology();
+      (eventsData.events || []).forEach(handleEvent);
+    }
+
+    function connectWebSocket() {
+      ws = new WebSocket(`ws://${location.host}/ws`);
+      ws.onopen = () => setStatus(true);
+      ws.onclose = () => {
+        setStatus(false);
+        setTimeout(connectWebSocket, 1500);
+      };
+      ws.onmessage = (msg) => {
+        try {
+          const event = JSON.parse(msg.data);
+          handleEvent(event);
+        } catch (e) {
+          console.warn("Failed to parse event", e);
+        }
+      };
+    }
+
+    loadLatest.addEventListener("click", async () => {
+      await loadRuns();
+    });
+    runSelect.addEventListener("change", async (e) => {
+      await loadRun(e.target.value);
+    });
+
+    renderTopology();
+    loadRuns();
+    connectWebSocket();
+  </script>
+</body>
+</html>
