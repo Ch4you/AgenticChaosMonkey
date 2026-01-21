@@ -54,6 +54,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/index.html#module-agent_chaos_sdk.decorators">Decorators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#agent_chaos_sdk.decorators.audit_agent"><code class="docutils literal notranslate"><span class="pre">audit_agent()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/index.html#agent_chaos_sdk.decorators.simulate_chaos"><code class="docutils literal notranslate"><span class="pre">simulate_chaos()</span></code></a></li>
 </ul>
 </li>
@@ -256,7 +257,6 @@
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#quick-summary">Quick Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CONFIGURATION_REFERENCE.html">Configuration Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="CONFIGURATION_REFERENCE.html#chaosplan-yaml">ChaosPlan (YAML)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CONFIGURATION_REFERENCE.html#targetconfig">TargetConfig</a></li>
@@ -416,135 +416,16 @@
 <li class="toctree-l3"><a class="reference internal" href="markdown/README.html#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="markdown/QUICK_START.html">🚀 快速开始指南</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id2">📋 目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id3">环境准备</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id4">1. 检查前置条件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id5">2. 安装依赖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markdown/QUICK_START.html">Quick Start (Standard Flow)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#standard-run">Standard Run</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#start-the-platform">1) Start the platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#route-agent-traffic-through-the-proxy">2) Route agent traffic through the proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#run-the-demo-agent">3) Run the demo agent</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id6">三种使用方式</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id7">方式1：一键测试脚本（最简单）⭐</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#cli-dashboard">方式2：CLI工具 + Dashboard（推荐）⭐</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id9">方式3：手动启动（最灵活）⭐</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id12">完整测试流程</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id13">1. 运行单元测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id14">2. 运行端到端测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id15">3. 查看结果</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id19">4. 理解报告</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id20">常用命令</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#cli">CLI命令</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id21">报告生成</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id22">测试命令</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id23">🔧 配置Chaos策略</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#chaos-plan">编辑Chaos Plan</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id24">可用的策略类型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id25">重新加载配置</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id26">📊 可观测性</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id27">Dashboard（实时监控）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#jaeger">Jaeger（分布式追踪）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#prometheus-grafana">Prometheus/Grafana（指标监控）</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id28">🐛 故障排除</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/QUICK_START.html#id29">常见问题</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id30">📚 更多资源</a></li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#id31">🎯 下一步</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html">完整测试指南 - Agent Chaos Platform</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id1">📋 目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id2">快速开始</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id3">前置条件检查</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id4">一键完整测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id5">阶段1: 单元测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id6">运行所有单元测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id7">测试各个模块</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id12">阶段2: 集成测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id13">运行集成测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id14">阶段3: 端到端测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id15">3.1 基础端到端测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id16">3.2 手动端到端测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#cli">阶段4: CLI测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id19">4.1 CLI基础命令</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#chaos-plan">4.2 测试不同Chaos Plan</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#dashboard">阶段5: Dashboard测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id22">5.1 启动Dashboard</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id23">5.2 访问Dashboard</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id24">5.3 验证Dashboard功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id25">5.4 触发事件测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id26">阶段6: 可观测性测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id27">6.1 启动可观测性栈</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#jaeger">6.2 查看Jaeger追踪</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#prometheus">6.3 查看Prometheus指标</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#grafana-dashboard">6.4 查看Grafana Dashboard</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id28">阶段7: 高级功能测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#mcp-fuzzing">7.1 协议模糊测试（MCP Fuzzing）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id30">7.2 竞态条件检测</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id32">7.3 组策略测试（基于角色）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#tape-replay">7.4 记录和回放（Tape Replay）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#rag">7.5 RAG投毒测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id38">7.6 Swarm破坏测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id41">测试检查清单</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id42">✅ 基础功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id43">✅ 策略功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id44">✅ CLI功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id45">✅ Dashboard功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id46">✅ 可观测性</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id47">✅ 高级功能</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id48">故障排除</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id49">常见问题</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id50">性能测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id51">并发请求测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id52">压力测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id53">持续集成</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#github-actions">GitHub Actions</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id54">总结</a></li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html#id55">快速测试命令总结</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="markdown/PRODUCTION_VALIDATION.html">Production Validation Checklist</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="markdown/PRODUCTION_VALIDATION.html#local-validation-developer-machine">1) Local Validation (Developer Machine)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/PRODUCTION_VALIDATION.html#prereqs">Prereqs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/PRODUCTION_VALIDATION.html#steps">Steps</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/PRODUCTION_VALIDATION.html#kubernetes-validation-cluster">2) Kubernetes Validation (Cluster)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/PRODUCTION_VALIDATION.html#ci-validation-automated">3) CI Validation (Automated)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="markdown/QUICK_START.html#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/CONTRIBUTING.html">Contributing to Agent Chaos Platform</a><ul>
@@ -589,19 +470,6 @@
 <li class="toctree-l3"><a class="reference internal" href="markdown/CONTRIBUTING.html#questions">Questions?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="markdown/CHANGELOG.html">Changelog</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="markdown/CHANGELOG.html#unreleased">Unreleased</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/CHANGELOG.html#added">Added</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/CHANGELOG.html#changed">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="markdown/CHANGELOG.html#id1">0.1.0 - 2025-12-17</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="markdown/CHANGELOG.html#id2">Added</a></li>
-<li class="toctree-l4"><a class="reference internal" href="markdown/CHANGELOG.html#technical-details">Technical Details</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/SECURITY.html">Security Policy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="markdown/SECURITY.html#reporting-a-vulnerability">Reporting a Vulnerability</a></li>
 <li class="toctree-l3"><a class="reference internal" href="markdown/SECURITY.html#supported-versions">Supported Versions</a></li>
@@ -628,6 +496,7 @@
 <li class="toctree-l3"><a class="reference internal" href="markdown/VERSIONING.html#release-cadence">Release cadence</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="markdown/VERSIONING.html#current-release">Current Release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/EXAMPLES_PLANS.html">Chaos Plan Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="markdown/EXAMPLES_PLANS.html#what-is-a-chaos-plan">What is a Chaos Plan?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="markdown/EXAMPLES_PLANS.html#example-plans">Example Plans</a><ul>
@@ -702,7 +571,6 @@
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#quick-summary">Quick Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CONFIGURATION_REFERENCE.html">Configuration Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="CONFIGURATION_REFERENCE.html#chaosplan-yaml">ChaosPlan (YAML)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CONFIGURATION_REFERENCE.html#targetconfig">TargetConfig</a></li>
@@ -770,15 +638,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="markdown/index.html">Markdown Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="markdown/README.html">Documentation Index</a></li>
-<li class="toctree-l2"><a class="reference internal" href="markdown/QUICK_START.html">🚀 快速开始指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="markdown/COMPREHENSIVE_TESTING_GUIDE.html">完整测试指南 - Agent Chaos Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="markdown/PRODUCTION_VALIDATION.html">Production Validation Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markdown/QUICK_START.html">Quick Start (Standard Flow)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/CONTRIBUTING.html">Contributing to Agent Chaos Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="markdown/CHANGELOG.html">Changelog</a></li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/SECURITY.html">Security Policy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/SUPPORT.html">Support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/VERSIONING.html">Versioning &amp; Release Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markdown/VERSIONING.html#current-release">Current Release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="markdown/EXAMPLES_PLANS.html">Chaos Plan Examples</a></li>
 </ul>
 </li>
@@ -799,7 +665,7 @@ data corruption, protocol fuzzing, and race conditions.</p>
 <li><p><strong>Security &amp; Compliance</strong>: Audit logging, PII redaction, strict auth modes</p></li>
 <li><p><strong>Deterministic Replay</strong>: Tape-based record/replay for flaky failures</p></li>
 <li><p><strong>Group-based Chaos</strong>: Apply chaos to agents by role</p></li>
-<li><p><strong>Resilience Scorecard</strong>: Automated analysis and reporting</p></li>
+<li><p><strong>Compliance Audit Report</strong>: Security-focused audit report</p></li>
 <li><p><strong>Observability</strong>: OpenTelemetry integration with Jaeger and Prometheus</p></li>
 </ul>
 </section>
@@ -809,7 +675,7 @@ data corruption, protocol fuzzing, and race conditions.</p>
 pip<span class="w"> </span>install<span class="w"> </span>agentic-chaos-monkey
 
 <span class="c1"># Run a chaos test</span>
-agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos.yaml<span class="w"> </span>--mock-server
+agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos_validate.yaml<span class="w"> </span>--mock-server<span class="w"> </span>--repeat<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 <p>For more details, see <a class="reference internal" href="quickstart.html"><span class="doc">Quick Start Guide</span></a>.</p>

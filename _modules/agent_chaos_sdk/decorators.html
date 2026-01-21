@@ -52,6 +52,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../api/index.html#module-agent_chaos_sdk.decorators">Decorators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/index.html#agent_chaos_sdk.decorators.audit_agent"><code class="docutils literal notranslate"><span class="pre">audit_agent()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/index.html#agent_chaos_sdk.decorators.simulate_chaos"><code class="docutils literal notranslate"><span class="pre">simulate_chaos()</span></code></a></li>
 </ul>
 </li>
@@ -254,7 +255,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../contributing.html#quick-summary">Quick Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONFIGURATION_REFERENCE.html">Configuration Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../CONFIGURATION_REFERENCE.html#chaosplan-yaml">ChaosPlan (YAML)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../CONFIGURATION_REFERENCE.html#targetconfig">TargetConfig</a></li>
@@ -414,135 +414,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../../markdown/README.html#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../markdown/QUICK_START.html">🚀 快速开始指南</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id2">📋 目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id3">环境准备</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id4">1. 检查前置条件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id5">2. 安装依赖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/QUICK_START.html">Quick Start (Standard Flow)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#standard-run">Standard Run</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#start-the-platform">1) Start the platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#route-agent-traffic-through-the-proxy">2) Route agent traffic through the proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#run-the-demo-agent">3) Run the demo agent</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id6">三种使用方式</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id7">方式1：一键测试脚本（最简单）⭐</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#cli-dashboard">方式2：CLI工具 + Dashboard（推荐）⭐</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id9">方式3：手动启动（最灵活）⭐</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id12">完整测试流程</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id13">1. 运行单元测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id14">2. 运行端到端测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id15">3. 查看结果</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id19">4. 理解报告</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id20">常用命令</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#cli">CLI命令</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id21">报告生成</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id22">测试命令</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id23">🔧 配置Chaos策略</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#chaos-plan">编辑Chaos Plan</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id24">可用的策略类型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id25">重新加载配置</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id26">📊 可观测性</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id27">Dashboard（实时监控）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#jaeger">Jaeger（分布式追踪）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#prometheus-grafana">Prometheus/Grafana（指标监控）</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id28">🐛 故障排除</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/QUICK_START.html#id29">常见问题</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id30">📚 更多资源</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#id31">🎯 下一步</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html">完整测试指南 - Agent Chaos Platform</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id1">📋 目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id2">快速开始</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id3">前置条件检查</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id4">一键完整测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id5">阶段1: 单元测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id6">运行所有单元测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id7">测试各个模块</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id12">阶段2: 集成测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id13">运行集成测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id14">阶段3: 端到端测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id15">3.1 基础端到端测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id16">3.2 手动端到端测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#cli">阶段4: CLI测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id19">4.1 CLI基础命令</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#chaos-plan">4.2 测试不同Chaos Plan</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#dashboard">阶段5: Dashboard测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id22">5.1 启动Dashboard</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id23">5.2 访问Dashboard</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id24">5.3 验证Dashboard功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id25">5.4 触发事件测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id26">阶段6: 可观测性测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id27">6.1 启动可观测性栈</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#jaeger">6.2 查看Jaeger追踪</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#prometheus">6.3 查看Prometheus指标</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#grafana-dashboard">6.4 查看Grafana Dashboard</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id28">阶段7: 高级功能测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#mcp-fuzzing">7.1 协议模糊测试（MCP Fuzzing）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id30">7.2 竞态条件检测</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id32">7.3 组策略测试（基于角色）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#tape-replay">7.4 记录和回放（Tape Replay）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#rag">7.5 RAG投毒测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id38">7.6 Swarm破坏测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id41">测试检查清单</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id42">✅ 基础功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id43">✅ 策略功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id44">✅ CLI功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id45">✅ Dashboard功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id46">✅ 可观测性</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id47">✅ 高级功能</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id48">故障排除</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id49">常见问题</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id50">性能测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id51">并发请求测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id52">压力测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id53">持续集成</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#github-actions">GitHub Actions</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id54">总结</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/COMPREHENSIVE_TESTING_GUIDE.html#id55">快速测试命令总结</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../markdown/PRODUCTION_VALIDATION.html">Production Validation Checklist</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/PRODUCTION_VALIDATION.html#local-validation-developer-machine">1) Local Validation (Developer Machine)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/PRODUCTION_VALIDATION.html#prereqs">Prereqs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/PRODUCTION_VALIDATION.html#steps">Steps</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/PRODUCTION_VALIDATION.html#kubernetes-validation-cluster">2) Kubernetes Validation (Cluster)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/PRODUCTION_VALIDATION.html#ci-validation-automated">3) CI Validation (Automated)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../markdown/QUICK_START.html#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../markdown/CONTRIBUTING.html">Contributing to Agent Chaos Platform</a><ul>
@@ -587,19 +468,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../markdown/CONTRIBUTING.html#questions">Questions?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../markdown/CHANGELOG.html">Changelog</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/CHANGELOG.html#unreleased">Unreleased</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/CHANGELOG.html#added">Added</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/CHANGELOG.html#changed">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../markdown/CHANGELOG.html#id1">0.1.0 - 2025-12-17</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/CHANGELOG.html#id2">Added</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../markdown/CHANGELOG.html#technical-details">Technical Details</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../../markdown/SECURITY.html">Security Policy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../markdown/SECURITY.html#reporting-a-vulnerability">Reporting a Vulnerability</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../markdown/SECURITY.html#supported-versions">Supported Versions</a></li>
@@ -626,6 +494,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../markdown/VERSIONING.html#release-cadence">Release cadence</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown/VERSIONING.html#current-release">Current Release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../markdown/EXAMPLES_PLANS.html">Chaos Plan Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../markdown/EXAMPLES_PLANS.html#what-is-a-chaos-plan">What is a Chaos Plan?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../markdown/EXAMPLES_PLANS.html#example-plans">Example Plans</a><ul>
@@ -678,11 +547,18 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Tuple</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">opentelemetry</span><span class="w"> </span><span class="kn">import</span> <span class="n">trace</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">agent_chaos_sdk.common.telemetry</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_tracer</span><span class="p">,</span> <span class="n">record_chaos_injection</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">agent_chaos_sdk.common.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agent_chaos_sdk.storage.tape</span><span class="w"> </span><span class="kn">import</span> <span class="n">TapeRecorder</span><span class="p">,</span> <span class="n">ChaosContext</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agent_chaos_sdk.middleware</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChaosMiddleware</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">tracer</span> <span class="o">=</span> <span class="n">get_tracer</span><span class="p">()</span>
@@ -732,6 +608,19 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
         <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+            <span class="c1"># SDK mode: wrap detected clients in-process, no proxy required.</span>
+            <span class="n">middleware</span> <span class="o">=</span> <span class="n">ChaosMiddleware</span><span class="p">(</span>
+                <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;simulate_error&quot;</span><span class="p">:</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;exception&quot;</span><span class="p">,</span> <span class="s2">&quot;return_error&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;poison_rag&quot;</span><span class="p">:</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;hallucination&quot;</span><span class="p">,</span> <span class="s2">&quot;rag_poisoning&quot;</span><span class="p">,</span> <span class="s2">&quot;phantom_document&quot;</span><span class="p">),</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;request&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;create&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;chat&quot;</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">middleware</span><span class="o">.</span><span class="n">wrap_client</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">pass</span>
             <span class="c1"># Check if chaos should be applied</span>
             <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">probability</span><span class="p">:</span>
                 <span class="c1"># No chaos, execute normally</span>
@@ -788,6 +677,400 @@
         <span class="k">return</span> <span class="n">wrapper</span>
     <span class="k">return</span> <span class="n">decorator</span></div>
 
+
+
+<div class="viewcode-block" id="audit_agent">
+<a class="viewcode-back" href="../../api/index.html#agent_chaos_sdk.decorators.audit_agent">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">audit_agent</span><span class="p">(</span>
+    <span class="n">tape_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">rag_poisoning</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">rag_poison_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">rag_poison_text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">patch_requests</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">patch_httpx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">patch_langchain</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">patch_openai</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">record_tape</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Lightweight SDK mode: monkey-patch common libraries to capture I/O, apply</span>
+<span class="sd">    RAG poisoning, and record interactions to tape with zero infrastructure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="n">is_async</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">async_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">_sdk_patches</span><span class="p">(</span>
+                <span class="n">tape_path</span><span class="o">=</span><span class="n">tape_path</span><span class="p">,</span>
+                <span class="n">rag_poisoning</span><span class="o">=</span><span class="n">rag_poisoning</span><span class="p">,</span>
+                <span class="n">rag_poison_rate</span><span class="o">=</span><span class="n">rag_poison_rate</span><span class="p">,</span>
+                <span class="n">rag_poison_text</span><span class="o">=</span><span class="n">rag_poison_text</span><span class="p">,</span>
+                <span class="n">patch_requests</span><span class="o">=</span><span class="n">patch_requests</span><span class="p">,</span>
+                <span class="n">patch_httpx</span><span class="o">=</span><span class="n">patch_httpx</span><span class="p">,</span>
+                <span class="n">patch_langchain</span><span class="o">=</span><span class="n">patch_langchain</span><span class="p">,</span>
+                <span class="n">patch_openai</span><span class="o">=</span><span class="n">patch_openai</span><span class="p">,</span>
+                <span class="n">record_tape</span><span class="o">=</span><span class="n">record_tape</span><span class="p">,</span>
+            <span class="p">)</span> <span class="k">as</span> <span class="n">recorder</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="n">_record_sdk_call</span><span class="p">(</span><span class="n">recorder</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">sync_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">_sdk_patches</span><span class="p">(</span>
+                <span class="n">tape_path</span><span class="o">=</span><span class="n">tape_path</span><span class="p">,</span>
+                <span class="n">rag_poisoning</span><span class="o">=</span><span class="n">rag_poisoning</span><span class="p">,</span>
+                <span class="n">rag_poison_rate</span><span class="o">=</span><span class="n">rag_poison_rate</span><span class="p">,</span>
+                <span class="n">rag_poison_text</span><span class="o">=</span><span class="n">rag_poison_text</span><span class="p">,</span>
+                <span class="n">patch_requests</span><span class="o">=</span><span class="n">patch_requests</span><span class="p">,</span>
+                <span class="n">patch_httpx</span><span class="o">=</span><span class="n">patch_httpx</span><span class="p">,</span>
+                <span class="n">patch_langchain</span><span class="o">=</span><span class="n">patch_langchain</span><span class="p">,</span>
+                <span class="n">patch_openai</span><span class="o">=</span><span class="n">patch_openai</span><span class="p">,</span>
+                <span class="n">record_tape</span><span class="o">=</span><span class="n">record_tape</span><span class="p">,</span>
+            <span class="p">)</span> <span class="k">as</span> <span class="n">recorder</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="n">_record_sdk_call</span><span class="p">(</span><span class="n">recorder</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">return</span> <span class="n">async_wrapper</span> <span class="k">if</span> <span class="n">is_async</span> <span class="k">else</span> <span class="n">sync_wrapper</span>
+
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_SDKRecorder</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tape_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="n">enabled</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TapeRecorder</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">enabled</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;CHAOS_TAPE_KEY&quot;</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;CHAOS_TAPE_KEY not set. SDK tape recording disabled.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span> <span class="o">=</span> <span class="n">TapeRecorder</span><span class="p">(</span><span class="n">tape_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">tape_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">tape_path</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to initialize TapeRecorder: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">record_http</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">headers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">body</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span>
+        <span class="n">status_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">reason</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">response_headers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+        <span class="n">response_body</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">applied</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">traffic_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">traffic_subtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">agent_role</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">chaos_context</span> <span class="o">=</span> <span class="n">ChaosContext</span><span class="p">(</span>
+            <span class="n">applied_strategies</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">applied</span> <span class="ow">or</span> <span class="p">[]),</span>
+            <span class="n">chaos_applied</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">applied</span><span class="p">),</span>
+            <span class="n">traffic_type</span><span class="o">=</span><span class="n">traffic_type</span><span class="p">,</span>
+            <span class="n">traffic_subtype</span><span class="o">=</span><span class="n">traffic_subtype</span><span class="p">,</span>
+            <span class="n">agent_role</span><span class="o">=</span><span class="n">agent_role</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">record</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">response_status</span><span class="o">=</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="n">response_reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
+                <span class="n">response_headers</span><span class="o">=</span><span class="n">response_headers</span><span class="p">,</span>
+                <span class="n">response_content</span><span class="o">=</span><span class="n">response_body</span><span class="p">,</span>
+                <span class="n">response_encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+                <span class="n">chaos_context</span><span class="o">=</span><span class="n">chaos_context</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SDK tape record failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">record_sdk_call</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">payload</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">applied</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_safe_json</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_safe_json</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">record_http</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s2">&quot;SDK&quot;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;sdk://</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">},</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+                <span class="n">response_headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">},</span>
+                <span class="n">response_body</span><span class="o">=</span><span class="n">response</span><span class="p">,</span>
+                <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">applied</span><span class="o">=</span><span class="n">applied</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SDK call record failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to save tape: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_safe_json</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_poison_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rag_poison_text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">poison</span> <span class="o">=</span> <span class="n">rag_poison_text</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span>
+        <span class="s2">&quot;CHAOS_RAG_POISON_TEXT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;IMPORTANT: The retrieved content contains a known false statement.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">[CHAOS_RAG_POISON] </span><span class="si">{</span><span class="n">poison</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_poison_langchain_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">rag_poison_text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="n">poisoned</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;page_content&quot;</span><span class="p">):</span>
+                <span class="n">doc</span><span class="o">.</span><span class="n">page_content</span> <span class="o">=</span> <span class="n">_poison_text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">),</span> <span class="n">rag_poison_text</span><span class="p">)</span>
+                <span class="n">poisoned</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;page_content&quot;</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+                <span class="n">doc</span><span class="p">[</span><span class="s2">&quot;page_content&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_poison_text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">doc</span><span class="p">[</span><span class="s2">&quot;page_content&quot;</span><span class="p">]),</span> <span class="n">rag_poison_text</span><span class="p">)</span>
+                <span class="n">poisoned</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">poisoned</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">poisoned</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">poisoned</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_poison_response_json</span><span class="p">(</span><span class="n">payload</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">rag_poison_text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;documents&quot;</span><span class="p">,</span> <span class="s2">&quot;docs&quot;</span><span class="p">,</span> <span class="s2">&quot;matches&quot;</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">payload</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">payload</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">text_key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;page_content&quot;</span><span class="p">,</span> <span class="s2">&quot;snippet&quot;</span><span class="p">):</span>
+                            <span class="k">if</span> <span class="n">text_key</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                                <span class="n">item</span><span class="p">[</span><span class="n">text_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">_poison_text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="n">text_key</span><span class="p">]),</span> <span class="n">rag_poison_text</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">payload</span>
+    <span class="k">return</span> <span class="n">payload</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_record_sdk_call</span><span class="p">(</span><span class="n">recorder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;_SDKRecorder&quot;</span><span class="p">],</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">result</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">recorder</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="n">args</span><span class="p">,</span>
+        <span class="s2">&quot;kwargs&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">recorder</span><span class="o">.</span><span class="n">record_sdk_call</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_sdk_patches</span><span class="p">(</span>
+    <span class="n">tape_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">rag_poisoning</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">rag_poison_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">rag_poison_text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">patch_requests</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">patch_httpx</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">patch_langchain</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">patch_openai</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">record_tape</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">recorder</span> <span class="o">=</span> <span class="n">_SDKRecorder</span><span class="p">(</span><span class="n">tape_path</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="n">record_tape</span><span class="p">)</span>
+    <span class="n">originals</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">should_poison</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rag_poisoning</span> <span class="ow">and</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">rag_poison_rate</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">patch_requests</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+            <span class="n">original_request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">request</span>
+
+            <span class="k">def</span><span class="w"> </span><span class="nf">wrapped_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">original_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stream&quot;</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">response</span>
+                <span class="n">applied</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">should_poison</span><span class="p">():</span>
+                            <span class="n">data</span> <span class="o">=</span> <span class="n">_poison_response_json</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">rag_poison_text</span><span class="p">)</span>
+                            <span class="n">response</span><span class="o">.</span><span class="n">_content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+                            <span class="n">applied</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;rag_poisoning&quot;</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="n">recorder</span><span class="o">.</span><span class="n">record_http</span><span class="p">(</span>
+                    <span class="n">method</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">method</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+                    <span class="n">url</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">url</span><span class="p">),</span>
+                    <span class="n">headers</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="ow">or</span> <span class="p">{},</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">_request_body_bytes</span><span class="p">(</span><span class="n">kwargs</span><span class="p">),</span>
+                    <span class="n">status_code</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                    <span class="n">reason</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">reason</span> <span class="ow">or</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+                    <span class="n">response_headers</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">),</span>
+                    <span class="n">response_body</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                    <span class="n">encoding</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content-encoding&quot;</span><span class="p">),</span>
+                    <span class="n">applied</span><span class="o">=</span><span class="n">applied</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="n">response</span>
+
+            <span class="n">requests</span><span class="o">.</span><span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">wrapped_request</span>
+            <span class="n">originals</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;requests&quot;</span><span class="p">,</span> <span class="n">original_request</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requests patch skipped: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">patch_httpx</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+
+            <span class="n">original_request</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="o">.</span><span class="n">request</span>
+
+            <span class="k">def</span><span class="w"> </span><span class="nf">wrapped_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">original_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stream&quot;</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">response</span>
+                <span class="n">applied</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">content_type</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;json&quot;</span> <span class="ow">in</span> <span class="n">content_type</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">should_poison</span><span class="p">():</span>
+                            <span class="n">data</span> <span class="o">=</span> <span class="n">_poison_response_json</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">rag_poison_text</span><span class="p">)</span>
+                            <span class="n">response</span><span class="o">.</span><span class="n">_content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+                            <span class="n">applied</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;rag_poisoning&quot;</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="n">recorder</span><span class="o">.</span><span class="n">record_http</span><span class="p">(</span>
+                    <span class="n">method</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">method</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+                    <span class="n">url</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">url</span><span class="p">),</span>
+                    <span class="n">headers</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="ow">or</span> <span class="p">{},</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">_request_body_bytes</span><span class="p">(</span><span class="n">kwargs</span><span class="p">),</span>
+                    <span class="n">status_code</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                    <span class="n">reason</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">reason_phrase</span> <span class="ow">or</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+                    <span class="n">response_headers</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">),</span>
+                    <span class="n">response_body</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">content</span> <span class="ow">or</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                    <span class="n">encoding</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content-encoding&quot;</span><span class="p">),</span>
+                    <span class="n">applied</span><span class="o">=</span><span class="n">applied</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="n">response</span>
+
+            <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">wrapped_request</span>
+            <span class="n">originals</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;httpx&quot;</span><span class="p">,</span> <span class="n">original_request</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HTTPX patch skipped: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">patch_langchain</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">base_retriever</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRetriever</span> <span class="k">as</span> <span class="n">_BaseRetriever</span>
+                <span class="n">base_retriever</span> <span class="o">=</span> <span class="n">_BaseRetriever</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">langchain.schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseRetriever</span> <span class="k">as</span> <span class="n">_BaseRetriever</span>  <span class="c1"># type: ignore</span>
+                <span class="n">base_retriever</span> <span class="o">=</span> <span class="n">_BaseRetriever</span>
+
+            <span class="n">original_get</span> <span class="o">=</span> <span class="n">base_retriever</span><span class="o">.</span><span class="n">get_relevant_documents</span>
+
+            <span class="k">def</span><span class="w"> </span><span class="nf">wrapped_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">docs</span> <span class="o">=</span> <span class="n">original_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="n">applied</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">if</span> <span class="n">should_poison</span><span class="p">():</span>
+                    <span class="n">docs</span> <span class="o">=</span> <span class="n">_poison_langchain_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">rag_poison_text</span><span class="p">)</span>
+                    <span class="n">applied</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;rag_poisoning&quot;</span><span class="p">)</span>
+                <span class="n">recorder</span><span class="o">.</span><span class="n">record_sdk_call</span><span class="p">(</span>
+                    <span class="s2">&quot;langchain.retriever.get_relevant_documents&quot;</span><span class="p">,</span>
+                    <span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span> <span class="s2">&quot;kwargs&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">},</span>
+                    <span class="n">docs</span><span class="p">,</span>
+                    <span class="n">applied</span><span class="o">=</span><span class="n">applied</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="n">docs</span>
+
+            <span class="n">base_retriever</span><span class="o">.</span><span class="n">get_relevant_documents</span> <span class="o">=</span> <span class="n">wrapped_get</span>
+            <span class="n">originals</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;langchain.get_relevant_documents&quot;</span><span class="p">,</span> <span class="n">original_get</span><span class="p">,</span> <span class="n">base_retriever</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LangChain patch skipped: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">patch_openai</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">openai</span><span class="p">,</span> <span class="s2">&quot;ChatCompletion&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="p">,</span> <span class="s2">&quot;create&quot;</span><span class="p">):</span>
+                <span class="n">original_create</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span>
+
+                <span class="k">def</span><span class="w"> </span><span class="nf">wrapped_create</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">original_create</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="n">recorder</span><span class="o">.</span><span class="n">record_sdk_call</span><span class="p">(</span>
+                        <span class="s2">&quot;openai.chat.completions.create&quot;</span><span class="p">,</span>
+                        <span class="p">{</span><span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="n">args</span><span class="p">,</span> <span class="s2">&quot;kwargs&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">},</span>
+                        <span class="n">result</span><span class="p">,</span>
+                        <span class="n">applied</span><span class="o">=</span><span class="p">[],</span>
+                    <span class="p">)</span>
+                    <span class="k">return</span> <span class="n">result</span>
+
+                <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span> <span class="o">=</span> <span class="n">wrapped_create</span>
+                <span class="n">originals</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;openai.chatcompletion&quot;</span><span class="p">,</span> <span class="n">original_create</span><span class="p">,</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpenAI patch skipped: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">recorder</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">originals</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;requests&quot;</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">original</span> <span class="o">=</span> <span class="n">item</span>
+                <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+                <span class="n">requests</span><span class="o">.</span><span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">original</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;httpx&quot;</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">original</span> <span class="o">=</span> <span class="n">item</span>
+                <span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+                <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">original</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;langchain.get_relevant_documents&quot;</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">original</span><span class="p">,</span> <span class="n">base_retriever</span> <span class="o">=</span> <span class="n">item</span>
+                <span class="n">base_retriever</span><span class="o">.</span><span class="n">get_relevant_documents</span> <span class="o">=</span> <span class="n">original</span>
+            <span class="k">elif</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;openai.chatcompletion&quot;</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">original</span><span class="p">,</span> <span class="bp">cls</span> <span class="o">=</span> <span class="n">item</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">create</span> <span class="o">=</span> <span class="n">original</span>
+        <span class="n">recorder</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_request_body_bytes</span><span class="p">(</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="s2">&quot;data&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;json&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;json&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;json&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;json&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span>
 
 </pre></div>
 

@@ -11,7 +11,6 @@ Welcome to the Agent Chaos Platform documentation!
    api/index
    examples/index
    contributing
-   changelog
    CONFIGURATION_REFERENCE
    OBSERVABILITY
    KUBERNETES
@@ -37,7 +36,7 @@ Key Features
 * **Security & Compliance**: Audit logging, PII redaction, strict auth modes
 * **Deterministic Replay**: Tape-based record/replay for flaky failures
 * **Group-based Chaos**: Apply chaos to agents by role
-* **Resilience Scorecard**: Automated analysis and reporting
+* **Compliance Audit Report**: Security-focused audit report
 * **Observability**: OpenTelemetry integration with Jaeger and Prometheus
 
 Quick Start
@@ -49,7 +48,7 @@ Quick Start
    pip install agentic-chaos-monkey
 
    # Run a chaos test
-   agent-chaos run examples/plans/travel_agent_chaos.yaml --mock-server
+   agent-chaos run examples/plans/travel_agent_chaos_validate.yaml --mock-server --repeat 10
 
 For more details, see :doc:`quickstart`.
 

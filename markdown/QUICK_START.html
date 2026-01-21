@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🚀 快速开始指南 &mdash; Agent Chaos Platform 0.1.0 documentation</title>
+  <title>Quick Start (Standard Flow) &mdash; Agent Chaos Platform 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
@@ -19,7 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="完整测试指南 - Agent Chaos Platform" href="COMPREHENSIVE_TESTING_GUIDE.html" />
+    <link rel="next" title="Contributing to Agent Chaos Platform" href="CONTRIBUTING.html" />
     <link rel="prev" title="Documentation Index" href="README.html" /> 
 </head>
 
@@ -55,6 +55,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api/index.html#module-agent_chaos_sdk.decorators">Decorators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.decorators.audit_agent"><code class="docutils literal notranslate"><span class="pre">audit_agent()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/index.html#agent_chaos_sdk.decorators.simulate_chaos"><code class="docutils literal notranslate"><span class="pre">simulate_chaos()</span></code></a></li>
 </ul>
 </li>
@@ -257,7 +258,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../contributing.html#quick-summary">Quick Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html">Configuration Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html#chaosplan-yaml">ChaosPlan (YAML)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../CONFIGURATION_REFERENCE.html#targetconfig">TargetConfig</a></li>
@@ -417,135 +417,16 @@
 <li class="toctree-l3"><a class="reference internal" href="README.html#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">🚀 快速开始指南</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">📋 目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">环境准备</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">1. 检查前置条件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">2. 安装依赖</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quick Start (Standard Flow)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#standard-run">Standard Run</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#start-the-platform">1) Start the platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#route-agent-traffic-through-the-proxy">2) Route agent traffic through the proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-the-demo-agent">3) Run the demo agent</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">三种使用方式</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id7">方式1：一键测试脚本（最简单）⭐</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cli-dashboard">方式2：CLI工具 + Dashboard（推荐）⭐</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">方式3：手动启动（最灵活）⭐</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">完整测试流程</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id13">1. 运行单元测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id14">2. 运行端到端测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id15">3. 查看结果</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id19">4. 理解报告</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">常用命令</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cli">CLI命令</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id21">报告生成</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id22">测试命令</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">🔧 配置Chaos策略</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#chaos-plan">编辑Chaos Plan</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id24">可用的策略类型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id25">重新加载配置</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id26">📊 可观测性</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id27">Dashboard（实时监控）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#jaeger">Jaeger（分布式追踪）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#prometheus-grafana">Prometheus/Grafana（指标监控）</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id28">🐛 故障排除</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id29">常见问题</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id30">📚 更多资源</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id31">🎯 下一步</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html">完整测试指南 - Agent Chaos Platform</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id1">📋 目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id2">快速开始</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id3">前置条件检查</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id4">一键完整测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id5">阶段1: 单元测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id6">运行所有单元测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id7">测试各个模块</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id12">阶段2: 集成测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id13">运行集成测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id14">阶段3: 端到端测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id15">3.1 基础端到端测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id16">3.2 手动端到端测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#cli">阶段4: CLI测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id19">4.1 CLI基础命令</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#chaos-plan">4.2 测试不同Chaos Plan</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#dashboard">阶段5: Dashboard测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id22">5.1 启动Dashboard</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id23">5.2 访问Dashboard</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id24">5.3 验证Dashboard功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id25">5.4 触发事件测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id26">阶段6: 可观测性测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id27">6.1 启动可观测性栈</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#jaeger">6.2 查看Jaeger追踪</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#prometheus">6.3 查看Prometheus指标</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#grafana-dashboard">6.4 查看Grafana Dashboard</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id28">阶段7: 高级功能测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#mcp-fuzzing">7.1 协议模糊测试（MCP Fuzzing）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id30">7.2 竞态条件检测</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id32">7.3 组策略测试（基于角色）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#tape-replay">7.4 记录和回放（Tape Replay）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#rag">7.5 RAG投毒测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id38">7.6 Swarm破坏测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id41">测试检查清单</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id42">✅ 基础功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id43">✅ 策略功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id44">✅ CLI功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id45">✅ Dashboard功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id46">✅ 可观测性</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id47">✅ 高级功能</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id48">故障排除</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id49">常见问题</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id50">性能测试</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id51">并发请求测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id52">压力测试</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id53">持续集成</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#github-actions">GitHub Actions</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id54">总结</a></li>
-<li class="toctree-l3"><a class="reference internal" href="COMPREHENSIVE_TESTING_GUIDE.html#id55">快速测试命令总结</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="PRODUCTION_VALIDATION.html">Production Validation Checklist</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="PRODUCTION_VALIDATION.html#local-validation-developer-machine">1) Local Validation (Developer Machine)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="PRODUCTION_VALIDATION.html#prereqs">Prereqs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="PRODUCTION_VALIDATION.html#steps">Steps</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="PRODUCTION_VALIDATION.html#kubernetes-validation-cluster">2) Kubernetes Validation (Cluster)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="PRODUCTION_VALIDATION.html#ci-validation-automated">3) CI Validation (Automated)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html">Contributing to Agent Chaos Platform</a><ul>
@@ -590,19 +471,6 @@
 <li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html#questions">Questions?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="CHANGELOG.html">Changelog</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="CHANGELOG.html#unreleased">Unreleased</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#added">Added</a></li>
-<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#changed">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="CHANGELOG.html#id1">0.1.0 - 2025-12-17</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#id2">Added</a></li>
-<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#technical-details">Technical Details</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="SECURITY.html">Security Policy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="SECURITY.html#reporting-a-vulnerability">Reporting a Vulnerability</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SECURITY.html#supported-versions">Supported Versions</a></li>
@@ -629,6 +497,7 @@
 <li class="toctree-l3"><a class="reference internal" href="VERSIONING.html#release-cadence">Release cadence</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="VERSIONING.html#current-release">Current Release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="EXAMPLES_PLANS.html">Chaos Plan Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="EXAMPLES_PLANS.html#what-is-a-chaos-plan">What is a Chaos Plan?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="EXAMPLES_PLANS.html#example-plans">Example Plans</a><ul>
@@ -660,7 +529,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Markdown Documentation</a></li>
-      <li class="breadcrumb-item active">🚀 快速开始指南</li>
+      <li class="breadcrumb-item active">Quick Start (Standard Flow)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/markdown/QUICK_START.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -670,432 +539,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1>🚀 快速开始指南<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<section id="id2">
-<h2>📋 目录<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="#id3">环境准备</a></p></li>
-<li><p><a class="reference internal" href="#id6">三种使用方式</a></p></li>
-<li><p><a class="reference internal" href="#id12">完整测试流程</a></p></li>
-<li><p><a class="reference internal" href="#%E6%9F%A5%E7%9C%8B%E7%BB%93%E6%9E%9C"><span class="xref myst">查看结果</span></a></p></li>
-<li><p><a class="reference internal" href="#id20">常用命令</a></p></li>
-</ol>
-</section>
-<hr class="docutils" />
-<section id="id3">
-<h2>环境准备<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<section id="id4">
-<h3>1. 检查前置条件<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/check_prerequisites.sh
-</pre></div>
-</div>
-<p>确保以下组件已安装并运行：</p>
+  <section id="quick-start-standard-flow">
+<h1>Quick Start (Standard Flow)<a class="headerlink" href="#quick-start-standard-flow" title="Link to this heading"></a></h1>
+<p>This project has <strong>one standard way to run</strong>. Follow the steps below.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>✅ Python 3.10+</p></li>
-<li><p>✅ Ollama（本地LLM，运行在11434端口）</p></li>
-<li><p>✅ mitmproxy</p></li>
-<li><p>✅ 所有Python依赖</p></li>
+<li><p>Python 3.10+</p></li>
+<li><p><a class="reference external" href="https://ollama.ai/">Ollama</a> running locally</p></li>
+<li><p><a class="reference external" href="https://mitmproxy.org/">mitmproxy</a> installed</p></li>
 </ul>
 </section>
-<section id="id5">
-<h3>2. 安装依赖<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 推荐：使用开发模式安装（使用pyproject.toml）</span>
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-
-<span class="c1"># 或安装开发依赖</span>
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
-
-<span class="c1"># 传统方式：从requirements.txt安装</span>
-pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<section id="install">
+<h2>Install<a class="headerlink" href="#install" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </pre></div>
 </div>
 </section>
-</section>
-<hr class="docutils" />
-<section id="id6">
-<h2>三种使用方式<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
-<section id="id7">
-<h3>方式1：一键测试脚本（最简单）⭐<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
-<p><strong>适用场景</strong>：快速测试完整流程，适合日常使用</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/run_chaos_test.sh
-</pre></div>
-</div>
-<p><strong>功能</strong>：</p>
-<ul class="simple">
-<li><p>✅ 自动启动Mock Server</p></li>
-<li><p>✅ 自动启动Chaos Proxy</p></li>
-<li><p>✅ 运行Travel Agent测试</p></li>
-<li><p>✅ 生成Resilience Scorecard报告</p></li>
-<li><p>✅ 自动清理进程</p></li>
-</ul>
-<p><strong>输出</strong>：</p>
-<ul class="simple">
-<li><p>日志文件：<code class="docutils literal notranslate"><span class="pre">logs/proxy.log</span></code>, <code class="docutils literal notranslate"><span class="pre">logs/agent_output.log</span></code></p></li>
-<li><p>报告文件：<code class="docutils literal notranslate"><span class="pre">reports/resilience_report.md</span></code>, <code class="docutils literal notranslate"><span class="pre">reports/resilience_report.json</span></code></p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="cli-dashboard">
-<h3>方式2：CLI工具 + Dashboard（推荐）⭐<a class="headerlink" href="#cli-dashboard" title="Link to this heading"></a></h3>
-<p><strong>适用场景</strong>：交互式测试，实时查看监控数据</p>
-<section id="chaos">
-<h4>步骤1：启动Chaos平台<a class="headerlink" href="#chaos" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos.yaml<span class="w"> </span>--mock-server
-</pre></div>
-</div>
-<p><strong>你会看到</strong>：</p>
-<ul class="simple">
-<li><p>✅ 漂亮的ASCII Logo</p></li>
-<li><p>✅ 实验计划加载信息</p></li>
-<li><p>✅ 服务启动状态（Mock Server, Proxy, Dashboard）</p></li>
-<li><p>✅ 实时Dashboard界面（在终端中）</p></li>
-</ul>
-<p><strong>重要信息</strong>：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>✓ Dashboard available at http://127.0.0.1:8081
+<section id="standard-run">
+<h2>Standard Run<a class="headerlink" href="#standard-run" title="Link to this heading"></a></h2>
+<section id="start-the-platform">
+<h3>1) Start the platform<a class="headerlink" href="#start-the-platform" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos_validate.yaml<span class="w"> </span>--mock-server<span class="w"> </span>--repeat<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 </section>
-<section id="agent">
-<h4>步骤2：在另一个终端运行Agent<a class="headerlink" href="#agent" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 设置代理环境变量（重要！）</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://localhost:8080
+<section id="route-agent-traffic-through-the-proxy">
+<h3>2) Route agent traffic through the proxy<a class="headerlink" href="#route-agent-traffic-through-the-proxy" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://localhost:8080
 <span class="nb">export</span><span class="w"> </span><span class="nv">HTTPS_PROXY</span><span class="o">=</span>http://localhost:8080
-<span class="nb">export</span><span class="w"> </span><span class="nv">NO_PROXY</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-
-<span class="c1"># 运行Agent</span>
-python<span class="w"> </span>examples/production_simulation/travel_agent.py<span class="w"> </span><span class="se">\</span>
+</pre></div>
+</div>
+</section>
+<section id="run-the-demo-agent">
+<h3>3) Run the demo agent<a class="headerlink" href="#run-the-demo-agent" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/production_simulation/travel_agent.py<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--query<span class="w"> </span><span class="s2">&quot;Book a flight from New York to Los Angeles on December 25th, 2025&quot;</span>
 </pre></div>
 </div>
 </section>
-<section id="dashboard">
-<h4>步骤3：查看Dashboard（可选）<a class="headerlink" href="#dashboard" title="Link to this heading"></a></h4>
-<p>打开浏览器访问：<code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8081</span></code></p>
-<p><strong>如果遇到连接问题</strong>，配置浏览器绕过代理：</p>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Chrome: 设置 → 系统 → 代理 → 高级 → 例外: <code class="docutils literal notranslate"><span class="pre">127.0.0.1,</span> <span class="pre">localhost</span></code></p></li>
-<li><p>Firefox: 设置 → 网络设置 → 不使用代理: <code class="docutils literal notranslate"><span class="pre">127.0.0.1,</span> <span class="pre">localhost</span></code></p></li>
+<li><p>Dashboard: <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8081</span></code></p></li>
+<li><p>Report: <code class="docutils literal notranslate"><span class="pre">runs/&lt;latest&gt;/reports/compliance_audit_report.md</span></code></p></li>
 </ul>
-</section>
-<section id="id8">
-<h4>步骤4：停止实验<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
-<p>在运行<code class="docutils literal notranslate"><span class="pre">agent-chaos</span></code>的终端按 <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code></p>
-</section>
-</section>
-<hr class="docutils" />
-<section id="id9">
-<h3>方式3：手动启动（最灵活）⭐<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
-<p><strong>适用场景</strong>：需要精确控制每个组件，调试时使用</p>
-<section id="mock-server">
-<h4>步骤1：启动Mock Server<a class="headerlink" href="#mock-server" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端1</span>
-python<span class="w"> </span>src/tools/mock_server.py
-</pre></div>
-</div>
-<p><strong>验证</strong>：</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>http://localhost:8001/health
-<span class="c1"># 应该返回: {&quot;status&quot;: &quot;healthy&quot;}</span>
-</pre></div>
-</div>
-</section>
-<section id="chaos-proxy">
-<h4>步骤2：启动Chaos Proxy<a class="headerlink" href="#chaos-proxy" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端2</span>
-mitmdump<span class="w"> </span>-s<span class="w"> </span>agent_chaos_sdk/proxy/addon.py<span class="w"> </span>--listen-port<span class="w"> </span><span class="m">8080</span>
-</pre></div>
-</div>
-</section>
-<section id="id10">
-<h4>步骤3：运行Agent<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端3</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://localhost:8080
-<span class="nb">export</span><span class="w"> </span><span class="nv">HTTPS_PROXY</span><span class="o">=</span>http://localhost:8080
-<span class="nb">export</span><span class="w"> </span><span class="nv">NO_PROXY</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-
-python<span class="w"> </span>examples/production_simulation/travel_agent.py<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--query<span class="w"> </span><span class="s2">&quot;Book a flight from New York to Los Angeles on December 25th, 2025&quot;</span>
-</pre></div>
-</div>
-</section>
-<section id="id11">
-<h4>步骤4：生成报告<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 终端3（继续）</span>
-python<span class="w"> </span>src/reporter/generate.py
-</pre></div>
-</div>
-</section>
-</section>
-</section>
-<hr class="docutils" />
-<section id="id12">
-<h2>完整测试流程<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
-<section id="id13">
-<h3>1. 运行单元测试<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行所有单元测试</span>
-pytest<span class="w"> </span>tests/unit/<span class="w"> </span>-v
-
-<span class="c1"># 带覆盖率报告</span>
-pytest<span class="w"> </span>tests/unit/<span class="w"> </span>--cov<span class="o">=</span>agent_chaos_sdk<span class="w"> </span>--cov-report<span class="o">=</span>term-missing
-</pre></div>
-</div>
-</section>
-<section id="id14">
-<h3>2. 运行端到端测试<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
-<p>选择上述三种方式之一（推荐方式1或方式2）</p>
-</section>
-<section id="id15">
-<h3>3. 查看结果<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
-<section id="id16">
-<h4>查看终端输出<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
-<ul class="simple">
-<li><p>Agent会打印执行过程</p></li>
-<li><p>如果使用CLI，会显示实时Dashboard</p></li>
-<li><p>如果使用脚本，会显示报告摘要</p></li>
-</ul>
-</section>
-<section id="id17">
-<h4>查看日志文件<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Proxy日志（JSON格式，用于报告生成）</span>
-cat<span class="w"> </span>logs/proxy.log
-
-<span class="c1"># Agent输出日志</span>
-cat<span class="w"> </span>logs/agent_output.log
-
-<span class="c1"># Proxy标准输出（详细调试信息）</span>
-cat<span class="w"> </span>logs/proxy_stdout.log
-</pre></div>
-</div>
-</section>
-<section id="id18">
-<h4>查看报告<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Markdown报告（人类可读）</span>
-cat<span class="w"> </span>reports/resilience_report.md
-
-<span class="c1"># JSON报告（机器可读）</span>
-cat<span class="w"> </span>reports/resilience_report.json
-
-<span class="c1"># 或者在浏览器中打开</span>
-open<span class="w"> </span>reports/resilience_report.md
-</pre></div>
-</div>
-</section>
-</section>
-<section id="id19">
-<h3>4. 理解报告<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
-<p>报告包含以下指标：</p>
-<ul class="simple">
-<li><p><strong>Grade</strong>: 整体评分（A/B/C/D/F）</p></li>
-<li><p><strong>Resilience Score</strong>: 弹性分数（0-100）</p></li>
-<li><p><strong>Tool Calls</strong>: 工具调用统计（总数、成功、失败）</p></li>
-<li><p><strong>Fuzzing</strong>: 模糊测试统计（尝试次数、成功次数）</p></li>
-<li><p><strong>Recovery</strong>: 恢复率（失败后重试的成功率）</p></li>
-<li><p><strong>Outcome</strong>: 最终结果（完成/崩溃）</p></li>
-<li><p><strong>Protocol Attacks</strong>: 协议攻击检测</p></li>
-<li><p><strong>Race Conditions</strong>: 竞态条件检测</p></li>
-</ul>
-</section>
-</section>
-<hr class="docutils" />
-<section id="id20">
-<h2>常用命令<a class="headerlink" href="#id20" title="Link to this heading"></a></h2>
-<section id="cli">
-<h3>CLI命令<a class="headerlink" href="#cli" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初始化一个新的chaos plan模板</span>
-agent-chaos<span class="w"> </span>init
-
-<span class="c1"># 验证chaos plan YAML文件</span>
-agent-chaos<span class="w"> </span>validate<span class="w"> </span>examples/plans/travel_agent_chaos.yaml
-
-<span class="c1"># 运行实验（带Mock Server）</span>
-agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos.yaml<span class="w"> </span>--mock-server
-
-<span class="c1"># 运行实验（不带Mock Server，使用外部服务）</span>
-agent-chaos<span class="w"> </span>run<span class="w"> </span>examples/plans/travel_agent_chaos.yaml
-
-<span class="c1"># 记录会话（用于回放）</span>
-agent-chaos<span class="w"> </span>record<span class="w"> </span>examples/plans/travel_agent_chaos.yaml<span class="w"> </span>--tape<span class="w"> </span>session.tape
-
-<span class="c1"># 回放会话</span>
-agent-chaos<span class="w"> </span>replay<span class="w"> </span>session.tape<span class="w"> </span>--plan<span class="w"> </span>examples/plans/travel_agent_chaos.yaml
-</pre></div>
-</div>
-</section>
-<section id="id21">
-<h3>报告生成<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 基本用法（自动查找日志）</span>
-python<span class="w"> </span>src/reporter/generate.py
-
-<span class="c1"># 指定日志文件</span>
-python<span class="w"> </span>src/reporter/generate.py<span class="w"> </span>--log-file<span class="w"> </span>logs/proxy.log
-
-<span class="c1"># 自定义输出目录</span>
-python<span class="w"> </span>src/reporter/generate.py<span class="w"> </span>--output-dir<span class="w"> </span>reports/
-</pre></div>
-</div>
-</section>
-<section id="id22">
-<h3>测试命令<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 运行所有测试</span>
-pytest
-
-<span class="c1"># 运行单元测试</span>
-pytest<span class="w"> </span>tests/unit/<span class="w"> </span>-v
-
-<span class="c1"># 运行集成测试</span>
-pytest<span class="w"> </span>tests/integration/<span class="w"> </span>-v
-
-<span class="c1"># 运行特定测试文件</span>
-pytest<span class="w"> </span>tests/unit/test_security.py<span class="w"> </span>-v
-
-<span class="c1"># 运行带覆盖率的测试</span>
-pytest<span class="w"> </span>--cov<span class="o">=</span>agent_chaos_sdk<span class="w"> </span>--cov-report<span class="o">=</span>html
-</pre></div>
-</div>
-</section>
-</section>
-<hr class="docutils" />
-<section id="id23">
-<h2>🔧 配置Chaos策略<a class="headerlink" href="#id23" title="Link to this heading"></a></h2>
-<section id="chaos-plan">
-<h3>编辑Chaos Plan<a class="headerlink" href="#chaos-plan" title="Link to this heading"></a></h3>
-<p>编辑 <code class="docutils literal notranslate"><span class="pre">examples/plans/travel_agent_chaos.yaml</span></code>：</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scenarios</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;flight_search_delay&quot;</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;latency&quot;</span>
-<span class="w">    </span><span class="nt">target_ref</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;flight_search_api&quot;</span>
-<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">        </span><span class="c1"># 改为true启用</span>
-<span class="w">    </span><span class="nt">probability</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">     </span><span class="c1"># 概率（0.0-1.0）</span>
-<span class="w">    </span><span class="nt">params</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span><span class="w">         </span><span class="c1"># 延迟秒数</span>
-</pre></div>
-</div>
-</section>
-<section id="id24">
-<h3>可用的策略类型<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p><strong>latency</strong>: 网络延迟</p></li>
-<li><p><strong>error</strong>: 错误注入</p></li>
-<li><p><strong>mcp_fuzzing</strong>: 协议模糊测试</p></li>
-<li><p><strong>group_chaos</strong>: 基于角色的组策略</p></li>
-<li><p><strong>hallucination</strong>: 认知层攻击（数据篡改）</p></li>
-<li><p><strong>context_overflow</strong>: 上下文溢出攻击</p></li>
-<li><p><strong>phantom_document</strong>: RAG投毒</p></li>
-<li><p><strong>swarm_disruption</strong>: Swarm破坏</p></li>
-</ol>
-</section>
-<section id="id25">
-<h3>重新加载配置<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
-<p>如果使用CLI，修改YAML后需要：</p>
-<ol class="arabic simple">
-<li><p>停止当前运行的<code class="docutils literal notranslate"><span class="pre">agent-chaos</span></code>（Ctrl+C）</p></li>
-<li><p>重新运行<code class="docutils literal notranslate"><span class="pre">agent-chaos</span> <span class="pre">run</span></code></p></li>
-</ol>
-<p>如果使用手动模式，修改配置后需要重启Proxy。</p>
-</section>
-</section>
-<hr class="docutils" />
-<section id="id26">
-<h2>📊 可观测性<a class="headerlink" href="#id26" title="Link to this heading"></a></h2>
-<section id="id27">
-<h3>Dashboard（实时监控）<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
-<p>访问：<code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8081</span></code></p>
-<p>功能：</p>
-<ul class="simple">
-<li><p>实时请求统计</p></li>
-<li><p>Chaos注入事件</p></li>
-<li><p>拓扑图可视化</p></li>
-<li><p>错误追踪</p></li>
-</ul>
-</section>
-<section id="jaeger">
-<h3>Jaeger（分布式追踪）<a class="headerlink" href="#jaeger" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 启动Jaeger（需要Docker）</span>
-docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-
-<span class="c1"># 访问Jaeger UI</span>
-open<span class="w"> </span>http://localhost:16686
-</pre></div>
-</div>
-</section>
-<section id="prometheus-grafana">
-<h3>Prometheus/Grafana（指标监控）<a class="headerlink" href="#prometheus-grafana" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 启动Prometheus和Grafana</span>
-docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-
-<span class="c1"># 访问Prometheus</span>
-open<span class="w"> </span>http://localhost:9090
-
-<span class="c1"># 访问Grafana</span>
-open<span class="w"> </span>http://localhost:3000
-<span class="c1"># 默认用户名/密码: admin/admin</span>
-</pre></div>
-</div>
-</section>
-</section>
-<hr class="docutils" />
-<section id="id28">
-<h2>🐛 故障排除<a class="headerlink" href="#id28" title="Link to this heading"></a></h2>
-<section id="id29">
-<h3>常见问题<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
-<ol class="arabic">
-<li><p><strong>端口被占用</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsof<span class="w"> </span>-i<span class="w"> </span>:8080<span class="w">  </span><span class="c1"># Proxy端口</span>
-lsof<span class="w"> </span>-i<span class="w"> </span>:8001<span class="w">  </span><span class="c1"># Mock Server端口</span>
-lsof<span class="w"> </span>-i<span class="w"> </span>:8081<span class="w">  </span><span class="c1"># Dashboard端口</span>
-<span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>&lt;PID&gt;<span class="w">  </span><span class="c1"># 杀死进程</span>
-</pre></div>
-</div>
-</li>
-<li><p><strong>Agent无法连接Mock Server</strong></p>
-<ul class="simple">
-<li><p>检查<code class="docutils literal notranslate"><span class="pre">HTTP_PROXY</span></code>环境变量是否正确设置</p></li>
-<li><p>确保<code class="docutils literal notranslate"><span class="pre">NO_PROXY</span></code>为空（强制localhost走代理）</p></li>
-</ul>
-</li>
-<li><p><strong>Dashboard连接被拒绝</strong></p>
-<ul class="simple">
-<li><p>配置浏览器绕过代理（见方式2步骤3）</p></li>
-<li><p>检查Dashboard是否已启动</p></li>
-</ul>
-</li>
-<li><p><strong>测试失败</strong></p>
-<ul class="simple">
-<li><p>检查Ollama是否运行：<code class="docutils literal notranslate"><span class="pre">ollama</span> <span class="pre">list</span></code></p></li>
-<li><p>查看日志文件获取详细错误信息</p></li>
-<li><p>运行单元测试确保基础功能正常</p></li>
-</ul>
-</li>
-<li><p><strong>报告显示”Fuzzing: Attempted: 0”</strong></p>
-<ul class="simple">
-<li><p>检查chaos plan中的策略是否<code class="docutils literal notranslate"><span class="pre">enabled:</span> <span class="pre">true</span></code></p></li>
-<li><p>检查<code class="docutils literal notranslate"><span class="pre">probability</span></code>是否大于0</p></li>
-</ul>
-</li>
-</ol>
-</section>
-</section>
-<hr class="docutils" />
-<section id="id30">
-<h2>📚 更多资源<a class="headerlink" href="#id30" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>完整测试指南</strong>: 查看 <code class="docutils literal notranslate"><span class="pre">COMPREHENSIVE_TESTING_GUIDE.md</span></code></p></li>
-<li><p><strong>项目README</strong>: 查看 <code class="docutils literal notranslate"><span class="pre">README.md</span></code></p></li>
-<li><p><strong>Chaos Plan示例</strong>: 查看 <code class="docutils literal notranslate"><span class="pre">examples/plans/</span></code> 目录</p></li>
-<li><p><strong>API文档</strong>: 查看各个模块的docstring</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="id31">
-<h2>🎯 下一步<a class="headerlink" href="#id31" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p>✅ 运行一键测试脚本验证系统</p></li>
-<li><p>✅ 启用不同的chaos策略进行测试</p></li>
-<li><p>✅ 查看Dashboard了解实时监控</p></li>
-<li><p>✅ 分析报告了解Agent的弹性表现</p></li>
-<li><p>✅ 尝试不同的chaos plan配置</p></li>
-</ol>
-<p><strong>祝你测试愉快！</strong> 🐵</p>
+<p>Stop the experiment with <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code>.</p>
 </section>
 </section>
 
@@ -1104,7 +594,7 @@ lsof<span class="w"> </span>-i<span class="w"> </span>:8081<span class="w">  </s
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="README.html" class="btn btn-neutral float-left" title="Documentation Index" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="COMPREHENSIVE_TESTING_GUIDE.html" class="btn btn-neutral float-right" title="完整测试指南 - Agent Chaos Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="CONTRIBUTING.html" class="btn btn-neutral float-right" title="Contributing to Agent Chaos Platform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

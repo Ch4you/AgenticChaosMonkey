@@ -82,7 +82,7 @@ pip install fastapi uvicorn
 Verify the dashboard HTML file exists:
 
 ```bash
-ls -la src/dashboard/index.html
+ls -la agent_chaos_sdk/dashboard/index.html
 ```
 
 If missing, the dashboard will show a fallback message.
@@ -103,7 +103,7 @@ If missing, the dashboard will show a fallback message.
 
 **Issue**: Dashboard HTML not found
 - **Cause**: File path resolution issue
-- **Fix**: Ensure `src/dashboard/index.html` exists relative to project root
+- **Fix**: Ensure `agent_chaos_sdk/dashboard/index.html` exists relative to project root
 
 ### 8. Alternative: Standalone Dashboard Server
 
@@ -155,7 +155,7 @@ If you're behind a firewall or proxy:
 
 - [ ] FastAPI and uvicorn installed
 - [ ] Port 8081 not in use
-- [ ] `src/dashboard/index.html` exists
+- [ ] `agent_chaos_sdk/dashboard/index.html` exists
 - [ ] Dashboard server thread is running (check with `ps aux | grep python`)
 - [ ] No firewall blocking port 8081
 - [ ] Browser can access `http://127.0.0.1:8081` (not `https://`)

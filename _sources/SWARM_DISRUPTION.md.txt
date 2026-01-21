@@ -102,7 +102,7 @@ traffic_type = classifier.classify(flow)
 
 ### Scorecard Integration
 
-**Location**: `src/reporter/scorecard.py`
+**Location**: `agent_chaos_sdk/reporter/scorecard.py`
 
 The scorecard now tracks swarm-specific metrics:
 

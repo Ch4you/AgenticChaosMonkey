@@ -31,7 +31,7 @@ This will:
 1. Start the Mock Server
 2. Start the Chaos Proxy
 3. Run the Travel Agent test
-4. Generate a Resilience Scorecard report
+4. Generate a Compliance Audit report
 
 Using the CLI
 -------------
@@ -46,13 +46,13 @@ Validate a chaos plan:
 
 .. code-block:: bash
 
-   agent-chaos validate examples/plans/travel_agent_chaos.yaml
+   agent-chaos validate examples/plans/travel_agent_chaos_validate.yaml
 
 Run an experiment:
 
 .. code-block:: bash
 
-   agent-chaos run examples/plans/travel_agent_chaos.yaml --mock-server
+   agent-chaos run examples/plans/travel_agent_chaos_validate.yaml --mock-server --repeat 10
 
 Strict Modes (Recommended for Production)
 ------------------------------------------------------------
@@ -110,7 +110,7 @@ Load a chaos plan:
 
    from agent_chaos_sdk.config_loader import load_chaos_plan
 
-   plan = load_chaos_plan("examples/plans/travel_agent_chaos.yaml")
+   plan = load_chaos_plan("examples/plans/travel_agent_chaos_validate.yaml")
    print(f"Loaded plan: {plan.metadata.name}")
 
 Next Steps
